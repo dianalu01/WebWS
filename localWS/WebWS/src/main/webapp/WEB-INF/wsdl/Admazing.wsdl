@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://admazing.com/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http"
+	name="AdmazingService" targetNamespace="http://admazing.com/">
+	<wsdl:types>
+	<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns:tns="http://admazing.com/" elementFormDefault="unqualified"
+		targetNamespace="http://admazing.com/" version="1.0">
+
+		<xs:complexType name="UsuarioModel">
+			<xs:sequence>
+				<xs:element name="idUsuario" type="xs:string" />
+				<xs:element name="nombre" type="xs:string" />
+				<xs:element name="apellidoPaterno" type="xs:string" />
+				<xs:element name="apellidoMaterno" type="xs:string" />
+				<xs:element name="edad" type="xs:integer" />
+				<xs:element name="genero" type="xs:string" />
+				<xs:element name="telefono" type="xs:string" />
+				<xs:element name="password" type="xs:string" />
+				<xs:element name="fechaNacimiento" type="xs:date" />
+				<xs:element name="imagenPerfil" type="xs:anyURI" />
+				<xs:element name="dni" type="xs:string"/>
+				<xs:element name="estado" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+
+			<xs:element name="iniciarSesionRequest" type="tns:iniciarSesionRequest" />
+
+		<xs:element name="iniciarSesionResponse" type="tns:iniciarSesionResponse" />
+
+		<xs:complexType name="iniciarSesionRequest">
+			<xs:sequence>
+				<xs:element minOccurs="1" name="idUsuario" type="xs:string" />
+				<xs:element minOccurs="1" name="password" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+
+		<xs:complexType name="iniciarSesionResponse">
+			<xs:sequence>
+				<xs:element  name="resultado" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+
+	<wsdl:message name="iniciarSesionRequest">
+		<wsdl:part element="tns:iniciarSesionRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="iniciarSesionResponse">
+		<wsdl:part element="tns:iniciarSesionResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="AdmazingPortType">
+		<wsdl:operation name="iniciarSesion">
+			<wsdl:input message="tns:iniciarSesionRequest" name="iniciarSesionRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:iniciarSesionResponse" name="iniciarSesionResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="AdmazingServiceSoapBinding"	type="tns:AdmazingPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="iniciarSesion">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="iniciarSesionRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="iniciarSesionResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="AdmazingService">
+		<wsdl:port binding="tns:AdmazingServiceSoapBinding" name="AdmazingPort">
+			<soap:address
+				location="http://localhost:8080/WebWS/services/AdmazingService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
