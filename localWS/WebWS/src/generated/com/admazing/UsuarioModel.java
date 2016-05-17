@@ -29,7 +29,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="telefono" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}date"/>
- *         &lt;element name="imagenPerfil" type="{http://www.w3.org/2001/XMLSchema}anyURI"/>
  *         &lt;element name="dni" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="estado" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -51,7 +50,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "telefono",
     "password",
     "fechaNacimiento",
-    "imagenPerfil",
     "dni",
     "estado"
 })
@@ -76,9 +74,6 @@ public class UsuarioModel {
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar fechaNacimiento;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "anyURI")
-    protected String imagenPerfil;
     @XmlElement(required = true)
     protected String dni;
     @XmlElement(required = true)
@@ -298,30 +293,6 @@ public class UsuarioModel {
      */
     public void setFechaNacimiento(XMLGregorianCalendar value) {
         this.fechaNacimiento = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad imagenPerfil.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getImagenPerfil() {
-        return imagenPerfil;
-    }
-
-    /**
-     * Define el valor de la propiedad imagenPerfil.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setImagenPerfil(String value) {
-        this.imagenPerfil = value;
     }
 
     /**

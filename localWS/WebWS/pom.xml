@@ -9,6 +9,7 @@
 	<name>Admazing WS</name>
 	<description>AdmazingWS</description>
 	<properties>
+		<hibernate.version>4.2.15.Final</hibernate.version>
 		<cxf.version>3.0.2</cxf.version>
 	</properties>
 	<build>
@@ -127,7 +128,23 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>3.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency> 
+		<!-- The tutorials use the PostgreSQL 9.3.5 database -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.3-1102-jdbc41</version>
+		</dependency> 
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 </project>
 	

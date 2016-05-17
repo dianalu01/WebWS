@@ -19,7 +19,6 @@
 				<xs:element name="telefono" type="xs:string" />
 				<xs:element name="password" type="xs:string" />
 				<xs:element name="fechaNacimiento" type="xs:date" />
-				<xs:element name="imagenPerfil" type="xs:anyURI" />
 				<xs:element name="dni" type="xs:string"/>
 				<xs:element name="estado" type="xs:string" />
 			</xs:sequence>
