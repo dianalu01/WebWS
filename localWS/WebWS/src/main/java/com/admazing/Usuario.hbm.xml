@@ -10,7 +10,7 @@
         <property name="nombre" type="string" column="nombre" length="30"/>
         <property name="apellidoPaterno" type="string" column="apellidoPaterno" length="30" />
         <property name="apellidoMaterno" type="string" column="apellidoMaterno" length="30" />
-        <property name="edad" type="java.lang.Integer" column="edad" />
+        <property name="edad" type="java.math.BigInteger" column="edad" />
         <property name="genero" type="string" column="genero" length="1"/>
         <property name="telefono" type="string" column="telefono" length="9"/>
         <property name="password" type="string" column="password" length="15"/>

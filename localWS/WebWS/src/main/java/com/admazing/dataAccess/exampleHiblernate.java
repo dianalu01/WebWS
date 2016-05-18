@@ -5,6 +5,7 @@ import java.util.Iterator;
 import org.hibernate.Session;
 
 import com.admazing.UsuarioModel;
+
 public class exampleHiblernate{
 	public static void main(String args[]){
 		Session session = hibernateUtil.getSessionFactory().getCurrentSession();
@@ -13,7 +14,7 @@ public class exampleHiblernate{
 		Iterator itr = list.iterator();
 		while(itr.hasNext()){
 			UsuarioModel bd = (UsuarioModel)itr.next();
-			System.out.println(bd);
+			System.out.println(bd.getNombre());
 		}
 		session.getTransaction().commit();
 	

@@ -1,12 +1,14 @@
-
 package com.admazing;
 
 import java.math.BigInteger;
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -28,7 +30,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="genero" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="telefono" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="dni" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="estado" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -72,8 +74,9 @@ public class UsuarioModel {
     @XmlElement(required = true)
     protected String password;
     @XmlElement(required = true)
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar fechaNacimiento;
+    @XmlSchemaType(name = "dateTime")
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    protected Date fechaNacimiento;
     @XmlElement(required = true)
     protected String dni;
     @XmlElement(required = true)
@@ -279,7 +282,7 @@ public class UsuarioModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
@@ -291,7 +294,7 @@ public class UsuarioModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setFechaNacimiento(XMLGregorianCalendar value) {
+    public void setFechaNacimiento(Date value) {
         this.fechaNacimiento = value;
     }
 
