@@ -1,3 +1,4 @@
+
 package com.admazing;
 
 import java.math.BigInteger;
@@ -9,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import javax.xml.datatype.XMLGregorianCalendar;
+
 
 
 /**
@@ -33,6 +34,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="dni" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="estado" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="cuponera" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -53,7 +55,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "password",
     "fechaNacimiento",
     "dni",
-    "estado"
+    "estado",
+    "cuponera"
 })
 public class UsuarioModel {
 
@@ -81,6 +84,8 @@ public class UsuarioModel {
     protected String dni;
     @XmlElement(required = true)
     protected String estado;
+    @XmlElement(required = true)
+    protected String cuponera;
 
     /**
      * Obtiene el valor de la propiedad idUsuario.
@@ -344,6 +349,30 @@ public class UsuarioModel {
      */
     public void setEstado(String value) {
         this.estado = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad cuponera.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCuponera() {
+        return cuponera;
+    }
+
+    /**
+     * Define el valor de la propiedad cuponera.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCuponera(String value) {
+        this.cuponera = value;
     }
 
 }

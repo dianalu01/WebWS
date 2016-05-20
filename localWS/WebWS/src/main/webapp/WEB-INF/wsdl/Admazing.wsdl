@@ -21,10 +21,31 @@
 				<xs:element name="fechaNacimiento" type="xs:dateTime" />
 				<xs:element name="dni" type="xs:string"/>
 				<xs:element name="estado" type="xs:string" />
+				<xs:element name="cuponera" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
-
-			<xs:element name="iniciarSesionRequest" type="tns:iniciarSesionRequest" />
+		<xs:complexType name="TiendaModel">
+			<xs:sequence>
+				<xs:element name="codigo" type="xs:string" />
+				<xs:element name="zonacomercial" type="xs:string" />
+				<xs:element name="cif" type="xs:string" />
+				<xs:element name="razonsocial" type="xs:string" />
+				<xs:element name="domicilio" type="xs:string" />
+				<xs:element name="email" type="xs:string" />
+				<xs:element name="fax" type="xs:string" />				
+				<xs:element name="telefono" type="xs:string"/>
+				<xs:element name="pagweb" type="xs:string" />
+				<xs:element name="password" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="CategoriaModel">
+			<xs:sequence>
+				<xs:element name="idcategoria" type="xs:string" />
+				<xs:element name="nombre" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:element name="iniciarSesionRequest" type="tns:iniciarSesionRequest" />
 
 		<xs:element name="iniciarSesionResponse" type="tns:iniciarSesionResponse" />
 
@@ -40,6 +61,20 @@
 				<xs:element  name="resultado" type="xs:boolean" />
 			</xs:sequence>
 		</xs:complexType>
+
+		<xs:element name="getAllTiendaRequest" type="tns:getAllTiendaRequest" />
+
+		<xs:element name="getAllTiendaResponse" type="tns:getAllTiendaResponse" />
+
+		<xs:complexType name="getAllTiendaRequest"/>
+
+		<xs:complexType name="getAllTiendaResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="tiendas"
+					type="tns:TiendaModel" />
+			</xs:sequence>
+		</xs:complexType>
+
 		</xs:schema>
 	</wsdl:types>
 
@@ -51,11 +86,26 @@
 		<wsdl:part element="tns:iniciarSesionResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
+		<wsdl:message name="getAllTiendaRequest">
+		<wsdl:part element="tns:getAllTiendaRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAllTiendaResponse">
+		<wsdl:part element="tns:getAllTiendaResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	
 	<wsdl:portType name="AdmazingPortType">
 		<wsdl:operation name="iniciarSesion">
 			<wsdl:input message="tns:iniciarSesionRequest" name="iniciarSesionRequest">
 			</wsdl:input>
 			<wsdl:output message="tns:iniciarSesionResponse" name="iniciarSesionResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAllTienda">
+			<wsdl:input message="tns:getAllTiendaRequest" name="getAllTiendaRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getAllTiendaResponse" name="getAllTiendaResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
@@ -68,6 +118,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="iniciarSesionResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAllTienda">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getAllTiendaRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAllTiendaResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>

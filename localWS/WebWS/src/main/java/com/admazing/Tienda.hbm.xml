@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.Admazing">
+    <class name="com.admazing.TiendaModel" table="tienda" >
+        <id name="codigo" type="string">
+            <column name="codigo" length="8" not-null="true"/>
+        </id>
+        <property name="zonacomercial" type="string" column="zonacomercial" length="8"/>
+        <property name="cif" type="string" column="cif" length="9" />
+        <property name="razonsocial" type="string" column="razonsocial" length="30" />
+        <property name="domicilio" type="string" column="domicilio" length="30"/>
+        <property name="email" type="string" column="email" length="20"/>
+        <property name="fax" type="string" column="fax" length="11"/>
+      	<property name="telefono" type="string" column="telefono" length="9"/>
+        <property name="pagweb" type="string" column="pagweb" length="20"/>        
+        <property name="password" type="string" column="password" length="15"/>
+	</class>
+</hibernate-mapping>

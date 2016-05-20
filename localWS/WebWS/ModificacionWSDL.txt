@@ -1,0 +1,14 @@
+Cada vez que se modifique el WSDL
+---------------------------------------
+
+1) En la clase UsuarioModel
+	
+	a) agregar : import java.util.Date; 
+		import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+	
+	b) cambiar: 
+		protected XMLGregorianCalendar fechaNacimiento;
+		por
+	    @XmlJavaTypeAdapter(DateAdapter.class)
+	    protected Date fechaNacimiento;
+	c)	cambiar: get y set de fechaNacimiento
