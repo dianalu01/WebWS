@@ -46,16 +46,13 @@
 		</xs:complexType>
 		
 		<xs:element name="iniciarSesionRequest" type="tns:iniciarSesionRequest" />
-
 		<xs:element name="iniciarSesionResponse" type="tns:iniciarSesionResponse" />
-
 		<xs:complexType name="iniciarSesionRequest">
 			<xs:sequence>
 				<xs:element minOccurs="1" name="idUsuario" type="xs:string" />
 				<xs:element minOccurs="1" name="password" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
-
 		<xs:complexType name="iniciarSesionResponse">
 			<xs:sequence>
 				<xs:element  name="resultado" type="xs:boolean" />
@@ -63,18 +60,29 @@
 		</xs:complexType>
 
 		<xs:element name="getAllTiendaRequest" type="tns:getAllTiendaRequest" />
-
 		<xs:element name="getAllTiendaResponse" type="tns:getAllTiendaResponse" />
-
 		<xs:complexType name="getAllTiendaRequest"/>
-
 		<xs:complexType name="getAllTiendaResponse">
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="unbounded" name="tiendas"
 					type="tns:TiendaModel" />
 			</xs:sequence>
 		</xs:complexType>
-
+		
+		<xs:element name="getByIdCategoriaRequest" type="tns:getByIdCategoriaRequest" />
+		<xs:element name="getByIdCategoriaResponse" type="tns:getByIdCategoriaResponse" />
+		<xs:complexType name="getByIdCategoriaRequest">
+		<xs:sequence>
+				<xs:element minOccurs="1" name="idTienda" type="xs:string" />
+		</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="getByIdCategoriaResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="categorias"
+					type="tns:CategoriaModel" />
+			</xs:sequence>
+		</xs:complexType>
+		
 		</xs:schema>
 	</wsdl:types>
 
@@ -94,6 +102,14 @@
 		<wsdl:part element="tns:getAllTiendaResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
+	<wsdl:message name="getByIdCategoriaRequest">
+		<wsdl:part element="tns:getByIdCategoriaRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getByIdCategoriaResponse">
+		<wsdl:part element="tns:getByIdCategoriaResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
 	
 	<wsdl:portType name="AdmazingPortType">
 		<wsdl:operation name="iniciarSesion">
@@ -106,6 +122,12 @@
 			<wsdl:input message="tns:getAllTiendaRequest" name="getAllTiendaRequest">
 			</wsdl:input>
 			<wsdl:output message="tns:getAllTiendaResponse" name="getAllTiendaResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getByIdCategoria">
+			<wsdl:input message="tns:getByIdCategoriaRequest" name="getByIdCategoriaRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getByIdCategoriaResponse" name="getByIdCategoriaResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
@@ -127,6 +149,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="getAllTiendaResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getByIdCategoria">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getByIdCategoriaRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getByIdCategoriaResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>

@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
-
 /**
  * <p>Clase Java para UsuarioModel complex type.
  * 

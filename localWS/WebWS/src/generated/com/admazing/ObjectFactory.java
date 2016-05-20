@@ -26,6 +26,8 @@ public class ObjectFactory {
 
     private final static QName _GetAllTiendaRequest_QNAME = new QName("http://admazing.com/", "getAllTiendaRequest");
     private final static QName _IniciarSesionRequest_QNAME = new QName("http://admazing.com/", "iniciarSesionRequest");
+    private final static QName _GetByIdCategoriaResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoriaResponse");
+    private final static QName _GetByIdCategoriaRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoriaRequest");
     private final static QName _IniciarSesionResponse_QNAME = new QName("http://admazing.com/", "iniciarSesionResponse");
     private final static QName _GetAllTiendaResponse_QNAME = new QName("http://admazing.com/", "getAllTiendaResponse");
 
@@ -50,6 +52,22 @@ public class ObjectFactory {
      */
     public IniciarSesionRequest createIniciarSesionRequest() {
         return new IniciarSesionRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetByIdCategoriaResponse }
+     * 
+     */
+    public GetByIdCategoriaResponse createGetByIdCategoriaResponse() {
+        return new GetByIdCategoriaResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetByIdCategoriaRequest }
+     * 
+     */
+    public GetByIdCategoriaRequest createGetByIdCategoriaRequest() {
+        return new GetByIdCategoriaRequest();
     }
 
     /**
@@ -108,6 +126,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "iniciarSesionRequest")
     public JAXBElement<IniciarSesionRequest> createIniciarSesionRequest(IniciarSesionRequest value) {
         return new JAXBElement<IniciarSesionRequest>(_IniciarSesionRequest_QNAME, IniciarSesionRequest.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetByIdCategoriaResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdCategoriaResponse")
+    public JAXBElement<GetByIdCategoriaResponse> createGetByIdCategoriaResponse(GetByIdCategoriaResponse value) {
+        return new JAXBElement<GetByIdCategoriaResponse>(_GetByIdCategoriaResponse_QNAME, GetByIdCategoriaResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetByIdCategoriaRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdCategoriaRequest")
+    public JAXBElement<GetByIdCategoriaRequest> createGetByIdCategoriaRequest(GetByIdCategoriaRequest value) {
+        return new JAXBElement<GetByIdCategoriaRequest>(_GetByIdCategoriaRequest_QNAME, GetByIdCategoriaRequest.class, null, value);
     }
 
     /**

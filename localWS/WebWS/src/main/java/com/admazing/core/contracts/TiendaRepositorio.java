@@ -5,5 +5,5 @@ import java.util.List;
 import com.admazing.TiendaModel;
 
 public interface TiendaRepositorio {
-	List<TiendaModel> findByAll();
+	List<TiendaModel> getAll();
 }
