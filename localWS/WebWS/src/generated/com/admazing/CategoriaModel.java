@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="idcategoria" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,14 +30,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CategoriaModel", propOrder = {
     "idcategoria",
-    "nombre"
+    "descripcion"
 })
 public class CategoriaModel {
 
     @XmlElement(required = true)
     protected String idcategoria;
     @XmlElement(required = true)
-    protected String nombre;
+    protected String descripcion;
 
     /**
      * Obtiene el valor de la propiedad idcategoria.
@@ -64,27 +64,27 @@ public class CategoriaModel {
     }
 
     /**
-     * Obtiene el valor de la propiedad nombre.
+     * Obtiene el valor de la propiedad descripcion.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNombre() {
-        return nombre;
+    public String getDescripcion() {
+        return descripcion;
     }
 
     /**
-     * Define el valor de la propiedad nombre.
+     * Define el valor de la propiedad descripcion.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNombre(String value) {
-        this.nombre = value;
+    public void setDescripcion(String value) {
+        this.descripcion = value;
     }
 
 }

@@ -12,11 +12,6 @@
         <property name="apellidoMaterno" type="string" column="apellidoMaterno" length="30" />
         <property name="edad" type="java.math.BigInteger" column="edad" />
         <property name="genero" type="string" column="genero" length="1"/>
-        <property name="telefono" type="string" column="telefono" length="9"/>
         <property name="password" type="string" column="password" length="15"/>
-        <property name="fechaNacimiento" type="date" column="fechaNacimiento" />
-      	<property name="dni" type="string" column="dni" length="8"/>
-        <property name="estado" type="string" column="estado" length="2"/>        
-        <property name="cuponera" type="string" column="cuponera" length="4"/>
 	</class>
 </hibernate-mapping>

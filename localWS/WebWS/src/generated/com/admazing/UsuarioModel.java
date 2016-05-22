@@ -2,14 +2,10 @@
 package com.admazing;
 
 import java.math.BigInteger;
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -28,12 +24,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *         &lt;element name="apellidoMaterno" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="edad" type="{http://www.w3.org/2001/XMLSchema}integer"/>
  *         &lt;element name="genero" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="telefono" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="dni" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="estado" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="cuponera" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -50,12 +41,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "apellidoMaterno",
     "edad",
     "genero",
-    "telefono",
-    "password",
-    "fechaNacimiento",
-    "dni",
-    "estado",
-    "cuponera"
+    "password"
 })
 public class UsuarioModel {
 
@@ -72,19 +58,7 @@ public class UsuarioModel {
     @XmlElement(required = true)
     protected String genero;
     @XmlElement(required = true)
-    protected String telefono;
-    @XmlElement(required = true)
     protected String password;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "dateTime")
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    protected Date fechaNacimiento;
-    @XmlElement(required = true)
-    protected String dni;
-    @XmlElement(required = true)
-    protected String estado;
-    @XmlElement(required = true)
-    protected String cuponera;
 
     /**
      * Obtiene el valor de la propiedad idUsuario.
@@ -231,30 +205,6 @@ public class UsuarioModel {
     }
 
     /**
-     * Obtiene el valor de la propiedad telefono.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTelefono() {
-        return telefono;
-    }
-
-    /**
-     * Define el valor de la propiedad telefono.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTelefono(String value) {
-        this.telefono = value;
-    }
-
-    /**
      * Obtiene el valor de la propiedad password.
      * 
      * @return
@@ -276,102 +226,6 @@ public class UsuarioModel {
      */
     public void setPassword(String value) {
         this.password = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad fechaNacimiento.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    /**
-     * Define el valor de la propiedad fechaNacimiento.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setFechaNacimiento(Date value) {
-        this.fechaNacimiento = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad dni.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getDni() {
-        return dni;
-    }
-
-    /**
-     * Define el valor de la propiedad dni.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDni(String value) {
-        this.dni = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad estado.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getEstado() {
-        return estado;
-    }
-
-    /**
-     * Define el valor de la propiedad estado.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setEstado(String value) {
-        this.estado = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad cuponera.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCuponera() {
-        return cuponera;
-    }
-
-    /**
-     * Define el valor de la propiedad cuponera.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCuponera(String value) {
-        this.cuponera = value;
     }
 
 }

@@ -5,8 +5,8 @@
 <hibernate-mapping package="com.Admazing">
     <class name="com.admazing.CategoriaModel" table="categoria" >
         <id name="idcategoria" type="string">
-            <column name="idcategoria" length="6" not-null="true"/>
+            <column name="idcategoria" length="8" not-null="true"/>
         </id>
-        <property name="nombre" type="string" column="nombre" length="25"/>
+        <property name="descripcion" type="string" column="descripcion" length="30"/>
 	</class>
 </hibernate-mapping>

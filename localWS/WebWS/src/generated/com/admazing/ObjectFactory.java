@@ -87,6 +87,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link PromocionModel }
+     * 
+     */
+    public PromocionModel createPromocionModel() {
+        return new PromocionModel();
+    }
+
+    /**
      * Create an instance of {@link CategoriaModel }
      * 
      */

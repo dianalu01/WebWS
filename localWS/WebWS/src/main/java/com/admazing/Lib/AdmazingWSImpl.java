@@ -62,6 +62,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		GetByIdCategoriaResponse response = new GetByIdCategoriaResponse();
 		List<CategoriaModel> categorias=categoriaRepositorio.findById(parameters.getIdTienda());
 		List<CategoriaModel> responsecategorias = response.getCategorias();
+		System.out.println("STARTS");
 		if(categorias!=null){
 			for (CategoriaModel categoria : categorias) {
 				responsecategorias.add(categoria);
