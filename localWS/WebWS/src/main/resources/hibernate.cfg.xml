@@ -16,7 +16,8 @@
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
         <mapping resource="com/admazing/Usuario.hbm.xml"></mapping>
         <mapping resource="com/admazing/Tienda.hbm.xml"></mapping>        
-        <mapping resource="com/admazing/Categoria.hbm.xml"></mapping>
+        <mapping resource="com/admazing/Categoria.hbm.xml"></mapping>     
+        <mapping resource="com/admazing/Promocion.hbm.xml"></mapping>
         
     </session-factory>
 </hibernate-configuration>

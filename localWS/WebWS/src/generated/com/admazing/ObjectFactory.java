@@ -26,7 +26,9 @@ public class ObjectFactory {
 
     private final static QName _GetAllTiendaRequest_QNAME = new QName("http://admazing.com/", "getAllTiendaRequest");
     private final static QName _IniciarSesionRequest_QNAME = new QName("http://admazing.com/", "iniciarSesionRequest");
+    private final static QName _GetByIdPromocionRequest_QNAME = new QName("http://admazing.com/", "getByIdPromocionRequest");
     private final static QName _GetByIdCategoriaResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoriaResponse");
+    private final static QName _GetByIdPromocionResponse_QNAME = new QName("http://admazing.com/", "getByIdPromocionResponse");
     private final static QName _GetByIdCategoriaRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoriaRequest");
     private final static QName _IniciarSesionResponse_QNAME = new QName("http://admazing.com/", "iniciarSesionResponse");
     private final static QName _GetAllTiendaResponse_QNAME = new QName("http://admazing.com/", "getAllTiendaResponse");
@@ -47,6 +49,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetByIdPromocionRequest }
+     * 
+     */
+    public GetByIdPromocionRequest createGetByIdPromocionRequest() {
+        return new GetByIdPromocionRequest();
+    }
+
+    /**
      * Create an instance of {@link IniciarSesionRequest }
      * 
      */
@@ -60,6 +70,14 @@ public class ObjectFactory {
      */
     public GetByIdCategoriaResponse createGetByIdCategoriaResponse() {
         return new GetByIdCategoriaResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetByIdPromocionResponse }
+     * 
+     */
+    public GetByIdPromocionResponse createGetByIdPromocionResponse() {
+        return new GetByIdPromocionResponse();
     }
 
     /**
@@ -137,12 +155,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetByIdPromocionRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdPromocionRequest")
+    public JAXBElement<GetByIdPromocionRequest> createGetByIdPromocionRequest(GetByIdPromocionRequest value) {
+        return new JAXBElement<GetByIdPromocionRequest>(_GetByIdPromocionRequest_QNAME, GetByIdPromocionRequest.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetByIdCategoriaResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdCategoriaResponse")
     public JAXBElement<GetByIdCategoriaResponse> createGetByIdCategoriaResponse(GetByIdCategoriaResponse value) {
         return new JAXBElement<GetByIdCategoriaResponse>(_GetByIdCategoriaResponse_QNAME, GetByIdCategoriaResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetByIdPromocionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdPromocionResponse")
+    public JAXBElement<GetByIdPromocionResponse> createGetByIdPromocionResponse(GetByIdPromocionResponse value) {
+        return new JAXBElement<GetByIdPromocionResponse>(_GetByIdPromocionResponse_QNAME, GetByIdPromocionResponse.class, null, value);
     }
 
     /**

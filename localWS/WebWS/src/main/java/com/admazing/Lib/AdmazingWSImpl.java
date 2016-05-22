@@ -9,14 +9,19 @@ import com.admazing.GetAllTiendaRequest;
 import com.admazing.GetAllTiendaResponse;
 import com.admazing.GetByIdCategoriaRequest;
 import com.admazing.GetByIdCategoriaResponse;
+import com.admazing.GetByIdPromocionRequest;
+import com.admazing.GetByIdPromocionResponse;
 import com.admazing.IniciarSesionRequest;
 import com.admazing.IniciarSesionResponse;
+import com.admazing.PromocionModel;
 import com.admazing.TiendaModel;
 import com.admazing.UsuarioModel;
 import com.admazing.core.contracts.CategoriaRepositorio;
+import com.admazing.core.contracts.PromocionRepositorio;
 import com.admazing.core.contracts.TiendaRepositorio;
 import com.admazing.core.contracts.UsuarioRepositorio;
 import com.admazing.dataAccess.CategoriaRepositorioImpl;
+import com.admazing.dataAccess.PromocionRepositorioImpl;
 import com.admazing.dataAccess.TiendaRepositorioImpl;
 import com.admazing.dataAccess.UsuarioRepositorioImpl;
 
@@ -25,6 +30,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	UsuarioRepositorio usuarioRepositorio= new UsuarioRepositorioImpl();
 	TiendaRepositorio tiendaRepositorio= new TiendaRepositorioImpl();
 	CategoriaRepositorio categoriaRepositorio= new CategoriaRepositorioImpl();
+	PromocionRepositorio promocionRepositorio= new PromocionRepositorioImpl();
 	public AdmazingWSImpl() {
 		
 	}
@@ -62,10 +68,22 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		GetByIdCategoriaResponse response = new GetByIdCategoriaResponse();
 		List<CategoriaModel> categorias=categoriaRepositorio.findById(parameters.getIdTienda());
 		List<CategoriaModel> responsecategorias = response.getCategorias();
-		System.out.println("STARTS");
 		if(categorias!=null){
 			for (CategoriaModel categoria : categorias) {
 				responsecategorias.add(categoria);
+			}
+		}
+		return response;
+	}
+
+	@Override
+	public GetByIdPromocionResponse getByIdPromocion(GetByIdPromocionRequest parameters) {
+		GetByIdPromocionResponse response = new GetByIdPromocionResponse();
+		List<PromocionModel> promociones=promocionRepositorio.findById(parameters.getIdTienda(),parameters.getIdCategoria());
+		List<PromocionModel> responsepromociones = response.getPromociones();
+		if(promociones!=null){
+			for (PromocionModel promocion : promociones) {
+				responsepromociones.add(promocion);
 			}
 		}
 		return response;

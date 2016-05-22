@@ -1,17 +1,14 @@
 
 package com.admazing;
 
-import java.awt.Image;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlMimeType;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -28,10 +25,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="categoria" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="tipopromocion" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="tienda" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}integer"/>
+ *         &lt;element name="descripcion" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="fechainicio" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="fechafin" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         &lt;element name="imagenpromo" type="{http://www.w3.org/2001/XMLSchema}base64Binary" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="imagenpromo" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -62,15 +59,17 @@ public class PromocionModel {
     @XmlElement(required = true)
     protected String tienda;
     @XmlElement(required = true)
-    protected BigInteger descripcion;
+    protected String descripcion;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechainicio;
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    protected Date fechainicio;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechafin;
-    @XmlMimeType("image/jpeg")
-    protected List<Image> imagenpromo;
+    @XmlJavaTypeAdapter(DateAdapter.class)
+    protected Date fechafin;
+    @XmlElement(required = true)
+    protected byte[] imagenpromo;
 
     /**
      * Obtiene el valor de la propiedad idpromocion.
@@ -173,10 +172,10 @@ public class PromocionModel {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
@@ -185,10 +184,10 @@ public class PromocionModel {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setDescripcion(BigInteger value) {
+    public void setDescripcion(String value) {
         this.descripcion = value;
     }
 
@@ -200,7 +199,7 @@ public class PromocionModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getFechainicio() {
+    public Date getFechainicio() {
         return fechainicio;
     }
 
@@ -212,7 +211,7 @@ public class PromocionModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setFechainicio(XMLGregorianCalendar value) {
+    public void setFechainicio(Date value) {
         this.fechainicio = value;
     }
 
@@ -224,7 +223,7 @@ public class PromocionModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getFechafin() {
+    public Date getFechafin() {
         return fechafin;
     }
 
@@ -236,37 +235,30 @@ public class PromocionModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setFechafin(XMLGregorianCalendar value) {
+    public void setFechafin(Date value) {
         this.fechafin = value;
     }
 
     /**
-     * Gets the value of the imagenpromo property.
+     * Obtiene el valor de la propiedad imagenpromo.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the imagenpromo property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getImagenpromo().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Image }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     byte[]
      */
-    public List<Image> getImagenpromo() {
-        if (imagenpromo == null) {
-            imagenpromo = new ArrayList<Image>();
-        }
-        return this.imagenpromo;
+    public byte[] getImagenpromo() {
+        return imagenpromo;
+    }
+
+    /**
+     * Define el valor de la propiedad imagenpromo.
+     * 
+     * @param value
+     *     allowed object is
+     *     byte[]
+     */
+    public void setImagenpromo(byte[] value) {
+        this.imagenpromo = value;
     }
 
 }

@@ -16,32 +16,34 @@
 				<xs:element name="apellidoMaterno" type="xs:string" />
 				<xs:element name="edad" type="xs:integer" />
 				<xs:element name="genero" type="xs:string" />
-				<xs:element name="telefono" type="xs:string" />
 				<xs:element name="password" type="xs:string" />
-				<xs:element name="fechaNacimiento" type="xs:dateTime" />
-				<xs:element name="dni" type="xs:string"/>
-				<xs:element name="estado" type="xs:string" />
-				<xs:element name="cuponera" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
 		<xs:complexType name="TiendaModel">
 			<xs:sequence>
 				<xs:element name="codigo" type="xs:string" />
 				<xs:element name="zonacomercial" type="xs:string" />
-				<xs:element name="cif" type="xs:string" />
 				<xs:element name="razonsocial" type="xs:string" />
-				<xs:element name="domicilio" type="xs:string" />
 				<xs:element name="email" type="xs:string" />
-				<xs:element name="fax" type="xs:string" />				
 				<xs:element name="telefono" type="xs:string"/>
-				<xs:element name="pagweb" type="xs:string" />
-				<xs:element name="password" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
 		<xs:complexType name="CategoriaModel">
 			<xs:sequence>
 				<xs:element name="idcategoria" type="xs:string" />
-				<xs:element name="nombre" type="xs:string" />
+				<xs:element name="descripcion" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>		
+		<xs:complexType name="PromocionModel">
+			<xs:sequence>
+				<xs:element name="idpromocion" type="xs:string" />
+				<xs:element name="categoria" type="xs:string" />
+				<xs:element name="tipopromocion" type="xs:string" />
+				<xs:element name="tienda" type="xs:string" />
+				<xs:element name="descripcion" type="xs:string" />
+				<xs:element name="fechainicio" type="xs:dateTime" />
+				<xs:element name="fechafin" type="xs:dateTime" />
+				<xs:element name="imagenpromo" type="xsd:base64Binary"/>
 			</xs:sequence>
 		</xs:complexType>
 		
@@ -83,6 +85,21 @@
 			</xs:sequence>
 		</xs:complexType>
 		
+		<xs:element name="getByIdPromocionRequest" type="tns:getByIdPromocionRequest" />
+		<xs:element name="getByIdPromocionResponse" type="tns:getByIdPromocionResponse" />
+		<xs:complexType name="getByIdPromocionRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idTienda" type="xs:string" />
+					<xs:element minOccurs="1" name="idCategoria" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="getByIdPromocionResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="promociones"
+					type="tns:PromocionModel" />
+			</xs:sequence>
+		</xs:complexType>
+		
 		</xs:schema>
 	</wsdl:types>
 
@@ -110,6 +127,14 @@
 		<wsdl:part element="tns:getByIdCategoriaResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
+	<wsdl:message name="getByIdPromocionRequest">
+		<wsdl:part element="tns:getByIdPromocionRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getByIdPromocionResponse">
+		<wsdl:part element="tns:getByIdPromocionResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
 	
 	<wsdl:portType name="AdmazingPortType">
 		<wsdl:operation name="iniciarSesion">
@@ -128,6 +153,12 @@
 			<wsdl:input message="tns:getByIdCategoriaRequest" name="getByIdCategoriaRequest">
 			</wsdl:input>
 			<wsdl:output message="tns:getByIdCategoriaResponse" name="getByIdCategoriaResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getByIdPromocion">
+			<wsdl:input message="tns:getByIdPromocionRequest" name="getByIdPromocionRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getByIdPromocionResponse" name="getByIdPromocionResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
@@ -158,6 +189,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="getByIdCategoriaResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>		
+		<wsdl:operation name="getByIdPromocion">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getByIdPromocionRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getByIdPromocionResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
