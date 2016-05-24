@@ -11,6 +11,9 @@
                 <jaxb:javaType name="java.util.Date" xmlType="xs:dateTime"
                     parseMethod="com.admazing.DateAdapter.unmarshal"
                     printMethod="com.admazing.DateAdapter.marshal" />
+                <jaxb:javaType name="java.sql.Time" xmlType="xs:time"
+                    parseMethod="com.admazing.TimeAdapter.unmarshal"
+                    printMethod="com.admazing.TimeAdapter.marshal" />
             </jaxb:globalBindings>
         </xsd:appinfo>
     </xsd:annotation>

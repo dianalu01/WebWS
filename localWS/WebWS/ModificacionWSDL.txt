@@ -12,3 +12,23 @@ Cada vez que se modifique el WSDL
 	    @XmlJavaTypeAdapter(DateAdapter.class)
 	    protected Date fechaNacimiento;
 	c)	cambiar: get y set de fechaNacimiento
+	
+1) En la clase AccesoModel
+	
+	a) agregar : import java.util.Date;
+		import java.sql.Time;
+		import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+	
+	b) cambiar: 
+		protected XMLGregorianCalendar horaacceso;
+		por
+	    @XmlJavaTypeAdapter(TimeAdapter.class)
+	    protected Time
+		protected XMLGregorianCalendar fecha;
+		    por	        
+	    @XmlJavaTypeAdapter(DateAdapter.class)
+	    protected Date fecha;
+	c)	cambiar: get y set de horaacceso
+	
+	
+	

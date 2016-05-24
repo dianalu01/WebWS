@@ -7,23 +7,34 @@ import com.admazing.AdmazingPortType;
 import com.admazing.CategoriaModel;
 import com.admazing.GetAllTiendaRequest;
 import com.admazing.GetAllTiendaResponse;
+import com.admazing.GetAllTiendabyZonaComercialRequest;
+import com.admazing.GetAllTiendabyZonaComercialResponse;
 import com.admazing.GetByIdCategoriaRequest;
 import com.admazing.GetByIdCategoriaResponse;
+import com.admazing.GetByIdCuponeraRequest;
+import com.admazing.GetByIdCuponeraResponse;
 import com.admazing.GetByIdPromocionRequest;
 import com.admazing.GetByIdPromocionResponse;
 import com.admazing.IniciarSesionRequest;
 import com.admazing.IniciarSesionResponse;
 import com.admazing.PromocionModel;
+import com.admazing.SaveAccesoRequest;
+import com.admazing.SaveAccesoResponse;
 import com.admazing.TiendaModel;
 import com.admazing.UsuarioModel;
+import com.admazing.ZonaComercialModel;
+import com.admazing.core.contracts.AccesoRepositorio;
 import com.admazing.core.contracts.CategoriaRepositorio;
 import com.admazing.core.contracts.PromocionRepositorio;
 import com.admazing.core.contracts.TiendaRepositorio;
 import com.admazing.core.contracts.UsuarioRepositorio;
+import com.admazing.core.contracts.ZonaComercialRepositorio;
+import com.admazing.dataAccess.AccesoRepositorioImpl;
 import com.admazing.dataAccess.CategoriaRepositorioImpl;
 import com.admazing.dataAccess.PromocionRepositorioImpl;
 import com.admazing.dataAccess.TiendaRepositorioImpl;
 import com.admazing.dataAccess.UsuarioRepositorioImpl;
+import com.admazing.dataAccess.ZonaComercialRepositorioImpl;
 
 
 public class AdmazingWSImpl implements AdmazingPortType {
@@ -31,6 +42,8 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	TiendaRepositorio tiendaRepositorio= new TiendaRepositorioImpl();
 	CategoriaRepositorio categoriaRepositorio= new CategoriaRepositorioImpl();
 	PromocionRepositorio promocionRepositorio= new PromocionRepositorioImpl();
+	ZonaComercialRepositorio zonaComercialRepositorio= new ZonaComercialRepositorioImpl();
+	AccesoRepositorio accesoRepositorio = new AccesoRepositorioImpl(); 
 	public AdmazingWSImpl() {
 		
 	}
@@ -64,6 +77,22 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	}
 
 	@Override
+	public GetAllTiendabyZonaComercialResponse getAllTiendabyZonaComercial(
+			GetAllTiendabyZonaComercialRequest parameters) {
+		GetAllTiendabyZonaComercialResponse response = new GetAllTiendabyZonaComercialResponse();
+		String idUsuario= parameters.getIdUsuario();
+		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idUsuario);
+		List<TiendaModel> responseTiendas = response.getTiendas();
+		if(tiendas!=null){
+			for (TiendaModel tienda : tiendas) {
+				responseTiendas.add(tienda);
+			}
+		}
+		return response;
+		
+	}
+	
+	@Override
 	public GetByIdCategoriaResponse getByIdCategoria(GetByIdCategoriaRequest parameters) {
 		GetByIdCategoriaResponse response = new GetByIdCategoriaResponse();
 		List<CategoriaModel> categorias=categoriaRepositorio.findById(parameters.getIdTienda());
@@ -89,5 +118,27 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		return response;
 	}
 
+	@Override
+	public SaveAccesoResponse saveAcceso(SaveAccesoRequest parameters) {
+		SaveAccesoResponse response = new SaveAccesoResponse();
+		ZonaComercialModel zonaComercialModel=zonaComercialRepositorio.getByLatitudLongitud(parameters.getLatitud(), parameters.getLongitud());
+		if(zonaComercialModel!=null){
+			response.setNombreZonaComercial(zonaComercialModel.getNombre());
+			boolean resultado=accesoRepositorio.save(parameters.getIdUsuario(), zonaComercialModel.getIdzonacomercial());
+			if(resultado)
+				response.setResultado(true);
+			else
+				response.setResultado(false);
+		}
+		else
+			response.setResultado(false);
+		return response;
+	}
+
+	@Override
+	public GetByIdCuponeraResponse getByIdCuponera(GetByIdCuponeraRequest parameters) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

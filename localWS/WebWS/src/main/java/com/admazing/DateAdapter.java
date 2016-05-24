@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class DateAdapter extends XmlAdapter<String,Date>
 {
-    private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
 
     private static final ThreadLocal<SimpleDateFormat> dateFormatter = new ThreadLocal<SimpleDateFormat>() {
         protected SimpleDateFormat initialValue() {

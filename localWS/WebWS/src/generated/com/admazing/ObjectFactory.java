@@ -24,11 +24,17 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetAllTiendaRequest_QNAME = new QName("http://admazing.com/", "getAllTiendaRequest");
-    private final static QName _IniciarSesionRequest_QNAME = new QName("http://admazing.com/", "iniciarSesionRequest");
     private final static QName _GetByIdPromocionRequest_QNAME = new QName("http://admazing.com/", "getByIdPromocionRequest");
     private final static QName _GetByIdCategoriaResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoriaResponse");
     private final static QName _GetByIdPromocionResponse_QNAME = new QName("http://admazing.com/", "getByIdPromocionResponse");
+    private final static QName _GetAllTiendabyZonaComercialResponse_QNAME = new QName("http://admazing.com/", "getAllTiendabyZonaComercialResponse");
+    private final static QName _SaveAccesoResponse_QNAME = new QName("http://admazing.com/", "saveAccesoResponse");
+    private final static QName _GetByIdCuponeraResponse_QNAME = new QName("http://admazing.com/", "getByIdCuponeraResponse");
+    private final static QName _GetByIdCuponeraRequest_QNAME = new QName("http://admazing.com/", "getByIdCuponeraRequest");
+    private final static QName _GetAllTiendabyZonaComercialRequest_QNAME = new QName("http://admazing.com/", "getAllTiendabyZonaComercialRequest");
+    private final static QName _SaveAccesoRequest_QNAME = new QName("http://admazing.com/", "saveAccesoRequest");
+    private final static QName _GetAllTiendaRequest_QNAME = new QName("http://admazing.com/", "getAllTiendaRequest");
+    private final static QName _IniciarSesionRequest_QNAME = new QName("http://admazing.com/", "iniciarSesionRequest");
     private final static QName _GetByIdCategoriaRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoriaRequest");
     private final static QName _IniciarSesionResponse_QNAME = new QName("http://admazing.com/", "iniciarSesionResponse");
     private final static QName _GetAllTiendaResponse_QNAME = new QName("http://admazing.com/", "getAllTiendaResponse");
@@ -41,14 +47,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetAllTiendaRequest }
-     * 
-     */
-    public GetAllTiendaRequest createGetAllTiendaRequest() {
-        return new GetAllTiendaRequest();
-    }
-
-    /**
      * Create an instance of {@link GetByIdPromocionRequest }
      * 
      */
@@ -57,11 +55,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IniciarSesionRequest }
+     * Create an instance of {@link SaveAccesoResponse }
      * 
      */
-    public IniciarSesionRequest createIniciarSesionRequest() {
-        return new IniciarSesionRequest();
+    public SaveAccesoResponse createSaveAccesoResponse() {
+        return new SaveAccesoResponse();
     }
 
     /**
@@ -78,6 +76,62 @@ public class ObjectFactory {
      */
     public GetByIdPromocionResponse createGetByIdPromocionResponse() {
         return new GetByIdPromocionResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetAllTiendabyZonaComercialResponse }
+     * 
+     */
+    public GetAllTiendabyZonaComercialResponse createGetAllTiendabyZonaComercialResponse() {
+        return new GetAllTiendabyZonaComercialResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetByIdCuponeraResponse }
+     * 
+     */
+    public GetByIdCuponeraResponse createGetByIdCuponeraResponse() {
+        return new GetByIdCuponeraResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetByIdCuponeraRequest }
+     * 
+     */
+    public GetByIdCuponeraRequest createGetByIdCuponeraRequest() {
+        return new GetByIdCuponeraRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetAllTiendaRequest }
+     * 
+     */
+    public GetAllTiendaRequest createGetAllTiendaRequest() {
+        return new GetAllTiendaRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetAllTiendabyZonaComercialRequest }
+     * 
+     */
+    public GetAllTiendabyZonaComercialRequest createGetAllTiendabyZonaComercialRequest() {
+        return new GetAllTiendabyZonaComercialRequest();
+    }
+
+    /**
+     * Create an instance of {@link SaveAccesoRequest }
+     * 
+     */
+    public SaveAccesoRequest createSaveAccesoRequest() {
+        return new SaveAccesoRequest();
+    }
+
+    /**
+     * Create an instance of {@link IniciarSesionRequest }
+     * 
+     */
+    public IniciarSesionRequest createIniciarSesionRequest() {
+        return new IniciarSesionRequest();
     }
 
     /**
@@ -105,11 +159,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AccesoModel }
+     * 
+     */
+    public AccesoModel createAccesoModel() {
+        return new AccesoModel();
+    }
+
+    /**
      * Create an instance of {@link PromocionModel }
      * 
      */
     public PromocionModel createPromocionModel() {
         return new PromocionModel();
+    }
+
+    /**
+     * Create an instance of {@link ZonaComercialModel }
+     * 
+     */
+    public ZonaComercialModel createZonaComercialModel() {
+        return new ZonaComercialModel();
+    }
+
+    /**
+     * Create an instance of {@link CuponeraModel }
+     * 
+     */
+    public CuponeraModel createCuponeraModel() {
+        return new CuponeraModel();
     }
 
     /**
@@ -137,24 +215,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllTiendaRequest }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllTiendaRequest")
-    public JAXBElement<GetAllTiendaRequest> createGetAllTiendaRequest(GetAllTiendaRequest value) {
-        return new JAXBElement<GetAllTiendaRequest>(_GetAllTiendaRequest_QNAME, GetAllTiendaRequest.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link IniciarSesionRequest }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://admazing.com/", name = "iniciarSesionRequest")
-    public JAXBElement<IniciarSesionRequest> createIniciarSesionRequest(IniciarSesionRequest value) {
-        return new JAXBElement<IniciarSesionRequest>(_IniciarSesionRequest_QNAME, IniciarSesionRequest.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetByIdPromocionRequest }{@code >}}
      * 
      */
@@ -179,6 +239,78 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdPromocionResponse")
     public JAXBElement<GetByIdPromocionResponse> createGetByIdPromocionResponse(GetByIdPromocionResponse value) {
         return new JAXBElement<GetByIdPromocionResponse>(_GetByIdPromocionResponse_QNAME, GetByIdPromocionResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllTiendabyZonaComercialResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllTiendabyZonaComercialResponse")
+    public JAXBElement<GetAllTiendabyZonaComercialResponse> createGetAllTiendabyZonaComercialResponse(GetAllTiendabyZonaComercialResponse value) {
+        return new JAXBElement<GetAllTiendabyZonaComercialResponse>(_GetAllTiendabyZonaComercialResponse_QNAME, GetAllTiendabyZonaComercialResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveAccesoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "saveAccesoResponse")
+    public JAXBElement<SaveAccesoResponse> createSaveAccesoResponse(SaveAccesoResponse value) {
+        return new JAXBElement<SaveAccesoResponse>(_SaveAccesoResponse_QNAME, SaveAccesoResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetByIdCuponeraResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdCuponeraResponse")
+    public JAXBElement<GetByIdCuponeraResponse> createGetByIdCuponeraResponse(GetByIdCuponeraResponse value) {
+        return new JAXBElement<GetByIdCuponeraResponse>(_GetByIdCuponeraResponse_QNAME, GetByIdCuponeraResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetByIdCuponeraRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdCuponeraRequest")
+    public JAXBElement<GetByIdCuponeraRequest> createGetByIdCuponeraRequest(GetByIdCuponeraRequest value) {
+        return new JAXBElement<GetByIdCuponeraRequest>(_GetByIdCuponeraRequest_QNAME, GetByIdCuponeraRequest.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllTiendabyZonaComercialRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllTiendabyZonaComercialRequest")
+    public JAXBElement<GetAllTiendabyZonaComercialRequest> createGetAllTiendabyZonaComercialRequest(GetAllTiendabyZonaComercialRequest value) {
+        return new JAXBElement<GetAllTiendabyZonaComercialRequest>(_GetAllTiendabyZonaComercialRequest_QNAME, GetAllTiendabyZonaComercialRequest.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveAccesoRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "saveAccesoRequest")
+    public JAXBElement<SaveAccesoRequest> createSaveAccesoRequest(SaveAccesoRequest value) {
+        return new JAXBElement<SaveAccesoRequest>(_SaveAccesoRequest_QNAME, SaveAccesoRequest.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllTiendaRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllTiendaRequest")
+    public JAXBElement<GetAllTiendaRequest> createGetAllTiendaRequest(GetAllTiendaRequest value) {
+        return new JAXBElement<GetAllTiendaRequest>(_GetAllTiendaRequest_QNAME, GetAllTiendaRequest.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link IniciarSesionRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "iniciarSesionRequest")
+    public JAXBElement<IniciarSesionRequest> createIniciarSesionRequest(IniciarSesionRequest value) {
+        return new JAXBElement<IniciarSesionRequest>(_IniciarSesionRequest_QNAME, IniciarSesionRequest.class, null, value);
     }
 
     /**

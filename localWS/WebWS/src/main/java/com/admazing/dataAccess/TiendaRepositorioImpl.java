@@ -36,6 +36,32 @@ public class TiendaRepositorioImpl implements TiendaRepositorio{
 		return null;
 	}
 
+	@Override
+	public List<TiendaModel> getAllbyZonaComercial(String idUsuario) {
+		Session session=hibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=session.beginTransaction();
+		try{
+			List list = session.createSQLQuery("select * from tienda where zonacomercial=("
+					+ "select zonacomercial from acceso where idusuario='"+idUsuario
+					+"' order by idacceso desc limit 1)").addEntity(TiendaModel.class).list();
+			Iterator itr = list.iterator();
+			List<TiendaModel> bd = new  ArrayList<TiendaModel>();
+			while(itr.hasNext()){
+				bd.add((TiendaModel)itr.next());
+			}
+	        session.flush();
+            session.clear();
+			return bd;
+		} catch (Exception e) {
+	            e.printStackTrace();
+	            transaction.rollback();
+		} finally {
+			if(session.isOpen())
+				session.close();
+	    }
+		return null;
+	}
+
 	
 
 }
