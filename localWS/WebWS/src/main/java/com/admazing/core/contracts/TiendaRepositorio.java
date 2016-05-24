@@ -6,5 +6,5 @@ import com.admazing.TiendaModel;
 
 public interface TiendaRepositorio {
 	List<TiendaModel> getAll();
-	List<TiendaModel> getAllbyZonaComercial(String idUsuario);
+	List<TiendaModel> getAllbyZonaComercial(String idUsuario,String idZonacomercial);
 }

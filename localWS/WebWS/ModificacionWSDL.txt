@@ -24,6 +24,8 @@ Cada vez que se modifique el WSDL
 		por
 	    @XmlJavaTypeAdapter(TimeAdapter.class)
 	    protected Time
+	    
+	    
 		protected XMLGregorianCalendar fecha;
 		    por	        
 	    @XmlJavaTypeAdapter(DateAdapter.class)

@@ -4,4 +4,5 @@ import com.admazing.ZonaComercialModel;
 
 public interface ZonaComercialRepositorio {
 	ZonaComercialModel getByLatitudLongitud(String latitud,String longitud);
+	String getIdLastZonaComercial(String idUsuario);
 }

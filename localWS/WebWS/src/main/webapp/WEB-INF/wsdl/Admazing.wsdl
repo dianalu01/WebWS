@@ -154,14 +154,14 @@
 			</xs:sequence>
 		</xs:complexType>
 		
-		<xs:element name="getByIdCuponeraRequest" type="tns:getByIdCuponeraRequest" />
-		<xs:element name="getByIdCuponeraResponse" type="tns:getByIdCuponeraResponse" />
-		<xs:complexType name="getByIdCuponeraRequest">
+		<xs:element name="getbyZonaComercialCuponeraRequest" type="tns:getbyZonaComercialCuponeraRequest" />
+		<xs:element name="getbyZonaComercialCuponeraResponse" type="tns:getbyZonaComercialCuponeraResponse" />
+		<xs:complexType name="getbyZonaComercialCuponeraRequest">
 			<xs:sequence>
 					<xs:element minOccurs="1" name="idUsuario" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="getByIdCuponeraResponse">
+		<xs:complexType name="getbyZonaComercialCuponeraResponse">
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="unbounded" name="cupones"
 					type="tns:PromocionModel" />
@@ -219,12 +219,12 @@
 		<wsdl:part element="tns:saveAccesoResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getByIdCuponeraRequest">
-		<wsdl:part element="tns:getByIdCuponeraRequest" name="parameters">
+	<wsdl:message name="getbyZonaComercialCuponeraRequest">
+		<wsdl:part element="tns:getbyZonaComercialCuponeraRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getByIdCuponeraResponse">
-		<wsdl:part element="tns:getByIdCuponeraResponse" name="parameters">
+	<wsdl:message name="getbyZonaComercialCuponeraResponse">
+		<wsdl:part element="tns:getbyZonaComercialCuponeraResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
 	
@@ -265,10 +265,10 @@
 			<wsdl:output message="tns:saveAccesoResponse" name="saveAccesoResponse">
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getByIdCuponera">
-			<wsdl:input message="tns:getByIdCuponeraRequest" name="getByIdCuponeraRequest">
+		<wsdl:operation name="getbyZonaComercialCuponera">
+			<wsdl:input message="tns:getbyZonaComercialCuponeraRequest" name="getbyZonaComercialCuponeraRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:getByIdCuponeraResponse" name="getByIdCuponeraResponse">
+			<wsdl:output message="tns:getbyZonaComercialCuponeraResponse" name="getbyZonaComercialCuponeraResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
@@ -329,12 +329,12 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getByIdCuponera">
+		<wsdl:operation name="getbyZonaComercialCuponera">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="getByIdCuponeraRequest">
+			<wsdl:input name="getbyZonaComercialCuponeraRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="getByIdCuponeraResponse">
+			<wsdl:output name="getbyZonaComercialCuponeraResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>

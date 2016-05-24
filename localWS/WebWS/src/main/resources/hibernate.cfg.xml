@@ -20,6 +20,7 @@
         <mapping resource="com/admazing/Promocion.hbm.xml"></mapping>     
         <mapping resource="com/admazing/ZonaComercial.hbm.xml"></mapping> 
         <mapping resource="com/admazing/Acceso.hbm.xml"></mapping>
+        <mapping resource="com/admazing/Cuponera.hbm.xml"></mapping>
         
     </session-factory>
 </hibernate-configuration>

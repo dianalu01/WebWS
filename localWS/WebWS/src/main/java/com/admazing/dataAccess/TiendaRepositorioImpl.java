@@ -37,13 +37,11 @@ public class TiendaRepositorioImpl implements TiendaRepositorio{
 	}
 
 	@Override
-	public List<TiendaModel> getAllbyZonaComercial(String idUsuario) {
+	public List<TiendaModel> getAllbyZonaComercial(String idUsuario,String idZonacomercial) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select * from tienda where zonacomercial=("
-					+ "select zonacomercial from acceso where idusuario='"+idUsuario
-					+"' order by idacceso desc limit 1)").addEntity(TiendaModel.class).list();
+			List list = session.createSQLQuery("select * from tienda where zonacomercial='"+idZonacomercial+"'").addEntity(TiendaModel.class).list();
 			Iterator itr = list.iterator();
 			List<TiendaModel> bd = new  ArrayList<TiendaModel>();
 			while(itr.hasNext()){

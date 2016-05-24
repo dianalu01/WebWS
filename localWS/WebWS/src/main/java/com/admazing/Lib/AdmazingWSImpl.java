@@ -11,10 +11,10 @@ import com.admazing.GetAllTiendabyZonaComercialRequest;
 import com.admazing.GetAllTiendabyZonaComercialResponse;
 import com.admazing.GetByIdCategoriaRequest;
 import com.admazing.GetByIdCategoriaResponse;
-import com.admazing.GetByIdCuponeraRequest;
-import com.admazing.GetByIdCuponeraResponse;
 import com.admazing.GetByIdPromocionRequest;
 import com.admazing.GetByIdPromocionResponse;
+import com.admazing.GetbyZonaComercialCuponeraRequest;
+import com.admazing.GetbyZonaComercialCuponeraResponse;
 import com.admazing.IniciarSesionRequest;
 import com.admazing.IniciarSesionResponse;
 import com.admazing.PromocionModel;
@@ -81,7 +81,8 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			GetAllTiendabyZonaComercialRequest parameters) {
 		GetAllTiendabyZonaComercialResponse response = new GetAllTiendabyZonaComercialResponse();
 		String idUsuario= parameters.getIdUsuario();
-		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idUsuario);
+		String idZonacomercial=zonaComercialRepositorio.getIdLastZonaComercial(idUsuario);
+		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idUsuario,idZonacomercial);
 		List<TiendaModel> responseTiendas = response.getTiendas();
 		if(tiendas!=null){
 			for (TiendaModel tienda : tiendas) {
@@ -136,7 +137,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	}
 
 	@Override
-	public GetByIdCuponeraResponse getByIdCuponera(GetByIdCuponeraRequest parameters) {
+	public GetbyZonaComercialCuponeraResponse getbyZonaComercialCuponera(GetbyZonaComercialCuponeraRequest parameters) {
 		// TODO Auto-generated method stub
 		return null;
 	}
