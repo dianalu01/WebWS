@@ -13,7 +13,7 @@ Cada vez que se modifique el WSDL
 	    protected Date fechaNacimiento;
 	c)	cambiar: get y set de fechaNacimiento
 	
-1) En la clase AccesoModel
+2) En la clase AccesoModel
 	
 	a) agregar : import java.util.Date;
 		import java.sql.Time;
@@ -31,6 +31,9 @@ Cada vez que se modifique el WSDL
 	    @XmlJavaTypeAdapter(DateAdapter.class)
 	    protected Date fecha;
 	c)	cambiar: get y set de horaacceso
+		
 	
-	
-	
+3) En la clase Cuponera Model
+ 	Se agrega 
+ 	implements Serializable 
+ 	en la declaracion de la clase a fin de que funcione el composite-id de hibernate
