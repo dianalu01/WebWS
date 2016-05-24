@@ -37,7 +37,7 @@ public class TiendaRepositorioImpl implements TiendaRepositorio{
 	}
 
 	@Override
-	public List<TiendaModel> getAllbyZonaComercial(String idUsuario,String idZonacomercial) {
+	public List<TiendaModel> getAllbyZonaComercial(String idZonacomercial) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{

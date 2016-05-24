@@ -37,4 +37,28 @@ public class PromocionRepositorioImpl implements PromocionRepositorio{
 	    }
 		return null;
 	}
+
+	@Override
+	public PromocionModel findById(String idPromocion) {
+		Session session=hibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=session.beginTransaction();
+		try{
+			List list = session.createSQLQuery("select * from promocion where idpromocion='"+idPromocion+"'").addEntity(PromocionModel.class).list();
+			Iterator itr = list.iterator();
+			PromocionModel bd = null;
+			while(itr.hasNext()){
+				bd=(PromocionModel)itr.next();
+			}
+	        session.flush();
+            session.clear();
+			return bd;
+		} catch (Exception e) {
+	            e.printStackTrace();
+	            transaction.rollback();
+		} finally {
+			if(session.isOpen())
+				session.close();
+	    }
+		return null;
+	}
 }

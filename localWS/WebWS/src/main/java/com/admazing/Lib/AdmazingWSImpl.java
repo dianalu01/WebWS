@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.admazing.AdmazingPortType;
 import com.admazing.CategoriaModel;
+import com.admazing.CuponeraModel;
 import com.admazing.GetAllTiendaRequest;
 import com.admazing.GetAllTiendaResponse;
 import com.admazing.GetAllTiendabyZonaComercialRequest;
@@ -25,12 +26,14 @@ import com.admazing.UsuarioModel;
 import com.admazing.ZonaComercialModel;
 import com.admazing.core.contracts.AccesoRepositorio;
 import com.admazing.core.contracts.CategoriaRepositorio;
+import com.admazing.core.contracts.CuponeraRepositorio;
 import com.admazing.core.contracts.PromocionRepositorio;
 import com.admazing.core.contracts.TiendaRepositorio;
 import com.admazing.core.contracts.UsuarioRepositorio;
 import com.admazing.core.contracts.ZonaComercialRepositorio;
 import com.admazing.dataAccess.AccesoRepositorioImpl;
 import com.admazing.dataAccess.CategoriaRepositorioImpl;
+import com.admazing.dataAccess.CuponeraRepositorioImpl;
 import com.admazing.dataAccess.PromocionRepositorioImpl;
 import com.admazing.dataAccess.TiendaRepositorioImpl;
 import com.admazing.dataAccess.UsuarioRepositorioImpl;
@@ -44,6 +47,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	PromocionRepositorio promocionRepositorio= new PromocionRepositorioImpl();
 	ZonaComercialRepositorio zonaComercialRepositorio= new ZonaComercialRepositorioImpl();
 	AccesoRepositorio accesoRepositorio = new AccesoRepositorioImpl(); 
+	CuponeraRepositorio cuponeraRepositorio = new CuponeraRepositorioImpl(); 
 	public AdmazingWSImpl() {
 		
 	}
@@ -82,7 +86,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		GetAllTiendabyZonaComercialResponse response = new GetAllTiendabyZonaComercialResponse();
 		String idUsuario= parameters.getIdUsuario();
 		String idZonacomercial=zonaComercialRepositorio.getIdLastZonaComercial(idUsuario);
-		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idUsuario,idZonacomercial);
+		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idZonacomercial);
 		List<TiendaModel> responseTiendas = response.getTiendas();
 		if(tiendas!=null){
 			for (TiendaModel tienda : tiendas) {
@@ -138,8 +142,24 @@ public class AdmazingWSImpl implements AdmazingPortType {
 
 	@Override
 	public GetbyZonaComercialCuponeraResponse getbyZonaComercialCuponera(GetbyZonaComercialCuponeraRequest parameters) {
-		// TODO Auto-generated method stub
-		return null;
+		GetbyZonaComercialCuponeraResponse response = new GetbyZonaComercialCuponeraResponse();
+		String idUsuario= parameters.getIdUsuario();
+		String idZonacomercial=zonaComercialRepositorio.getIdLastZonaComercial(idUsuario);
+		List<CuponeraModel> cuponera=cuponeraRepositorio.getAllById(idUsuario);
+		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idZonacomercial);
+		List<PromocionModel> responseCuponera = response.getCupones();
+		if(cuponera!=null&&tiendas!=null){
+			for (CuponeraModel cupon : cuponera) {
+				System.out.println(cupon.getPromocion());
+				PromocionModel promocion=promocionRepositorio.findById(cupon.getPromocion());
+				for(TiendaModel tienda:tiendas){
+					if(promocion.getTienda().compareTo(tienda.getCodigo())==0){
+						responseCuponera.add(promocion);
+					}
+				}
+			}
+		}
+		return response;
 	}
 	
 }
