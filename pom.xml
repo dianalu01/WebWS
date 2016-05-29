@@ -151,8 +151,8 @@
 		       <version>2.4</version>
 		       <configuration>
 		       	 <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
-		         <!-- outputDirectory>webapps</outputDirectory> 
-		         <warName>ROOT</warName>-->
+		         <outputDirectory>webapps</outputDirectory> 
+		         <warName>ROOT</warName>
 		       </configuration>
 	     </plugin>
 	
