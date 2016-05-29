@@ -1,14 +1,11 @@
 
 package com.admazing;
 
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -63,12 +60,10 @@ public class PromocionModel {
     protected String descripcion;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    protected Date fechainicio;
+    protected XMLGregorianCalendar fechainicio;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    protected Date fechafin;
+    protected XMLGregorianCalendar fechafin;
     @XmlElement(required = true)
     protected byte[] imagenpromo;
 
@@ -200,7 +195,7 @@ public class PromocionModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getFechainicio() {
+    public XMLGregorianCalendar getFechainicio() {
         return fechainicio;
     }
 
@@ -212,7 +207,7 @@ public class PromocionModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setFechainicio(Date value) {
+    public void setFechainicio(XMLGregorianCalendar value) {
         this.fechainicio = value;
     }
 
@@ -224,7 +219,7 @@ public class PromocionModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getFechafin() {
+    public XMLGregorianCalendar getFechafin() {
         return fechafin;
     }
 
@@ -236,7 +231,7 @@ public class PromocionModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setFechafin(Date value) {
+    public void setFechafin(XMLGregorianCalendar value) {
         this.fechafin = value;
     }
 

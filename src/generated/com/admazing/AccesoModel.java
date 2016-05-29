@@ -1,15 +1,11 @@
 
 package com.admazing;
 
-import java.sql.Time;
-import java.util.Date;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -54,12 +50,10 @@ public class AccesoModel {
     protected String zonacomercial;
     @XmlElement(required = true)
     @XmlSchemaType(name = "dateTime")
-    @XmlJavaTypeAdapter(DateAdapter.class)
-    protected Date fecha;
+    protected XMLGregorianCalendar fecha;
     @XmlElement(required = true)
     @XmlSchemaType(name = "time")
-    @XmlJavaTypeAdapter(TimeAdapter.class)
-    protected Time horaacceso;
+    protected XMLGregorianCalendar horaacceso;
 
     /**
      * Obtiene el valor de la propiedad idacceso.
@@ -141,7 +135,7 @@ public class AccesoModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Date getFecha() {
+    public XMLGregorianCalendar getFecha() {
         return fecha;
     }
 
@@ -153,7 +147,7 @@ public class AccesoModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setFecha(Date value) {
+    public void setFecha(XMLGregorianCalendar value) {
         this.fecha = value;
     }
 
@@ -165,7 +159,7 @@ public class AccesoModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public Time getHoraacceso() {
+    public XMLGregorianCalendar getHoraacceso() {
         return horaacceso;
     }
 
@@ -177,7 +171,7 @@ public class AccesoModel {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setHoraacceso(Time value) {
+    public void setHoraacceso(XMLGregorianCalendar value) {
         this.horaacceso = value;
     }
 
