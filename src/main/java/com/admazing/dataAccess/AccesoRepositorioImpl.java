@@ -13,7 +13,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.util.StringUtils;
 
-import com.admazing.AccesoModel;
+import com.admazing.core.models.AccesoModel;
 import com.admazing.core.contracts.AccesoRepositorio;
 import com.admazing.core.contracts.ZonaComercialRepositorio;
 

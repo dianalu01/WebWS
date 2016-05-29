@@ -8,7 +8,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.admazing.PromocionModel;
+import com.admazing.core.models.PromocionModel;
 import com.admazing.core.contracts.PromocionRepositorio;
 
 
