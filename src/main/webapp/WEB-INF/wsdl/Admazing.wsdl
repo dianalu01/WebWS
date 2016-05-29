@@ -343,7 +343,7 @@
 	<wsdl:service name="AdmazingService">
 		<wsdl:port binding="tns:AdmazingServiceSoapBinding" name="AdmazingPort">
 			<soap:address
-				location="http://localhost:8080/WebWS/services/AdmazingService" />
+				location="http://webws-adsws.rhcloud.com/WebWS/services/AdmazingService" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>
