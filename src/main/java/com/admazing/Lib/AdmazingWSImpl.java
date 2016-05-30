@@ -18,7 +18,7 @@ import com.admazing.GetbyZonaComercialCuponeraRequest;
 import com.admazing.GetbyZonaComercialCuponeraResponse;
 import com.admazing.IniciarSesionRequest;
 import com.admazing.IniciarSesionResponse;
-import com.admazing.PromocionModel;
+import com.admazing.core.models.PromocionModel;
 import com.admazing.SaveAccesoRequest;
 import com.admazing.SaveAccesoResponse;
 import com.admazing.TiendaModel;
@@ -41,8 +41,8 @@ import com.admazing.dataAccess.ZonaComercialRepositorioImpl;
 
 
 public class AdmazingWSImpl implements AdmazingPortType {
-/*	UsuarioRepositorio usuarioRepositorio= new UsuarioRepositorioImpl();
-	TiendaRepositorio tiendaRepositorio= new TiendaRepositorioImpl();
+	UsuarioRepositorio usuarioRepositorio= new UsuarioRepositorioImpl();
+/*	TiendaRepositorio tiendaRepositorio= new TiendaRepositorioImpl();
 	CategoriaRepositorio categoriaRepositorio= new CategoriaRepositorioImpl();
 	PromocionRepositorio promocionRepositorio= new PromocionRepositorioImpl();
 	ZonaComercialRepositorio zonaComercialRepositorio= new ZonaComercialRepositorioImpl();
@@ -56,7 +56,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	@Override
 	public IniciarSesionResponse iniciarSesion(IniciarSesionRequest parameters) {
 		IniciarSesionResponse response = new IniciarSesionResponse();
-	/*	String idUsuario= parameters.getIdUsuario();
+		String idUsuario= parameters.getIdUsuario();
 		String password= parameters.getPassword();
 		UsuarioModel usuario=usuarioRepositorio.findById(idUsuario);
 		if(usuario!=null&&usuario.getPassword().compareTo(password)==0){
@@ -64,7 +64,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		}
 		else{
 			response.setResultado(false);
-		}*/
+		}
 		return response;
 	}
 
