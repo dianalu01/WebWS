@@ -71,6 +71,9 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	@Override
 	public GetAllTiendaResponse getAllTienda(GetAllTiendaRequest parameters) {
 		GetAllTiendaResponse response = new GetAllTiendaResponse();
+		TiendaModel tienduita= new TiendaModel();
+		tienduita.setCodigo("1536132");
+		tienduita.setRazonsocial("Descripcion 1");
 		/*List<TiendaModel> tiendas=tiendaRepositorio.getAll();
 		List<TiendaModel> responseTiendas = response.getTiendas();
 		if(tiendas!=null){
@@ -78,6 +81,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 				responseTiendas.add(tienda);
 			}
 		}*/
+		response.getTiendas().add(tienduita);
 		return response;
 	}
 
