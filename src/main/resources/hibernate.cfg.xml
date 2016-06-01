@@ -15,8 +15,8 @@
 		<property name="validationQuery">SELECT version()</property>
         <property name="current_session_context_class">thread</property>
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
-        <mapping resource="com/admazing/Usuario.hbm.xml"></mapping>
-        <!--mapping resource="com/admazing/Tienda.hbm.xml"></mapping>        
+        <mapping resource="hibernate/Usuario.hbm.xml"></mapping>
+        <!-- mapping resource="com/admazing/Tienda.hbm.xml"></mapping>        
         <mapping resource="com/admazing/Categoria.hbm.xml"></mapping>     
         <mapping resource="com/admazing/Promocion.hbm.xml"></mapping>     
         <mapping resource="com/admazing/ZonaComercial.hbm.xml"></mapping> 
