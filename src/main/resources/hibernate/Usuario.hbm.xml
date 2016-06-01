@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.Admazing">
-    <class name="com.admazing.core.models.UsuarioModel" table="usuario" >
+    <class name="com.admazing.UsuarioModel" table="usuario" >
         <id name="idUsuario" type="string">
             <column name="idUsuario" length="8" not-null="true"/>
         </id>
