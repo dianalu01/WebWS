@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.Admazing">
-    <class name="com.admazing.CuponeraModel" table="cuponera" >
+    <class name="com.admazing.core.models.CuponeraModel" table="cuponera" >
         <composite-id >
         	<key-property name="idusuario" type="string" column="idusuario" length="8"/> 
         	<key-property name="idcuponera" type="string" column="idcuponera" length="8"/> 
