@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.admazing.AdmazingPortType;
 import com.admazing.CategoriaModel;
-import com.admazing.CuponeraModel;
+import com.admazing.core.models.CuponeraModel;
 import com.admazing.GetAllTiendaRequest;
 import com.admazing.GetAllTiendaResponse;
 import com.admazing.GetAllTiendabyZonaComercialRequest;
@@ -42,13 +42,13 @@ import com.admazing.dataAccess.ZonaComercialRepositorioImpl;
 
 public class AdmazingWSImpl implements AdmazingPortType {
 	UsuarioRepositorio usuarioRepositorio= new UsuarioRepositorioImpl();
-/*	TiendaRepositorio tiendaRepositorio= new TiendaRepositorioImpl();
+	TiendaRepositorio tiendaRepositorio= new TiendaRepositorioImpl();
 	CategoriaRepositorio categoriaRepositorio= new CategoriaRepositorioImpl();
 	PromocionRepositorio promocionRepositorio= new PromocionRepositorioImpl();
 	ZonaComercialRepositorio zonaComercialRepositorio= new ZonaComercialRepositorioImpl();
 	AccesoRepositorio accesoRepositorio = new AccesoRepositorioImpl(); 
 	CuponeraRepositorio cuponeraRepositorio = new CuponeraRepositorioImpl(); 
-	*/
+	
 	public AdmazingWSImpl() {
 		
 	}
@@ -71,25 +71,21 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	@Override
 	public GetAllTiendaResponse getAllTienda(GetAllTiendaRequest parameters) {
 		GetAllTiendaResponse response = new GetAllTiendaResponse();
-		TiendaModel tienduita= new TiendaModel();
-		tienduita.setCodigo("1536132");
-		tienduita.setRazonsocial("Descripcion 1");
-		/*List<TiendaModel> tiendas=tiendaRepositorio.getAll();
+		List<TiendaModel> tiendas=tiendaRepositorio.getAll();
 		List<TiendaModel> responseTiendas = response.getTiendas();
 		if(tiendas!=null){
 			for (TiendaModel tienda : tiendas) {
 				responseTiendas.add(tienda);
 			}
-		}*/
-		response.getTiendas().add(tienduita);
-		return response;
+		}
+		return response; 
 	}
 
 	@Override
 	public GetAllTiendabyZonaComercialResponse getAllTiendabyZonaComercial(
 			GetAllTiendabyZonaComercialRequest parameters) {
 		GetAllTiendabyZonaComercialResponse response = new GetAllTiendabyZonaComercialResponse();
-		/*String idUsuario= parameters.getIdUsuario();
+		String idUsuario= parameters.getIdUsuario();
 		String idZonacomercial=zonaComercialRepositorio.getIdLastZonaComercial(idUsuario);
 		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idZonacomercial);
 		List<TiendaModel> responseTiendas = response.getTiendas();
@@ -97,20 +93,20 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			for (TiendaModel tienda : tiendas) {
 				responseTiendas.add(tienda);
 			}
-		}*/
+		}
 		return response;		
 	}
 	
 	@Override
 	public GetByIdCategoriaResponse getByIdCategoria(GetByIdCategoriaRequest parameters) {
 		GetByIdCategoriaResponse response = new GetByIdCategoriaResponse();
-		/*List<CategoriaModel> categorias=categoriaRepositorio.findById(parameters.getIdTienda());
+		List<CategoriaModel> categorias=categoriaRepositorio.findById(parameters.getIdTienda());
 		List<CategoriaModel> responsecategorias = response.getCategorias();
 		if(categorias!=null){
 			for (CategoriaModel categoria : categorias) {
 				responsecategorias.add(categoria);
 			}
-		}*/
+		}
 		return response;
 	}
 
@@ -130,7 +126,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	@Override
 	public SaveAccesoResponse saveAcceso(SaveAccesoRequest parameters) {
 		SaveAccesoResponse response = new SaveAccesoResponse();
-		/*ZonaComercialModel zonaComercialModel=zonaComercialRepositorio.getByLatitudLongitud(parameters.getLatitud(), parameters.getLongitud());
+		ZonaComercialModel zonaComercialModel=zonaComercialRepositorio.getByLatitudLongitud(parameters.getLatitud(), parameters.getLongitud());
 		if(zonaComercialModel!=null){
 			response.setNombreZonaComercial(zonaComercialModel.getNombre());
 			boolean resultado=accesoRepositorio.save(parameters.getIdUsuario(), zonaComercialModel.getIdzonacomercial());
@@ -141,7 +137,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		}
 		else
 			response.setResultado(false);
-		*/
+		
 		return response;
 	}
 
