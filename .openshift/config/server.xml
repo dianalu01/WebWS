@@ -45,15 +45,6 @@
               factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
               pathname="conf/tomcat-users.xml" />
               
-     <Resource   name="jdbc/tomcat"   
-       auth="Container" type="javax.sql.DataSource"   
-       driverClassName="org.postgresql.Driver"   
-       url="jdbc:postgresql://OPENSHIFT_INTERNAL_IP:5432/tomcat"   
-       username="admin"   
-       password="****"   
-       maxActive="20"   
-       maxIdle="10"   
-       maxWait="-1"/>  
   </GlobalNamingResources>
 
   <!-- A "Service" is a collection of one or more "Connectors" that share
