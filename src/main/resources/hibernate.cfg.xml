@@ -18,9 +18,9 @@
         <mapping resource="hibernate/Usuario.hbm.xml"></mapping>
         <mapping resource="hibernate/Tienda.hbm.xml"></mapping>        
         <mapping resource="hibernate/Categoria.hbm.xml"></mapping>     
-        <mapping resource="hibernate/Promocion.hbm.xml"></mapping>     
+        <!-- mapping resource="hibernate/Promocion.hbm.xml"></mapping-->     
         <mapping resource="hibernate/ZonaComercial.hbm.xml"></mapping> 
-        <mapping resource="hibernate/Acceso.hbm.xml"></mapping>
+        <!-- mapping resource="hibernate/Acceso.hbm.xml"></mapping-->
         <mapping resource="hibernate/Cuponera.hbm.xml"></mapping>
         
     </session-factory>
