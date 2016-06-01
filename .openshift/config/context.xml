@@ -53,6 +53,7 @@
               maxActive="20"
               maxIdle="5"
               maxWait="10000"/>
-              
-    <ResourceLink name="jdbc/postgresqldb" global="jdbc/postgresqldb" type="javax.sql.DataSource"/>
+     <ResourceLink name="jdbc/tomcat" global="jdbc/tomcat"  
+     type="javax.sql.DataSource" /> 
+    
 </Context>
