@@ -1,0 +1,14 @@
+
+
+Errores corregidos
+
+
+
+cuponera al tener id compuesto el modelo debe ser serializable
+build de promocion y acceso por el XMLGregorianCalendar creado automaticamente desde el wsdl por ello
+el modelo se cambio de posicion
+
+En catalina.properties en config de .openshift se cambio el
+common.loader=${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar,${catalina.home}/../data/*.jar
+esto permitio el funcionamiento de hibernate
+los mapings se movieron  a resources hibernate ya que no funcionan en otro lugar
