@@ -167,8 +167,17 @@
 					type="tns:PromocionModel" />
 			</xs:sequence>
 		</xs:complexType>
-		
 		</xs:schema>
+		
+		
+		
+		<xsd:schema targetNamespace="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="./bindingMapping.xsd"/>
+		</xsd:schema>
+		
+		
+		
+		
 	</wsdl:types>
 
 	<wsdl:message name="iniciarSesionRequest">
@@ -338,6 +347,7 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
+	        
 	</wsdl:binding>
 
 	<wsdl:service name="AdmazingService">

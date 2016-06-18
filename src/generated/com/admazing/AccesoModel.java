@@ -1,12 +1,15 @@
 
 package com.admazing;
 
+import java.io.Serializable;
+import java.sql.Time;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -40,20 +43,25 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fecha",
     "horaacceso"
 })
-public class AccesoModel {
+public class AccesoModel
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String idacceso;
     @XmlElement(required = true)
     protected String idusuario;
     @XmlElement(required = true)
     protected String zonacomercial;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fecha;
-    @XmlElement(required = true)
+    protected Date fecha;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter3 .class)
     @XmlSchemaType(name = "time")
-    protected XMLGregorianCalendar horaacceso;
+    protected Time horaacceso;
 
     /**
      * Obtiene el valor de la propiedad idacceso.
@@ -132,10 +140,10 @@ public class AccesoModel {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
@@ -144,10 +152,10 @@ public class AccesoModel {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setFecha(XMLGregorianCalendar value) {
+    public void setFecha(Date value) {
         this.fecha = value;
     }
 
@@ -156,10 +164,10 @@ public class AccesoModel {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getHoraacceso() {
+    public Time getHoraacceso() {
         return horaacceso;
     }
 
@@ -168,10 +176,10 @@ public class AccesoModel {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setHoraacceso(XMLGregorianCalendar value) {
+    public void setHoraacceso(Time value) {
         this.horaacceso = value;
     }
 

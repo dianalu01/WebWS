@@ -1,6 +1,7 @@
 
 package com.admazing;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -31,8 +32,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "getByIdPromocionResponse", propOrder = {
     "promociones"
 })
-public class GetByIdPromocionResponse {
+public class GetByIdPromocionResponse
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     protected List<PromocionModel> promociones;
 
     /**

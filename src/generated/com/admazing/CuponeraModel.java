@@ -1,6 +1,7 @@
 
 package com.admazing;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -34,8 +35,11 @@ import javax.xml.bind.annotation.XmlType;
     "idcuponera",
     "promocion"
 })
-public class CuponeraModel {
+public class CuponeraModel
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String idusuario;
     @XmlElement(required = true)

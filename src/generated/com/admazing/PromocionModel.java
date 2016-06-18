@@ -1,12 +1,14 @@
 
 package com.admazing;
 
+import java.io.Serializable;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -46,8 +48,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechafin",
     "imagenpromo"
 })
-public class PromocionModel {
+public class PromocionModel
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String idpromocion;
     @XmlElement(required = true)
@@ -58,12 +63,14 @@ public class PromocionModel {
     protected String tienda;
     @XmlElement(required = true)
     protected String descripcion;
-    @XmlElement(required = true)
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechainicio;
-    @XmlElement(required = true)
+    protected Date fechainicio;
+    @XmlElement(required = true, type = String.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar fechafin;
+    protected Date fechafin;
     @XmlElement(required = true)
     protected byte[] imagenpromo;
 
@@ -192,10 +199,10 @@ public class PromocionModel {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getFechainicio() {
+    public Date getFechainicio() {
         return fechainicio;
     }
 
@@ -204,10 +211,10 @@ public class PromocionModel {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setFechainicio(XMLGregorianCalendar value) {
+    public void setFechainicio(Date value) {
         this.fechainicio = value;
     }
 
@@ -216,10 +223,10 @@ public class PromocionModel {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getFechafin() {
+    public Date getFechafin() {
         return fechafin;
     }
 
@@ -228,10 +235,10 @@ public class PromocionModel {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setFechafin(XMLGregorianCalendar value) {
+    public void setFechafin(Date value) {
         this.fechafin = value;
     }
 

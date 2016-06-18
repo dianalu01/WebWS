@@ -20,32 +20,50 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+					 <encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-codegen-plugin</artifactId>
-				<version>${cxf.version}</version>
+				<version>${cxf.version}</version>	
 				<executions>
 					<execution>
 						<id>generate-sources</id>
 						<phase>generate-sources</phase>
 						<configuration>
 							<sourceRoot>${basedir}/src/generated</sourceRoot>
-							<wsdlOptions>
+							
+								<defaultOptions>
+									<validateWsdl>true</validateWsdl>
+								</defaultOptions>
+								<wsdlOptions>
+							
+								<wsdlOption>
+								  <bindingFiles> 
+						              <bindingFile>${basedir}/src/main/resources/bindings.xjb</bindingFile> 
+						          </bindingFiles>
+										<wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
+								</wsdlOption>
+							<!-- 
 								<wsdlOption>
 									<wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
+									<bindingFiles>
+								        <bindingFile>${basedir}/src/main/resources/bindings.xml</bindingFile>
+								    </bindingFiles>
 								</wsdlOption>
+								 -->
 							</wsdlOptions>
-						</configuration>
+							</configuration>
 						<goals>
 							<goal>wsdl2java</goal>
 						</goals>
 					</execution>
+					
 				</executions>
 			</plugin>
-			</plugins>
-
+		</plugins>
+		 
 		<finalName>webws</finalName>
 	</build>
 
