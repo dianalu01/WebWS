@@ -1,7 +1,6 @@
 
 package com.admazing;
 
-import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -33,11 +32,8 @@ import javax.xml.bind.annotation.XmlType;
     "idUsuario",
     "password"
 })
-public class IniciarSesionRequest
-    implements Serializable
-{
+public class IniciarSesionRequest {
 
-    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String idUsuario;
     @XmlElement(required = true)

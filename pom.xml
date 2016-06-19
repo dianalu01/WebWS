@@ -40,19 +40,12 @@
 								<wsdlOptions>
 							
 								<wsdlOption>
-								  <bindingFiles> 
+								  <!--bindingFiles> 
 						              <bindingFile>${basedir}/src/main/resources/bindings.xjb</bindingFile> 
-						          </bindingFiles>
-										<wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
+						          </bindingFiles-->
+								  <wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
 								</wsdlOption>
-							<!-- 
-								<wsdlOption>
-									<wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
-									<bindingFiles>
-								        <bindingFile>${basedir}/src/main/resources/bindings.xml</bindingFile>
-								    </bindingFiles>
-								</wsdlOption>
-								 -->
+							
 							</wsdlOptions>
 							</configuration>
 						<goals>

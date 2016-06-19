@@ -1,7 +1,6 @@
 
 package com.admazing;
 
-import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -33,11 +32,8 @@ import javax.xml.bind.annotation.XmlType;
     "resultado",
     "nombreZonaComercial"
 })
-public class SaveAccesoResponse
-    implements Serializable
-{
+public class SaveAccesoResponse {
 
-    private final static long serialVersionUID = 1L;
     protected boolean resultado;
     @XmlElement(required = true)
     protected String nombreZonaComercial;

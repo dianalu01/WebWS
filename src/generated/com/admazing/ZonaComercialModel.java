@@ -1,7 +1,6 @@
 
 package com.admazing;
 
-import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -39,11 +38,8 @@ import javax.xml.bind.annotation.XmlType;
     "latitud",
     "distancia"
 })
-public class ZonaComercialModel
-    implements Serializable
-{
+public class ZonaComercialModel {
 
-    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String idzonacomercial;
     @XmlElement(required = true)
