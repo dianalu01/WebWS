@@ -172,7 +172,7 @@
 		
 		
 		<xsd:schema targetNamespace="http://www.w3.org/2001/XMLSchema">
-			<xsd:include schemaLocation="./src/main/resources/bindingMapping.xsd"/>
+			<xsd:include schemaLocation="./bindingMapping.xsd"/>
 		</xsd:schema>
 		
 		

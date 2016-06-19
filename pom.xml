@@ -36,6 +36,7 @@
 							<wsdlOptions>		
 								<defaultOptions>
 									<validateWsdl>true</validateWsdl>
+									<wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
 								</defaultOptions>
 								
 							
