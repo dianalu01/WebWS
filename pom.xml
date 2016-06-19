@@ -33,18 +33,21 @@
 						<phase>generate-sources</phase>
 						<configuration>
 							<sourceRoot>${basedir}/src/generated</sourceRoot>
-							
-								<defaultOptions>
+							<wsdlOptions>		
+								<wsdlOption>
+									  <wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
+								</wsdlOption>	
+								<!-- defaultOptions>
 									<validateWsdl>true</validateWsdl>
 								</defaultOptions>
 								<wsdlOptions>
 							
 								<wsdlOption>
-								  <!--bindingFiles> 
+								  <bindingFiles> 
 						              <bindingFile>${basedir}/src/main/resources/bindings.xjb</bindingFile> 
-						          </bindingFiles-->
+						          </bindingFiles>
 								  <wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
-								</wsdlOption>
+								</wsdlOption-->
 							
 							</wsdlOptions>
 							</configuration>
