@@ -169,11 +169,6 @@
 		</xs:complexType>
 		</xs:schema>
 		
-		
-		
-		<!-- xsd:schema targetNamespace="http://www.w3.org/2001/XMLSchema">
-			<xsd:include schemaLocation="./bindingMapping.xsd"/>
-		</xsd:schema-->
 		<xsd:schema
 		xmlns="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://www.w3.org/2001/XMLSchema"
