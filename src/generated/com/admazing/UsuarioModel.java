@@ -1,6 +1,7 @@
 
 package com.admazing;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -43,8 +44,11 @@ import javax.xml.bind.annotation.XmlType;
     "genero",
     "password"
 })
-public class UsuarioModel {
+public class UsuarioModel
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String idUsuario;
     @XmlElement(required = true)

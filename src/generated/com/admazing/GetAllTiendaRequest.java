@@ -1,6 +1,7 @@
 
 package com.admazing;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -24,7 +25,10 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getAllTiendaRequest")
-public class GetAllTiendaRequest {
+public class GetAllTiendaRequest
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
 
 }

@@ -1,6 +1,7 @@
 
 package com.admazing;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -38,8 +39,11 @@ import javax.xml.bind.annotation.XmlType;
     "email",
     "telefono"
 })
-public class TiendaModel {
+public class TiendaModel
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String codigo;
     @XmlElement(required = true)

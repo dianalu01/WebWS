@@ -13,7 +13,20 @@ los mapings se movieron  a resources hibernate ya que no funcionan en otro lugar
 El mapping de tipos de Datos Date y Time
 se agrego los binding.xjb y bindingMapping.xsd
 y en el pom se agrega
-<bindingFiles> 
-      <bindingFile>${basedir}/src/main/resources/bindings.xjb</bindingFile> 
-</bindingFiles>
+<configuration>
+	<sourceRoot>${basedir}/src/generated</sourceRoot>
+	
+		<defaultOptions>
+			<validateWsdl>true</validateWsdl>
+		</defaultOptions>
+		<wsdlOptions>
+	
+			<wsdlOption>
+			  <bindingFiles> 
+	              <bindingFile>${basedir}/src/main/resources/bindings.xjb</bindingFile> 
+	          </bindingFiles>
+					<wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
+			</wsdlOption>
+	</wsdlOptions>
+</configuration>
 con la finalidad de q reconosca el binding

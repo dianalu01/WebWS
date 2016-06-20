@@ -1,6 +1,7 @@
 
 package com.admazing;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -30,8 +31,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "getbyZonaComercialCuponeraRequest", propOrder = {
     "idUsuario"
 })
-public class GetbyZonaComercialCuponeraRequest {
+public class GetbyZonaComercialCuponeraRequest
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected String idUsuario;
 
