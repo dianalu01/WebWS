@@ -40,7 +40,8 @@ public class DateAdapter
         cal.setTime(value);
         
         SimpleDateFormat sf = dateFormatter.get();
-        return sf.format(DatatypeConverter.printDate(cal));
+        String strCal=DatatypeConverter.printDate(cal);
+        return sf.format(strCal);
     }
 
 
