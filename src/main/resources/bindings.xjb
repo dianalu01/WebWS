@@ -3,7 +3,7 @@
                xmlns:xs="http://www.w3.org/2001/XMLSchema">
     
     <jaxb:globalBindings>
-                <!-- jaxb:serializable uid="1" /-->
+                <jaxb:serializable uid="1" />
         <jaxb:javaType name="java.sql.Time" xmlType="xs:time"
             parseMethod="com.admazing.core.models.TimeAdapter.unmarshal"
             printMethod="com.admazing.core.models.TimeAdapter.marshal" />
