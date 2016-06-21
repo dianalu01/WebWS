@@ -40,15 +40,8 @@ public class DateAdapter
         Calendar cal = new GregorianCalendar();
         cal.setTime(value);
         
-        SimpleDateFormat sf = dateFormatter.get();
-        sf.setCalendar(cal);
-        String strCal=DatatypeConverter.printDate(cal);
-        System.out.printf("Date"+strCal);
-        String prueba =sf.format(strCal);
-        //return prueba;
-        return strCal;
+        return DatatypeConverter.printDate(cal);       
         
     }
-
 
 }
