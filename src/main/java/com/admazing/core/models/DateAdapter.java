@@ -43,8 +43,8 @@ public class DateAdapter
         String strCal=DatatypeConverter.printDate(cal);
         System.out.printf("Date"+strCal);
         //return sf.format(strCal);
-        //return strCal;
-        return sf.format(value);
+        return strCal;
+        
     }
 
 
