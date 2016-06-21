@@ -36,14 +36,15 @@ public class DateAdapter
         if (value == null) {
             return null;
         }
+        
         Calendar cal = new GregorianCalendar();
         cal.setTime(value);
         
         SimpleDateFormat sf = dateFormatter.get();
         String strCal=DatatypeConverter.printDate(cal);
         System.out.printf("Date"+strCal);
-        //return sf.format(strCal);
-        return strCal;
+        return sf.format(strCal);
+        //return strCal;
         
     }
 
