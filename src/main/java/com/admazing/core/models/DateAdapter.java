@@ -41,9 +41,10 @@ public class DateAdapter
         
         SimpleDateFormat sf = dateFormatter.get();
         String strCal=DatatypeConverter.printDate(cal);
-        System.out.printf(strCal);
+        System.out.printf("Date"+strCal);
         //return sf.format(strCal);
-        return strCal;
+        //return strCal;
+        return sf.format(value);
     }
 
 
