@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.Admazing">
-    <class name="com.admazing.ZonaComercialModel" table="zonacomercial" >
+    <class name="com.admazing.CommercialAreaModel" table="zonacomercial" >
         <id name="idCommercialArea" type="string">
             <column name="idzonacomercial" length="8" not-null="true"/>
         </id>
