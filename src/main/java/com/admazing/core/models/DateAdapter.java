@@ -37,7 +37,7 @@ public class DateAdapter
             return null;
         }
         
-        Calendar cal = new GregorianCalendar();
+        Calendar cal = Calendar.getInstance();
         cal.setTime(value);
         
         return DatatypeConverter.printDate(cal);       

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.Admazing">
+    <class name="com.admazing.PromocionModel" table="promocion" >
+        <id name="idPromotion" type="string">
+            <column name="idpromocion" length="10" not-null="true"/>
+        </id>
+        <property name="idCategory" type="string" column="categoria" length="8"/>
+        <property name="idTypePromotion" type="string" column="tipopromocion" length="5" />
+        <property name="idStore" type="string" column="tienda" length="8" />
+        <property name="description" type="string" column="descripcion" length="20" />
+        <property name="startDate" type="date" column="fechainicio" />
+        <property name="endDate" type="date" column="fechafin" />
+        <property name="imagePromotion" type="binary" column="imagenpromo"/>
+	</class>
+</hibernate-mapping>

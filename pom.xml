@@ -50,8 +50,7 @@
 						<goals>
 							<goal>wsdl2java</goal>
 						</goals>
-					</execution>
-					
+					</execution>					
 				</executions>
 			</plugin>
 		</plugins>

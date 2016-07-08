@@ -8,163 +8,163 @@
 		xmlns:tns="http://admazing.com/" elementFormDefault="unqualified"
 		targetNamespace="http://admazing.com/" version="1.0">
 
-		<xs:complexType name="UsuarioModel">
+		<xs:complexType name="userModel">
 			<xs:sequence>
-				<xs:element name="idUsuario" type="xs:string" />
-				<xs:element name="nombre" type="xs:string" />
-				<xs:element name="apellidoPaterno" type="xs:string" />
-				<xs:element name="apellidoMaterno" type="xs:string" />
-				<xs:element name="edad" type="xs:integer" />
-				<xs:element name="genero" type="xs:string" />
+				<xs:element name="idUser" type="xs:string" />
+				<xs:element name="name" type="xs:string" />
+				<xs:element name="firstLastName" type="xs:string" />
+				<xs:element name="secondLastName" type="xs:string" />
+				<xs:element name="age" type="xs:integer" />
+				<xs:element name="gender" type="xs:string" />
 				<xs:element name="password" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="TiendaModel">
+		<xs:complexType name="storeModel">
 			<xs:sequence>
-				<xs:element name="codigo" type="xs:string" />
-				<xs:element name="zonacomercial" type="xs:string" />
-				<xs:element name="razonsocial" type="xs:string" />
+				<xs:element name="idStore" type="xs:string" />
+				<xs:element name="idCommercialArea" type="xs:string" />
+				<xs:element name="nameStore" type="xs:string" />
 				<xs:element name="email" type="xs:string" />
-				<xs:element name="telefono" type="xs:string"/>
+				<xs:element name="phoneNumber" type="xs:string"/>
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="CategoriaModel">
+		<xs:complexType name="categoryModel">
 			<xs:sequence>
-				<xs:element name="idcategoria" type="xs:string" />
-				<xs:element name="descripcion" type="xs:string" />
+				<xs:element name="idCategory" type="xs:string" />
+				<xs:element name="description" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>		
-		<xs:complexType name="PromocionModel">
+		<xs:complexType name="promotionModel">
 			<xs:sequence>
-				<xs:element name="idpromocion" type="xs:string" />
-				<xs:element name="categoria" type="xs:string" />
-				<xs:element name="tipopromocion" type="xs:string" />
-				<xs:element name="tienda" type="xs:string" />
-				<xs:element name="descripcion" type="xs:string" />
-				<xs:element name="fechainicio" type="xs:dateTime" />
-				<xs:element name="fechafin" type="xs:dateTime" />
-				<xs:element name="imagenpromo" type="xsd:base64Binary"/>
+				<xs:element name="idPromotion" type="xs:string" />
+				<xs:element name="idCategory" type="xs:string" />
+				<xs:element name="idTypePromotion" type="xs:string" />
+				<xs:element name="idStore" type="xs:string" />
+				<xs:element name="description" type="xs:string" />
+				<xs:element name="startDate" type="xs:dateTime" />
+				<xs:element name="endDate" type="xs:dateTime" />
+				<xs:element name="imagePromotion" type="xsd:base64Binary"/>
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="ZonaComercialModel">
+		<xs:complexType name="commercialAreaModel">
 			<xs:sequence>
-				<xs:element name="idzonacomercial" type="xs:string" />
-				<xs:element name="nombre" type="xs:string" />
-				<xs:element name="longitud" type="xs:string" />
-				<xs:element name="latitud" type="xs:string" />
-				<xs:element name="distancia" type="xs:string"/>
+				<xs:element name="idCommercialArea" type="xs:string" />
+				<xs:element name="nameCommercialArea" type="xs:string" />
+				<xs:element name="longitude" type="xs:string" />
+				<xs:element name="latitude" type="xs:string" />
+				<xs:element name="distance" type="xs:string"/>
 			</xs:sequence>
 		</xs:complexType>		
-		<xs:complexType name="AccesoModel">
+		<xs:complexType name="accessModel">
 			<xs:sequence>
-				<xs:element name="idacceso" type="xs:string" />
-				<xs:element name="idusuario" type="xs:string" />
-				<xs:element name="zonacomercial" type="xs:string" />
-				<xs:element name="fecha" type="xs:dateTime" />
-				<xs:element name="horaacceso" type="xs:time" />
+				<xs:element name="idAccess" type="xs:string" />
+				<xs:element name="idUser" type="xs:string" />
+				<xs:element name="idCommercialArea" type="xs:string" />
+				<xs:element name="date" type="xs:dateTime" />
+				<xs:element name="time" type="xs:time" />
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="CuponeraModel">
+		<xs:complexType name="couponBookModel">
 			<xs:sequence>
-				<xs:element name="idusuario" type="xs:string" />
-				<xs:element name="idcuponera" type="xs:string" />
-				<xs:element name="promocion" type="xs:string" />
+				<xs:element name="idUser" type="xs:string" />
+				<xs:element name="idCouponBook" type="xs:string" />
+				<xs:element name="idPromotion" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
 		
-		<xs:element name="iniciarSesionRequest" type="tns:iniciarSesionRequest" />
-		<xs:element name="iniciarSesionResponse" type="tns:iniciarSesionResponse" />
-		<xs:complexType name="iniciarSesionRequest">
+		<xs:element name="logInRequest" type="tns:logInRequest" />
+		<xs:element name="logInResponse" type="tns:logInResponse" />
+		<xs:complexType name="logInRequest">
 			<xs:sequence>
-				<xs:element minOccurs="1" name="idUsuario" type="xs:string" />
+				<xs:element minOccurs="1" name="idUser" type="xs:string" />
 				<xs:element minOccurs="1" name="password" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="iniciarSesionResponse">
+		<xs:complexType name="logInResponse">
 			<xs:sequence>
-				<xs:element  name="resultado" type="xs:boolean" />
+				<xs:element  name="result" type="xs:boolean" />
 			</xs:sequence>
 		</xs:complexType>
 
-		<xs:element name="getAllTiendaRequest" type="tns:getAllTiendaRequest" />
-		<xs:element name="getAllTiendaResponse" type="tns:getAllTiendaResponse" />
-		<xs:complexType name="getAllTiendaRequest"/>
-		<xs:complexType name="getAllTiendaResponse">
+		<xs:element name="getAllStoresRequest" type="tns:getAllStoresRequest" />
+		<xs:element name="getAllStoresResponse" type="tns:getAllStoresResponse" />
+		<xs:complexType name="getAllStoresRequest"/>
+		<xs:complexType name="getAllStoresResponse">
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="unbounded" name="tiendas"
-					type="tns:TiendaModel" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="store"
+					type="tns:storeModel" />
 			</xs:sequence>
 		</xs:complexType>
-		<xs:element name="getAllTiendabyZonaComercialRequest" type="tns:getAllTiendabyZonaComercialRequest" />
-		<xs:element name="getAllTiendabyZonaComercialResponse" type="tns:getAllTiendabyZonaComercialResponse" />
-		<xs:complexType name="getAllTiendabyZonaComercialRequest">
+		<xs:element name="getAllStoresbyCommercialAreaRequest" type="tns:getAllStoresbyCommercialAreaRequest" />
+		<xs:element name="getAllStoresbyCommercialAreaResponse" type="tns:getAllStoresbyCommercialAreaResponse" />
+		<xs:complexType name="getAllStoresbyCommercialAreaRequest">
 			<xs:sequence>
-				<xs:element minOccurs="1" name="idUsuario" type="xs:string" />
+				<xs:element minOccurs="1" name="idUser" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="getAllTiendabyZonaComercialResponse">
+		<xs:complexType name="getAllStoresbyCommercialAreaResponse">
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="unbounded" name="tiendas"
-					type="tns:TiendaModel" />
-			</xs:sequence>
-		</xs:complexType>
-		
-		<xs:element name="getByIdCategoriaRequest" type="tns:getByIdCategoriaRequest" />
-		<xs:element name="getByIdCategoriaResponse" type="tns:getByIdCategoriaResponse" />
-		<xs:complexType name="getByIdCategoriaRequest">
-			<xs:sequence>
-					<xs:element minOccurs="1" name="idTienda" type="xs:string" />
-			</xs:sequence>
-		</xs:complexType>
-		<xs:complexType name="getByIdCategoriaResponse">
-			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="unbounded" name="categorias"
-					type="tns:CategoriaModel" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="store"
+					type="tns:storeModel" />
 			</xs:sequence>
 		</xs:complexType>
 		
-		<xs:element name="getByIdPromocionRequest" type="tns:getByIdPromocionRequest" />
-		<xs:element name="getByIdPromocionResponse" type="tns:getByIdPromocionResponse" />
-		<xs:complexType name="getByIdPromocionRequest">
+		<xs:element name="getByIdCategoryRequest" type="tns:getByIdCategoryRequest" />
+		<xs:element name="getByIdCategoryResponse" type="tns:getByIdCategoryResponse" />
+		<xs:complexType name="getByIdCategoryRequest">
 			<xs:sequence>
-					<xs:element minOccurs="1" name="idTienda" type="xs:string" />
-					<xs:element minOccurs="1" name="idCategoria" type="xs:string" />
+					<xs:element minOccurs="1" name="idStore" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="getByIdPromocionResponse">
+		<xs:complexType name="getByIdCategoryResponse">
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="unbounded" name="promociones"
-					type="tns:PromocionModel" />
-			</xs:sequence>
-		</xs:complexType>
-		
-		<xs:element name="saveAccesoRequest" type="tns:saveAccesoRequest" />
-		<xs:element name="saveAccesoResponse" type="tns:saveAccesoResponse" />
-		<xs:complexType name="saveAccesoRequest">
-			<xs:sequence>
-				<xs:element minOccurs="1" name="idUsuario" type="xs:string" />
-				<xs:element minOccurs="1" name="latitud" type="xs:string" />
-				<xs:element minOccurs="1" name="longitud" type="xs:string" />
-			</xs:sequence>
-		</xs:complexType>
-		<xs:complexType name="saveAccesoResponse">
-			<xs:sequence>
-				<xs:element  name="resultado" type="xs:boolean" />
-				<xs:element minOccurs="1" name="nombreZonaComercial" type="xs:string" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="category"
+					type="tns:categoryModel" />
 			</xs:sequence>
 		</xs:complexType>
 		
-		<xs:element name="getbyZonaComercialCuponeraRequest" type="tns:getbyZonaComercialCuponeraRequest" />
-		<xs:element name="getbyZonaComercialCuponeraResponse" type="tns:getbyZonaComercialCuponeraResponse" />
-		<xs:complexType name="getbyZonaComercialCuponeraRequest">
+		<xs:element name="getByIdPromotionRequest" type="tns:getByIdPromotionRequest" />
+		<xs:element name="getByIdPromotionResponse" type="tns:getByIdPromotionResponse" />
+		<xs:complexType name="getByIdPromotionRequest">
 			<xs:sequence>
-					<xs:element minOccurs="1" name="idUsuario" type="xs:string" />
+					<xs:element minOccurs="1" name="idStore" type="xs:string" />
+					<xs:element minOccurs="1" name="idCategory" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
-		<xs:complexType name="getbyZonaComercialCuponeraResponse">
+		<xs:complexType name="getByIdPromotionResponse">
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="unbounded" name="cupones"
-					type="tns:PromocionModel" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="promotion"
+					type="tns:promotionModel" />
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:element name="saveAccessRequest" type="tns:saveAccessRequest" />
+		<xs:element name="saveAccessResponse" type="tns:saveAccessResponse" />
+		<xs:complexType name="saveAccessRequest">
+			<xs:sequence>
+				<xs:element minOccurs="1" name="idUser" type="xs:string" />
+				<xs:element minOccurs="1" name="latitude" type="xs:string" />
+				<xs:element minOccurs="1" name="longitude" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="saveAccessResponse">
+			<xs:sequence>
+				<xs:element  name="result" type="xs:boolean" />
+				<xs:element minOccurs="1" name="nameCommercialArea" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:element name="getbyCommercialAreaCouponBookRequest" type="tns:getbyCommercialAreaCouponBookRequest" />
+		<xs:element name="getbyCommercialAreaCouponBookResponse" type="tns:getbyCommercialAreaCouponBookResponse" />
+		<xs:complexType name="getbyCommercialAreaCouponBookRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idUser" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="getbyCommercialAreaCouponBookResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="coupon"
+					type="tns:promotionModel" />
 			</xs:sequence>
 		</xs:complexType>
 		</xs:schema>
@@ -185,170 +185,170 @@
 		
 	</wsdl:types>
 
-	<wsdl:message name="iniciarSesionRequest">
-		<wsdl:part element="tns:iniciarSesionRequest" name="parameters">
+	<wsdl:message name="logInRequest">
+		<wsdl:part element="tns:logInRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="iniciarSesionResponse">
-		<wsdl:part element="tns:iniciarSesionResponse" name="parameters">
+	<wsdl:message name="logInResponse">
+		<wsdl:part element="tns:logInResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getAllTiendaRequest">
-		<wsdl:part element="tns:getAllTiendaRequest" name="parameters">
+	<wsdl:message name="getAllStoresRequest">
+		<wsdl:part element="tns:getAllStoresRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getAllTiendaResponse">
-		<wsdl:part element="tns:getAllTiendaResponse" name="parameters">
+	<wsdl:message name="getAllStoresResponse">
+		<wsdl:part element="tns:getAllStoresResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getAllTiendabyZonaComercialRequest">
-		<wsdl:part element="tns:getAllTiendabyZonaComercialRequest" name="parameters">
+	<wsdl:message name="getAllStoresbyCommercialAreaRequest">
+		<wsdl:part element="tns:getAllStoresbyCommercialAreaRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getAllTiendabyZonaComercialResponse">
-		<wsdl:part element="tns:getAllTiendabyZonaComercialResponse" name="parameters">
+	<wsdl:message name="getAllStoresbyCommercialAreaResponse">
+		<wsdl:part element="tns:getAllStoresbyCommercialAreaResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getByIdCategoriaRequest">
-		<wsdl:part element="tns:getByIdCategoriaRequest" name="parameters">
+	<wsdl:message name="getByIdCategoryRequest">
+		<wsdl:part element="tns:getByIdCategoryRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getByIdCategoriaResponse">
-		<wsdl:part element="tns:getByIdCategoriaResponse" name="parameters">
+	<wsdl:message name="getByIdCategoryResponse">
+		<wsdl:part element="tns:getByIdCategoryResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getByIdPromocionRequest">
-		<wsdl:part element="tns:getByIdPromocionRequest" name="parameters">
+	<wsdl:message name="getByIdPromotionRequest">
+		<wsdl:part element="tns:getByIdPromotionRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getByIdPromocionResponse">
-		<wsdl:part element="tns:getByIdPromocionResponse" name="parameters">
+	<wsdl:message name="getByIdPromotionResponse">
+		<wsdl:part element="tns:getByIdPromotionResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="saveAccesoRequest">
-		<wsdl:part element="tns:saveAccesoRequest" name="parameters">
+	<wsdl:message name="saveAccessRequest">
+		<wsdl:part element="tns:saveAccessRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="saveAccesoResponse">
-		<wsdl:part element="tns:saveAccesoResponse" name="parameters">
+	<wsdl:message name="saveAccessResponse">
+		<wsdl:part element="tns:saveAccessResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getbyZonaComercialCuponeraRequest">
-		<wsdl:part element="tns:getbyZonaComercialCuponeraRequest" name="parameters">
+	<wsdl:message name="getbyCommercialAreaCouponBookRequest">
+		<wsdl:part element="tns:getbyCommercialAreaCouponBookRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getbyZonaComercialCuponeraResponse">
-		<wsdl:part element="tns:getbyZonaComercialCuponeraResponse" name="parameters">
+	<wsdl:message name="getbyCommercialAreaCouponBookResponse">
+		<wsdl:part element="tns:getbyCommercialAreaCouponBookResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
 	
 	<wsdl:portType name="AdmazingPortType">
-		<wsdl:operation name="iniciarSesion">
-			<wsdl:input message="tns:iniciarSesionRequest" name="iniciarSesionRequest">
+		<wsdl:operation name="logIn">
+			<wsdl:input message="tns:logInRequest" name="logInRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:iniciarSesionResponse" name="iniciarSesionResponse">
+			<wsdl:output message="tns:logInResponse" name="logInResponse">
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getAllTienda">
-			<wsdl:input message="tns:getAllTiendaRequest" name="getAllTiendaRequest">
+		<wsdl:operation name="getAllStores">
+			<wsdl:input message="tns:getAllStoresRequest" name="getAllStoresRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:getAllTiendaResponse" name="getAllTiendaResponse">
+			<wsdl:output message="tns:getAllStoresResponse" name="getAllStoresResponse">
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getAllTiendabyZonaComercial">
-			<wsdl:input message="tns:getAllTiendabyZonaComercialRequest" name="getAllTiendabyZonaComercialRequest">
+		<wsdl:operation name="getAllStoresbyCommercialArea">
+			<wsdl:input message="tns:getAllStoresbyCommercialAreaRequest" name="getAllStoresbyCommercialAreaRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:getAllTiendabyZonaComercialResponse" name="getAllTiendabyZonaComercialResponse">
+			<wsdl:output message="tns:getAllStoresbyCommercialAreaResponse" name="getAllStoresbyCommercialAreaResponse">
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getByIdCategoria">
-			<wsdl:input message="tns:getByIdCategoriaRequest" name="getByIdCategoriaRequest">
+		<wsdl:operation name="getByIdCategory">
+			<wsdl:input message="tns:getByIdCategoryRequest" name="getByIdCategoryRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:getByIdCategoriaResponse" name="getByIdCategoriaResponse">
+			<wsdl:output message="tns:getByIdCategoryResponse" name="getByIdCategoryResponse">
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getByIdPromocion">
-			<wsdl:input message="tns:getByIdPromocionRequest" name="getByIdPromocionRequest">
+		<wsdl:operation name="getByIdPromotion">
+			<wsdl:input message="tns:getByIdPromotionRequest" name="getByIdPromotionRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:getByIdPromocionResponse" name="getByIdPromocionResponse">
+			<wsdl:output message="tns:getByIdPromotionResponse" name="getByIdPromotionResponse">
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="saveAcceso">
-			<wsdl:input message="tns:saveAccesoRequest" name="saveAccesoRequest">
+		<wsdl:operation name="saveAccess">
+			<wsdl:input message="tns:saveAccessRequest" name="saveAccessRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:saveAccesoResponse" name="saveAccesoResponse">
+			<wsdl:output message="tns:saveAccessResponse" name="saveAccessResponse">
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getbyZonaComercialCuponera">
-			<wsdl:input message="tns:getbyZonaComercialCuponeraRequest" name="getbyZonaComercialCuponeraRequest">
+		<wsdl:operation name="getbyCommercialAreaCouponBook">
+			<wsdl:input message="tns:getbyCommercialAreaCouponBookRequest" name="getbyCommercialAreaCouponBookRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:getbyZonaComercialCuponeraResponse" name="getbyZonaComercialCuponeraResponse">
+			<wsdl:output message="tns:getbyCommercialAreaCouponBookResponse" name="getbyCommercialAreaCouponBookResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
 
 	<wsdl:binding name="AdmazingServiceSoapBinding"	type="tns:AdmazingPortType">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
-		<wsdl:operation name="iniciarSesion">
+		<wsdl:operation name="logIn">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="iniciarSesionRequest">
+			<wsdl:input name="logInRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="iniciarSesionResponse">
+			<wsdl:output name="logInResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getAllTienda">
+		<wsdl:operation name="getAllStores">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="getAllTiendaRequest">
+			<wsdl:input name="getAllStoresRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="getAllTiendaResponse">
+			<wsdl:output name="getAllStoresResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getAllTiendabyZonaComercial">
+		<wsdl:operation name="getAllStoresbyCommercialArea">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="getAllTiendabyZonaComercialRequest">
+			<wsdl:input name="getAllStoresbyCommercialAreaRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="getAllTiendabyZonaComercialResponse">
+			<wsdl:output name="getAllStoresbyCommercialAreaResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getByIdCategoria">
+		<wsdl:operation name="getByIdCategory">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="getByIdCategoriaRequest">
+			<wsdl:input name="getByIdCategoryRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="getByIdCategoriaResponse">
+			<wsdl:output name="getByIdCategoryResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>		
-		<wsdl:operation name="getByIdPromocion">
+		<wsdl:operation name="getByIdPromotion">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="getByIdPromocionRequest">
+			<wsdl:input name="getByIdPromotionRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="getByIdPromocionResponse">
+			<wsdl:output name="getByIdPromotionResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="saveAcceso">
+		<wsdl:operation name="saveAccess">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="saveAccesoRequest">
+			<wsdl:input name="saveAccessRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="saveAccesoResponse">
+			<wsdl:output name="saveAccessResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getbyZonaComercialCuponera">
+		<wsdl:operation name="getbyCommercialAreaCouponBook">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="getbyZonaComercialCuponeraRequest">
+			<wsdl:input name="getbyCommercialAreaCouponBookRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="getbyZonaComercialCuponeraResponse">
+			<wsdl:output name="getbyCommercialAreaCouponBookResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.Admazing">
+    <class name="com.admazing.AccesoModel" table="acceso" >
+        <id name="idAccess" type="string">
+            <column name="idacceso" length="10" not-null="true"/>
+        </id>
+        <property name="idUser" type="string" column="idusuario" length="8"/>
+        <property name="idCommercialArea" type="string" column="zonacomercial" length="8" />
+        <property name="date" type="date" column="fecha" />
+        <property name="time" type="time" column="horaacceso" />
+	</class>
+</hibernate-mapping>

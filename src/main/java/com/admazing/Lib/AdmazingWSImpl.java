@@ -4,158 +4,157 @@ package com.admazing.Lib;
 import java.util.List;
 
 import com.admazing.AdmazingPortType;
-import com.admazing.CategoriaModel;
-import com.admazing.CuponeraModel;
-import com.admazing.GetAllTiendaRequest;
-import com.admazing.GetAllTiendaResponse;
-import com.admazing.GetAllTiendabyZonaComercialRequest;
-import com.admazing.GetAllTiendabyZonaComercialResponse;
-import com.admazing.GetByIdCategoriaRequest;
-import com.admazing.GetByIdCategoriaResponse;
-import com.admazing.GetByIdPromocionRequest;
-import com.admazing.GetByIdPromocionResponse;
-import com.admazing.GetbyZonaComercialCuponeraRequest;
-import com.admazing.GetbyZonaComercialCuponeraResponse;
-import com.admazing.IniciarSesionRequest;
-import com.admazing.IniciarSesionResponse;
-import com.admazing.PromocionModel;
-import com.admazing.SaveAccesoRequest;
-import com.admazing.SaveAccesoResponse;
-import com.admazing.TiendaModel;
-import com.admazing.UsuarioModel;
-import com.admazing.ZonaComercialModel;
-import com.admazing.core.contracts.AccesoRepositorio;
-import com.admazing.core.contracts.CategoriaRepositorio;
-import com.admazing.core.contracts.CuponeraRepositorio;
-import com.admazing.core.contracts.PromocionRepositorio;
-import com.admazing.core.contracts.TiendaRepositorio;
-import com.admazing.core.contracts.UsuarioRepositorio;
-import com.admazing.core.contracts.ZonaComercialRepositorio;
-import com.admazing.dataAccess.AccesoRepositorioImpl;
-import com.admazing.dataAccess.CategoriaRepositorioImpl;
-import com.admazing.dataAccess.CuponeraRepositorioImpl;
-import com.admazing.dataAccess.PromocionRepositorioImpl;
-import com.admazing.dataAccess.TiendaRepositorioImpl;
-import com.admazing.dataAccess.UsuarioRepositorioImpl;
-import com.admazing.dataAccess.ZonaComercialRepositorioImpl;
+import com.admazing.CategoryModel;
+import com.admazing.CommercialAreaModel;
+import com.admazing.CouponBookModel;
+import com.admazing.GetAllStoresRequest;
+import com.admazing.GetAllStoresResponse;
+import com.admazing.GetAllStoresbyCommercialAreaRequest;
+import com.admazing.GetAllStoresbyCommercialAreaResponse;
+import com.admazing.GetByIdCategoryRequest;
+import com.admazing.GetByIdCategoryResponse;
+import com.admazing.GetByIdPromotionRequest;
+import com.admazing.GetByIdPromotionResponse;
+import com.admazing.GetbyCommercialAreaCouponBookRequest;
+import com.admazing.GetbyCommercialAreaCouponBookResponse;
+import com.admazing.LogInRequest;
+import com.admazing.LogInResponse;
+import com.admazing.PromotionModel;
+import com.admazing.SaveAccessRequest;
+import com.admazing.SaveAccessResponse;
+import com.admazing.StoreModel;
+import com.admazing.UserModel;
+import com.admazing.core.contracts.AccessRepository;
+import com.admazing.core.contracts.CategoryRepository;
+import com.admazing.core.contracts.CouponBookRepository;
+import com.admazing.core.contracts.PromotionRepository;
+import com.admazing.core.contracts.StoreRepository;
+import com.admazing.core.contracts.UserRepository;
+import com.admazing.core.contracts.CommercialAreaRepository;
+import com.admazing.dataAccess.AccessRepositoryImpl;
+import com.admazing.dataAccess.CategoryRepositoryImpl;
+import com.admazing.dataAccess.CouponBookRepositoryImpl;
+import com.admazing.dataAccess.PromotionRepositoryImpl;
+import com.admazing.dataAccess.StoreRepositoryImpl;
+import com.admazing.dataAccess.UserRepositoryImpl;
+import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 
 public class AdmazingWSImpl implements AdmazingPortType {
-	UsuarioRepositorio usuarioRepositorio= new UsuarioRepositorioImpl();
-	TiendaRepositorio tiendaRepositorio= new TiendaRepositorioImpl();
-	CategoriaRepositorio categoriaRepositorio= new CategoriaRepositorioImpl();
-	PromocionRepositorio promocionRepositorio= new PromocionRepositorioImpl();
-	ZonaComercialRepositorio zonaComercialRepositorio= new ZonaComercialRepositorioImpl();
-	AccesoRepositorio accesoRepositorio = new AccesoRepositorioImpl(); 
-	CuponeraRepositorio cuponeraRepositorio = new CuponeraRepositorioImpl(); 
+	UserRepository userRepository= new UserRepositoryImpl();
+	StoreRepository storeRepository= new StoreRepositoryImpl();
+	CategoryRepository categoryRepository= new CategoryRepositoryImpl();
+	PromotionRepository promotionRepository= new PromotionRepositoryImpl();
+	CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
+	AccessRepository accessRepository = new AccessRepositoryImpl(); 
+	CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
 	
 	public AdmazingWSImpl() {
 		
 	}
 
 	@Override
-	public IniciarSesionResponse iniciarSesion(IniciarSesionRequest parameters) {
-		IniciarSesionResponse response = new IniciarSesionResponse();
-		String idUsuario= parameters.getIdUsuario();
+	public LogInResponse logIn(LogInRequest parameters) {
+		LogInResponse response = new LogInResponse();
+		String idUser= parameters.getIdUser();
 		String password= parameters.getPassword();
-		UsuarioModel usuario=usuarioRepositorio.findById(idUsuario);
-		if(usuario!=null&&usuario.getPassword().compareTo(password)==0){
-			response.setResultado(true);
+		UserModel user=userRepository.findById(idUser);
+		if(user!=null&&user.getPassword().compareTo(password)==0){
+			response.setResult(true);
 		}
 		else{
-			response.setResultado(false);
+			response.setResult(false);
 		}
 		return response;
 	}
 
 	@Override
-	public GetAllTiendaResponse getAllTienda(GetAllTiendaRequest parameters) {
-		GetAllTiendaResponse response = new GetAllTiendaResponse();
-		List<TiendaModel> tiendas=tiendaRepositorio.getAll();
-		List<TiendaModel> responseTiendas = response.getTiendas();
-		if(tiendas!=null){
-			for (TiendaModel tienda : tiendas) {
-				responseTiendas.add(tienda);
+	public GetAllStoresResponse getAllStores(GetAllStoresRequest parameters) {
+		GetAllStoresResponse response = new GetAllStoresResponse();
+		List<StoreModel> stores=storeRepository.getAll();
+		List<StoreModel> responseStores = response.getStore();
+		if(stores!=null){
+			for (StoreModel store : stores) {
+				responseStores.add(store);
 			}
 		}
 		return response; 
 	}
 
 	@Override
-	public GetAllTiendabyZonaComercialResponse getAllTiendabyZonaComercial(
-			GetAllTiendabyZonaComercialRequest parameters) {
-		GetAllTiendabyZonaComercialResponse response = new GetAllTiendabyZonaComercialResponse();
-		String idUsuario= parameters.getIdUsuario();
-		String idZonacomercial=zonaComercialRepositorio.getIdLastZonaComercial(idUsuario);
-		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idZonacomercial);
-		List<TiendaModel> responseTiendas = response.getTiendas();
-		if(tiendas!=null){
-			for (TiendaModel tienda : tiendas) {
-				responseTiendas.add(tienda);
+	public GetAllStoresbyCommercialAreaResponse getAllStoresbyCommercialArea(
+			GetAllStoresbyCommercialAreaRequest parameters) {
+		GetAllStoresbyCommercialAreaResponse response = new GetAllStoresbyCommercialAreaResponse();
+		String idUser= parameters.getIdUser();
+		String idCommercialArea=commercialAreaRepository.getIdLastCommercialArea(idUser);
+		List<StoreModel> stores=storeRepository.getAllbyCommercialArea(idCommercialArea);
+		List<StoreModel> responseStores = response.getStore();
+		if(stores!=null){
+			for (StoreModel store : stores) {
+				responseStores.add(store);
 			}
 		}
 		return response;		
 	}
 	
 	@Override
-	public GetByIdCategoriaResponse getByIdCategoria(GetByIdCategoriaRequest parameters) {
-		GetByIdCategoriaResponse response = new GetByIdCategoriaResponse();
-		List<CategoriaModel> categorias=categoriaRepositorio.findById(parameters.getIdTienda());
-		List<CategoriaModel> responsecategorias = response.getCategorias();
-		if(categorias!=null){
-			for (CategoriaModel categoria : categorias) {
-				responsecategorias.add(categoria);
+	public GetByIdCategoryResponse getByIdCategory(GetByIdCategoryRequest parameters) {
+		GetByIdCategoryResponse response = new GetByIdCategoryResponse();
+		List<CategoryModel> categories=categoryRepository.findById(parameters.getIdStore());
+		List<CategoryModel> responseCategories = response.getCategory();
+		if(categories!=null){
+			for (CategoryModel category : categories) {
+				responseCategories.add(category);
 			}
 		}
 		return response;
 	}
 
 	@Override
-	public GetByIdPromocionResponse getByIdPromocion(GetByIdPromocionRequest parameters) {
-		GetByIdPromocionResponse response = new GetByIdPromocionResponse();
-		List<PromocionModel> promociones=promocionRepositorio.findById(parameters.getIdTienda(),parameters.getIdCategoria());
-		List<PromocionModel> responsepromociones = response.getPromociones();
-		if(promociones!=null){
-			for (PromocionModel promocion : promociones) {
-				responsepromociones.add(promocion);
+	public GetByIdPromotionResponse getByIdPromotion(GetByIdPromotionRequest parameters) {
+		GetByIdPromotionResponse response = new GetByIdPromotionResponse();
+		List<PromotionModel> promotions=promotionRepository.findById(parameters.getIdStore(),parameters.getIdCategory());
+		List<PromotionModel> responsePromotions = response.getPromotion();
+		if(promotions!=null){
+			for (PromotionModel promotion : promotions) {
+				responsePromotions.add(promotion);
 			}
 		}
 		return response;
 	}
 
 	@Override
-	public SaveAccesoResponse saveAcceso(SaveAccesoRequest parameters) {
-		SaveAccesoResponse response = new SaveAccesoResponse();
-		ZonaComercialModel zonaComercialModel=zonaComercialRepositorio.getByLatitudLongitud(parameters.getLatitud(), parameters.getLongitud());
-		if(zonaComercialModel!=null){
-			response.setNombreZonaComercial(zonaComercialModel.getNombre());
-			boolean resultado=accesoRepositorio.save(parameters.getIdUsuario(), zonaComercialModel.getIdzonacomercial());
-			if(resultado)
-				response.setResultado(true);
+	public SaveAccessResponse saveAccess(SaveAccessRequest parameters) {
+		SaveAccessResponse response = new SaveAccessResponse();
+		CommercialAreaModel commercialAreaModel=commercialAreaRepository.getByLatitudeLongitude(parameters.getLatitude(), parameters.getLongitude());
+		if(commercialAreaModel!=null){
+			response.setNameCommercialArea(commercialAreaModel.getNameCommercialArea());
+			boolean result=accessRepository.save(parameters.getIdUser(), commercialAreaModel.getIdCommercialArea());
+			if(result)
+				response.setResult(true);
 			else
-				response.setResultado(false);
+				response.setResult(false);
 		}
 		else
-			response.setResultado(false);
+			response.setResult(false);
 		
 		return response;
 	}
 
 	@Override
-	public GetbyZonaComercialCuponeraResponse getbyZonaComercialCuponera(GetbyZonaComercialCuponeraRequest parameters) {
-		GetbyZonaComercialCuponeraResponse response = new GetbyZonaComercialCuponeraResponse();
-		String idUsuario= parameters.getIdUsuario();
-		String idZonacomercial=zonaComercialRepositorio.getIdLastZonaComercial(idUsuario);
-		List<CuponeraModel> cuponera=cuponeraRepositorio.getAllById(idUsuario);
-		List<TiendaModel> tiendas=tiendaRepositorio.getAllbyZonaComercial(idZonacomercial);
-		List<PromocionModel> responseCuponera = response.getCupones();
-		if(cuponera!=null&&tiendas!=null){
-			for (CuponeraModel cupon : cuponera) {
-				System.out.println(cupon.getPromocion());
-				PromocionModel promocion=promocionRepositorio.findById(cupon.getPromocion());
-				for(TiendaModel tienda:tiendas){
-					if(promocion.getTienda().compareTo(tienda.getCodigo())==0){
-						responseCuponera.add(promocion);
+	public GetbyCommercialAreaCouponBookResponse getbyCommercialAreaCouponBook(GetbyCommercialAreaCouponBookRequest parameters) {
+		GetbyCommercialAreaCouponBookResponse response = new GetbyCommercialAreaCouponBookResponse();
+		String idUser= parameters.getIdUser();
+		String idCommercialArea=commercialAreaRepository.getIdLastCommercialArea(idUser);
+		List<CouponBookModel> couponBook=couponBookRepository.getAllById(idUser);
+		List<StoreModel> stores=storeRepository.getAllbyCommercialArea(idCommercialArea);
+		List<PromotionModel> responseCouponBook = response.getCoupon();
+		if(couponBook!=null&&stores!=null){
+			for (CouponBookModel coupon : couponBook) {
+				PromotionModel promotion=promotionRepository.findById(coupon.getIdPromotion());
+				for(StoreModel store:stores){
+					if(promotion.getIdStore().compareTo(store.getIdStore())==0){
+						responseCouponBook.add(promotion);
 					}
 				}
 			}

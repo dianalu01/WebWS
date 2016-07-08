@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.Admazing">
+    <class name="com.admazing.ZonaComercialModel" table="zonacomercial" >
+        <id name="idCommercialArea" type="string">
+            <column name="idzonacomercial" length="8" not-null="true"/>
+        </id>
+        <property name="nameCommercialArea" type="string" column="nombre" length="40"/>
+        <property name="longitude" type="string" column="longitud" length="10" />
+        <property name="latitude" type="string" column="latitud" length="10" />
+        <property name="distance" type="string" column="distancia" length="10" />
+	</class>
+</hibernate-mapping>

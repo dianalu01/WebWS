@@ -1,0 +1,44 @@
+
+
+Corrected Errors
+
+
+In the file catalina.properties, inside of config in .openshift directory 
+it's changed the next line:
+common.loader=${catalina.base}/lib,${catalina.base}/lib/*.jar,${catalina.home}/lib,${catalina.home}/lib/*.jar,${catalina.home}/../data/*.jar
+this allowed the correct performance of hibernate
+the mapping files were moved to resources file because they don't work in other place
+
+the mapping for the data types Date y Time
+it was added the binding.xjb
+In the pom file was added the next code in order to recognize the binding.xjb 
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf.version}</version>	
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${basedir}/src/generated</sourceRoot>
+							
+								<defaultOptions>
+									<validateWsdl>true</validateWsdl>
+								</defaultOptions>
+								<wsdlOptions>
+							
+									<wsdlOption>
+									  <bindingFiles> 
+							              <bindingFile>${basedir}/src/main/resources/bindings.xjb</bindingFile> 
+							          </bindingFiles>
+											<wsdl>${basedir}/src/main/webapp/WEB-INF/wsdl/Admazing.wsdl</wsdl>
+									</wsdlOption>
+							</wsdlOptions>
+							</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>					
+				</executions>
+			</plugin>

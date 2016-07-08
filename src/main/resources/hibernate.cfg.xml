@@ -15,13 +15,13 @@
 		<property name="validationQuery">SELECT version()</property>
         <property name="current_session_context_class">thread</property>
 		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
-        <mapping resource="hibernate/Usuario.hbm.xml"></mapping>
-        <mapping resource="hibernate/Tienda.hbm.xml"></mapping>        
-        <mapping resource="hibernate/Categoria.hbm.xml"></mapping>     
-        <mapping resource="hibernate/Promocion.hbm.xml"></mapping>     
-        <mapping resource="hibernate/ZonaComercial.hbm.xml"></mapping> 
-        <mapping resource="hibernate/Acceso.hbm.xml"></mapping>
-        <mapping resource="hibernate/Cuponera.hbm.xml"></mapping>
+        <mapping resource="hibernate/User.hbm.xml"></mapping>
+        <mapping resource="hibernate/Store.hbm.xml"></mapping>        
+        <mapping resource="hibernate/Category.hbm.xml"></mapping>     
+        <mapping resource="hibernate/Promotion.hbm.xml"></mapping>     
+        <mapping resource="hibernate/CommercialArea.hbm.xml"></mapping> 
+        <mapping resource="hibernate/Access.hbm.xml"></mapping>
+        <mapping resource="hibernate/CouponBook.hbm.xml"></mapping>
         
     </session-factory>
 </hibernate-configuration>

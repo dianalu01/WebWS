@@ -18,8 +18,8 @@ Right click on the project, go to the Run As Menu Item and select run on the ser
 WSDL URL once the application is up and running on Tomcat:
 
 http://localhost:8080/wsdlfirstws/services/customerOrders?wsdl
+http://webws-adsws.rhcloud.com/services/admazing?wsdl
 
-
-3) Para ingresar a PGAdmin es necesario ingresar en git bash
-el comando rhc port-forward -a webws(nombre de la base de datos, en este caso el nombre de la aplicacion)
+3) To run PGAdmin,access git cmd
+and put the command rhc port-forward -a webws(database name)
 
