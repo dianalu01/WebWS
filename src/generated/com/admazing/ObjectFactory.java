@@ -26,7 +26,9 @@ public class ObjectFactory {
 
     private final static QName _GetByIdPromotionRequest_QNAME = new QName("http://admazing.com/", "getByIdPromotionRequest");
     private final static QName _GetAllStoresResponse_QNAME = new QName("http://admazing.com/", "getAllStoresResponse");
+    private final static QName _SaveCouponBookResponse_QNAME = new QName("http://admazing.com/", "saveCouponBookResponse");
     private final static QName _SaveAccessResponse_QNAME = new QName("http://admazing.com/", "saveAccessResponse");
+    private final static QName _SaveCouponBookRequest_QNAME = new QName("http://admazing.com/", "saveCouponBookRequest");
     private final static QName _SaveAccessRequest_QNAME = new QName("http://admazing.com/", "saveAccessRequest");
     private final static QName _GetByIdPromotionResponse_QNAME = new QName("http://admazing.com/", "getByIdPromotionResponse");
     private final static QName _GetAllStoresbyCommercialAreaRequest_QNAME = new QName("http://admazing.com/", "getAllStoresbyCommercialAreaRequest");
@@ -63,6 +65,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SaveCouponBookResponse }
+     * 
+     */
+    public SaveCouponBookResponse createSaveCouponBookResponse() {
+        return new SaveCouponBookResponse();
+    }
+
+    /**
      * Create an instance of {@link SaveAccessRequest }
      * 
      */
@@ -76,6 +86,14 @@ public class ObjectFactory {
      */
     public SaveAccessResponse createSaveAccessResponse() {
         return new SaveAccessResponse();
+    }
+
+    /**
+     * Create an instance of {@link SaveCouponBookRequest }
+     * 
+     */
+    public SaveCouponBookRequest createSaveCouponBookRequest() {
+        return new SaveCouponBookRequest();
     }
 
     /**
@@ -233,12 +251,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveCouponBookResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "saveCouponBookResponse")
+    public JAXBElement<SaveCouponBookResponse> createSaveCouponBookResponse(SaveCouponBookResponse value) {
+        return new JAXBElement<SaveCouponBookResponse>(_SaveCouponBookResponse_QNAME, SaveCouponBookResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SaveAccessResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://admazing.com/", name = "saveAccessResponse")
     public JAXBElement<SaveAccessResponse> createSaveAccessResponse(SaveAccessResponse value) {
         return new JAXBElement<SaveAccessResponse>(_SaveAccessResponse_QNAME, SaveAccessResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SaveCouponBookRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "saveCouponBookRequest")
+    public JAXBElement<SaveCouponBookRequest> createSaveCouponBookRequest(SaveCouponBookRequest value) {
+        return new JAXBElement<SaveCouponBookRequest>(_SaveCouponBookRequest_QNAME, SaveCouponBookRequest.class, null, value);
     }
 
     /**

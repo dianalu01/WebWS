@@ -22,6 +22,8 @@ import com.admazing.LogInResponse;
 import com.admazing.PromotionModel;
 import com.admazing.SaveAccessRequest;
 import com.admazing.SaveAccessResponse;
+import com.admazing.SaveCouponBookRequest;
+import com.admazing.SaveCouponBookResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
 import com.admazing.core.contracts.AccessRepository;
@@ -130,14 +132,9 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		if(commercialAreaModel!=null){
 			response.setNameCommercialArea(commercialAreaModel.getNameCommercialArea());
 			boolean result=accessRepository.save(parameters.getIdUser(), commercialAreaModel.getIdCommercialArea());
-			if(result)
-				response.setResult(true);
-			else
-				response.setResult(false);
+			response.setResult(result);
 		}
-		else
-			response.setResult(false);
-		
+		response.setResult(false);
 		return response;
 	}
 
@@ -160,6 +157,17 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			}
 		}
 		return response;
+	}
+
+	@Override
+	public SaveCouponBookResponse saveCouponBook(SaveCouponBookRequest parameters) {
+		SaveCouponBookResponse response = new SaveCouponBookResponse();
+		String idUser= parameters.getIdUser();
+		String idPromotion= parameters.getIdPromotion();
+		boolean result=couponBookRepository.save(idUser,idPromotion);
+		response.setResult(result);
+		return response;
+
 	}
 	
 }
