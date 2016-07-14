@@ -77,23 +77,31 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	}
 	
 	
-private CouponBookModel fillCouponBook(String idUser, String idCouponBook, String idPromotion ){
-	CouponBookModel currentCouponBook = new CouponBookModel();
-	currentCouponBook.setIdUser(idUser);
-	currentCouponBook.setIdCouponBook(idCouponBook);
-	currentCouponBook.setIdPromotion(idPromotion);
-	return currentCouponBook;
-}
 
-private String getNextIdCouponBook(String idLastCoupon){
-	Integer idCouponCalculated=Integer.parseInt(idLastCoupon.substring(2))+1;
-	String zeros=repeat("0", 6-(int)(Math.log10(idCouponCalculated)+1));
+	
+	@Override
+	public boolean deletePromotion(String idUser, String idPromotion) {
+		Session session=hibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=session.beginTransaction();
+		
+		return false;
+	}
+	private CouponBookModel fillCouponBook(String idUser, String idCouponBook, String idPromotion ){
+		CouponBookModel currentCouponBook = new CouponBookModel();
+		currentCouponBook.setIdUser(idUser);
+		currentCouponBook.setIdCouponBook(idCouponBook);
+		currentCouponBook.setIdPromotion(idPromotion);
+		return currentCouponBook;
+	}
+	
+	private String getNextIdCouponBook(String idLastCoupon){
+		Integer idCouponCalculated=Integer.parseInt(idLastCoupon.substring(2))+1;
+		String zeros=repeat("0", 6-(int)(Math.log10(idCouponCalculated)+1));
 	
 	String idCurrentCoupon="CP"+zeros+String.valueOf(idCouponCalculated);
-	return idCurrentCoupon;
-}
-private static String repeat(String str, int times) {
-    return new String(new char[times]).replace("\0", str);
-}
-
+		return idCurrentCoupon;
+	}
+	private static String repeat(String str, int times) {
+	    return new String(new char[times]).replace("\0", str);
+	}
 }

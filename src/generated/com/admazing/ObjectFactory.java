@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetByIdPromotionRequest_QNAME = new QName("http://admazing.com/", "getByIdPromotionRequest");
+    private final static QName _DeleteFromCouponBookRequest_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookRequest");
     private final static QName _GetAllStoresResponse_QNAME = new QName("http://admazing.com/", "getAllStoresResponse");
     private final static QName _SaveCouponBookResponse_QNAME = new QName("http://admazing.com/", "saveCouponBookResponse");
     private final static QName _SaveAccessResponse_QNAME = new QName("http://admazing.com/", "saveAccessResponse");
@@ -39,6 +40,7 @@ public class ObjectFactory {
     private final static QName _GetbyCommercialAreaCouponBookResponse_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookResponse");
     private final static QName _GetbyCommercialAreaCouponBookRequest_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookRequest");
     private final static QName _GetByIdCategoryResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoryResponse");
+    private final static QName _DeleteFromCouponBookResponse_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookResponse");
     private final static QName _GetAllStoresbyCommercialAreaResponse_QNAME = new QName("http://admazing.com/", "getAllStoresbyCommercialAreaResponse");
 
     /**
@@ -70,6 +72,14 @@ public class ObjectFactory {
      */
     public SaveCouponBookResponse createSaveCouponBookResponse() {
         return new SaveCouponBookResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeleteFromCouponBookRequest }
+     * 
+     */
+    public DeleteFromCouponBookRequest createDeleteFromCouponBookRequest() {
+        return new DeleteFromCouponBookRequest();
     }
 
     /**
@@ -177,11 +187,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UserModel }
+     * Create an instance of {@link DeleteFromCouponBookResponse }
      * 
      */
-    public UserModel createUserModel() {
-        return new UserModel();
+    public DeleteFromCouponBookResponse createDeleteFromCouponBookResponse() {
+        return new DeleteFromCouponBookResponse();
     }
 
     /**
@@ -193,19 +203,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PromotionModel }
-     * 
-     */
-    public PromotionModel createPromotionModel() {
-        return new PromotionModel();
-    }
-
-    /**
      * Create an instance of {@link AccessModel }
      * 
      */
     public AccessModel createAccessModel() {
         return new AccessModel();
+    }
+
+    /**
+     * Create an instance of {@link UserModel }
+     * 
+     */
+    public UserModel createUserModel() {
+        return new UserModel();
+    }
+
+    /**
+     * Create an instance of {@link PromotionModel }
+     * 
+     */
+    public PromotionModel createPromotionModel() {
+        return new PromotionModel();
     }
 
     /**
@@ -239,6 +257,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdPromotionRequest")
     public JAXBElement<GetByIdPromotionRequest> createGetByIdPromotionRequest(GetByIdPromotionRequest value) {
         return new JAXBElement<GetByIdPromotionRequest>(_GetByIdPromotionRequest_QNAME, GetByIdPromotionRequest.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteFromCouponBookRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "deleteFromCouponBookRequest")
+    public JAXBElement<DeleteFromCouponBookRequest> createDeleteFromCouponBookRequest(DeleteFromCouponBookRequest value) {
+        return new JAXBElement<DeleteFromCouponBookRequest>(_DeleteFromCouponBookRequest_QNAME, DeleteFromCouponBookRequest.class, null, value);
     }
 
     /**
@@ -365,6 +392,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdCategoryResponse")
     public JAXBElement<GetByIdCategoryResponse> createGetByIdCategoryResponse(GetByIdCategoryResponse value) {
         return new JAXBElement<GetByIdCategoryResponse>(_GetByIdCategoryResponse_QNAME, GetByIdCategoryResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteFromCouponBookResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "deleteFromCouponBookResponse")
+    public JAXBElement<DeleteFromCouponBookResponse> createDeleteFromCouponBookResponse(DeleteFromCouponBookResponse value) {
+        return new JAXBElement<DeleteFromCouponBookResponse>(_DeleteFromCouponBookResponse_QNAME, DeleteFromCouponBookResponse.class, null, value);
     }
 
     /**

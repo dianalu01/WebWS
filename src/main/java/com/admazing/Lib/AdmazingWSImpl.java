@@ -7,6 +7,8 @@ import com.admazing.AdmazingPortType;
 import com.admazing.CategoryModel;
 import com.admazing.CommercialAreaModel;
 import com.admazing.CouponBookModel;
+import com.admazing.DeleteFromCouponBookRequest;
+import com.admazing.DeleteFromCouponBookResponse;
 import com.admazing.GetAllStoresRequest;
 import com.admazing.GetAllStoresResponse;
 import com.admazing.GetAllStoresbyCommercialAreaRequest;
@@ -132,7 +134,10 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		if(commercialAreaModel!=null){
 			response.setNameCommercialArea(commercialAreaModel.getNameCommercialArea());
 			boolean result=accessRepository.save(parameters.getIdUser(), commercialAreaModel.getIdCommercialArea());
-			response.setResult(result);
+			if (result)
+				response.setResult(true);
+			else 
+				response.setResult(false);
 		}
 		response.setResult(false);
 		return response;
@@ -165,9 +170,18 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		String idUser= parameters.getIdUser();
 		String idPromotion= parameters.getIdPromotion();
 		boolean result=couponBookRepository.save(idUser,idPromotion);
-		response.setResult(result);
+		if (result)
+			response.setResult(true);
+		else 
+			response.setResult(false);
 		return response;
 
+	}
+
+	@Override
+	public DeleteFromCouponBookResponse deleteFromCouponBook(DeleteFromCouponBookRequest parameters) {
+		
+		return null;
 	}
 	
 }

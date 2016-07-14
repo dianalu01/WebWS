@@ -181,6 +181,21 @@
 				<xs:element  name="result" type="xs:boolean" />
 			</xs:sequence>
 		</xs:complexType>
+		
+		<xs:element name="deleteFromCouponBookRequest" type="tns:deleteFromCouponBookRequest" />
+		<xs:element name="deleteFromCouponBookResponse" type="tns:deleteFromCouponBookResponse" />
+		<xs:complexType name="deleteFromCouponBookRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idUser" type="xs:string" />
+					<xs:element minOccurs="1" name="idPromotion" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="deleteFromCouponBookResponse">
+			<xs:sequence>
+				<xs:element  name="result" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+		
 		</xs:schema>
 		
 		<xsd:schema
@@ -263,7 +278,15 @@
 		<wsdl:part element="tns:saveCouponBookResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	
+	<wsdl:message name="deleteFromCouponBookRequest">
+		<wsdl:part element="tns:deleteFromCouponBookRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="deleteFromCouponBookResponse">
+		<wsdl:part element="tns:deleteFromCouponBookResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+		
 	<wsdl:portType name="AdmazingPortType">
 		<wsdl:operation name="logIn">
 			<wsdl:input message="tns:logInRequest" name="logInRequest">
@@ -311,6 +334,12 @@
 			<wsdl:input message="tns:saveCouponBookRequest" name="saveCouponBookRequest">
 			</wsdl:input>
 			<wsdl:output message="tns:saveCouponBookResponse" name="saveCouponBookResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteFromCouponBook">
+			<wsdl:input message="tns:deleteFromCouponBookRequest" name="deleteFromCouponBookRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:deleteFromCouponBookResponse" name="deleteFromCouponBookResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
@@ -386,6 +415,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="saveCouponBookResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteFromCouponBook">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="deleteFromCouponBookRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteFromCouponBookResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
