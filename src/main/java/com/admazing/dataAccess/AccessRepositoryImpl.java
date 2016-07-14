@@ -22,11 +22,11 @@ public class AccessRepositoryImpl implements AccessRepository{
 		try{
 			List list = session.createSQLQuery("select * from acceso order by idacceso desc limit 1").addEntity(AccessModel.class).list();
 			Iterator itr = list.iterator();
-			AccessModel access = new  AccessModel();
 			while(itr.hasNext()){
 				lastAccess=(AccessModel)itr.next();
 			}
 			String idCurrentAccess=getNextIdAccess(lastAccess.getIdAccess());
+			System.out.println(idCurrentAccess);
 			AccessModel currentAccess=fillAccess(idUser, idCommercialArea, idCurrentAccess);
 			System.out.println(currentAccess.getIdUser()+"."+currentAccess.getIdAccess()+"."+currentAccess.getIdCommercialArea());
 		    session.save(currentAccess);
