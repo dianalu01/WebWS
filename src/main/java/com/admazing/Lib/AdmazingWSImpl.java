@@ -134,9 +134,9 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		if(commercialAreaModel!=null){
 			response.setNameCommercialArea(commercialAreaModel.getNameCommercialArea());
 			boolean result=accessRepository.save(parameters.getIdUser(), commercialAreaModel.getIdCommercialArea());
-			if (result)
+			if(result)
 				response.setResult(true);
-			else 
+			else
 				response.setResult(false);
 		}
 		response.setResult(false);
