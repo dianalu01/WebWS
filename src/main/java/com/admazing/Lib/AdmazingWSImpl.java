@@ -54,7 +54,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
 	
 	public AdmazingWSImpl() {
-		
+		System.out.println("AdmazingWS starting");
 	}
 
 	@Override
