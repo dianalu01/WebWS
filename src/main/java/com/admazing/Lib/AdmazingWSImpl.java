@@ -136,7 +136,9 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			response.setResult(result);
 		}
 		else
+		{
 			response.setResult(false);
+		}
 		
 		return response;
 	}
