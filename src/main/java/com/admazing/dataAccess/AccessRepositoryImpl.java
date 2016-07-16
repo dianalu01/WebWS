@@ -26,12 +26,11 @@ public class AccessRepositoryImpl implements AccessRepository{
 				lastAccess=(AccessModel)itr.next();
 			}
 			String idCurrentAccess=getNextIdAccess(lastAccess.getIdAccess());
-			System.out.println(idCurrentAccess);
 			AccessModel currentAccess=fillAccess(idUser, idCommercialArea, idCurrentAccess);
-			System.out.println(currentAccess.getIdUser()+"."+currentAccess.getIdAccess()+"."+currentAccess.getIdCommercialArea());
-		    session.save(currentAccess);
-		    session.getTransaction().commit();		
-	        session.flush();
+			session.save(currentAccess);
+		    
+		    session.getTransaction().commit();	
+		    session.flush();
             session.clear();
             return true;
 			

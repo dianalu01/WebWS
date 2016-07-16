@@ -54,7 +54,6 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
 	
 	public AdmazingWSImpl() {
-		System.out.println("AdmazingWS starting");
 	}
 
 	@Override
@@ -130,19 +129,15 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	@Override
 	public SaveAccessResponse saveAccess(SaveAccessRequest parameters) {
 		SaveAccessResponse response = new SaveAccessResponse();
-		System.out.println("SAVE METHOD");
 		CommercialAreaModel commercialAreaModel=commercialAreaRepository.getByLatitudeLongitude(parameters.getLatitude(), parameters.getLongitude());
 		if(commercialAreaModel!=null){
 			response.setNameCommercialArea(commercialAreaModel.getNameCommercialArea());
-			System.out.println(parameters.getIdUser()+"."+commercialAreaModel.getIdCommercialArea());
 			boolean result=accessRepository.save(parameters.getIdUser(), commercialAreaModel.getIdCommercialArea());
-			System.out.println(result);
-			if(result)
-				response.setResult(true);
-			else
-				response.setResult(false);
+			response.setResult(result);
 		}
-		response.setResult(false);
+		else
+			response.setResult(false);
+		
 		return response;
 	}
 

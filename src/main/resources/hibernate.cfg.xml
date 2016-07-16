@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
  
-       <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.username">adminswgtmqd</property>
         <property name="hibernate.connection.password" >6p3ceu-LgxzV</property>
         <property name="hibernate.connection.url" >jdbc:postgresql://127.7.250.130:5432/webws</property>
