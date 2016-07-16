@@ -129,7 +129,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	@Override
 	public SaveAccessResponse saveAccess(SaveAccessRequest parameters) {
 		SaveAccessResponse response = new SaveAccessResponse();
-		CommercialAreaModel commercialAreaModel=commercialAreaRepository.getByLatitudeLongitude(parameters.getLatitude(), parameters.getLongitude());
+		/*CommercialAreaModel commercialAreaModel=commercialAreaRepository.getByLatitudeLongitude(parameters.getLatitude(), parameters.getLongitude());
 		if(commercialAreaModel!=null){
 			response.setNameCommercialArea(commercialAreaModel.getNameCommercialArea());
 			boolean result=accessRepository.save(parameters.getIdUser(), commercialAreaModel.getIdCommercialArea());
@@ -140,7 +140,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		else
 		{
 			response.setResult(false);
-		}
+		}*/
 		response.setResult(true);
 		System.out.println("VERIFICANDO");
 		
