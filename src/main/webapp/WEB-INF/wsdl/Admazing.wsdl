@@ -33,6 +33,17 @@
 				<xs:element name="idCategory" type="xs:string" />
 				<xs:element name="description" type="xs:string" />
 			</xs:sequence>
+		</xs:complexType>				
+		<xs:complexType name="productModel">
+			<xs:sequence>
+				<xs:element name="idProduct" type="xs:string" />
+				<xs:element name="idCategory" type="xs:string" />
+				<xs:element name="name" type="xs:string" />
+				<xs:element name="brand" type="xs:string" />
+				<xs:element name="description" type="xs:string" />
+				<xs:element name="price" type="xs:decimal" />
+				<xs:element name="origin" type="xs:string" />
+			</xs:sequence>
 		</xs:complexType>		
 		<xs:complexType name="promotionModel">
 			<xs:sequence>
@@ -44,6 +55,13 @@
 				<xs:element name="startDate" type="xs:dateTime" />
 				<xs:element name="endDate" type="xs:dateTime" />
 				<xs:element name="imagePromotion" type="xsd:base64Binary"/>
+				<xs:element name="idProduct" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>		
+		<xs:complexType name="promotionDetailedModel">
+			<xs:sequence>				
+				<xs:element name="promotion" type="tns:promotionModel" />
+				<xs:element name="product" type="tns:productModel" />
 			</xs:sequence>
 		</xs:complexType>
 		<xs:complexType name="commercialAreaModel">
@@ -135,6 +153,21 @@
 			<xs:sequence>
 				<xs:element minOccurs="0" maxOccurs="unbounded" name="promotion"
 					type="tns:promotionModel" />
+			</xs:sequence>
+		</xs:complexType>
+		
+		<xs:element name="getPromotionDetailedRequest" type="tns:getPromotionDetailedRequest" />
+		<xs:element name="getPromotionDetailedResponse" type="tns:getPromotionDetailedResponse" />
+		<xs:complexType name="getPromotionDetailedRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idStore" type="xs:string" />
+					<xs:element minOccurs="1" name="idCategory" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="getPromotionDetailedResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="promotionDetailed"
+					type="tns:promotionDetailedModel" />
 			</xs:sequence>
 		</xs:complexType>
 		
@@ -254,6 +287,14 @@
 		<wsdl:part element="tns:getByIdPromotionResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
+	<wsdl:message name="getPromotionDetailedRequest">
+		<wsdl:part element="tns:getPromotionDetailedRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPromotionDetailedResponse">
+		<wsdl:part element="tns:getPromotionDetailedResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
 	<wsdl:message name="saveAccessRequest">
 		<wsdl:part element="tns:saveAccessRequest" name="parameters">
 		</wsdl:part>
@@ -316,6 +357,12 @@
 			<wsdl:input message="tns:getByIdPromotionRequest" name="getByIdPromotionRequest">
 			</wsdl:input>
 			<wsdl:output message="tns:getByIdPromotionResponse" name="getByIdPromotionResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPromotionDetailed">
+			<wsdl:input message="tns:getPromotionDetailedRequest" name="getPromotionDetailedRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getPromotionDetailedResponse" name="getPromotionDetailedResponse">
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="saveAccess">
@@ -388,6 +435,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="getByIdPromotionResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>		
+		<wsdl:operation name="getPromotionDetailed">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getPromotionDetailedRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getPromotionDetailedResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>

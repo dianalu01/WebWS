@@ -14,5 +14,6 @@
         <property name="startDate" type="date" column="fechainicio" />
         <property name="endDate" type="date" column="fechafin" />
         <property name="imagePromotion" type="binary" column="imagenpromo"/>
+        <property name="idProduct" type="string" column="producto" length="10"/>
 	</class>
 </hibernate-mapping>

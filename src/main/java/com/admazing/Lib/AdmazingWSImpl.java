@@ -17,10 +17,13 @@ import com.admazing.GetByIdCategoryRequest;
 import com.admazing.GetByIdCategoryResponse;
 import com.admazing.GetByIdPromotionRequest;
 import com.admazing.GetByIdPromotionResponse;
+import com.admazing.GetPromotionDetailedRequest;
+import com.admazing.GetPromotionDetailedResponse;
 import com.admazing.GetbyCommercialAreaCouponBookRequest;
 import com.admazing.GetbyCommercialAreaCouponBookResponse;
 import com.admazing.LogInRequest;
 import com.admazing.LogInResponse;
+import com.admazing.PromotionDetailedModel;
 import com.admazing.PromotionModel;
 import com.admazing.SaveAccessRequest;
 import com.admazing.SaveAccessResponse;
@@ -127,6 +130,19 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	}
 
 	@Override
+	public GetPromotionDetailedResponse getPromotionDetailed(GetPromotionDetailedRequest parameters) {
+		GetPromotionDetailedResponse response = new GetPromotionDetailedResponse();
+		/*List<PromotionModel> promotions=promotionRepository.findById(parameters.getIdStore(),parameters.getIdCategory());
+		List<PromotionDetailedModel> responsePromotions = response.getPromotionDetailed();
+		if(promotions!=null){
+			for (PromotionModel promotion : promotions) {
+				responsePromotions.add(promotion);
+			}
+		}*/
+		return response;
+	}
+
+	@Override
 	public SaveAccessResponse saveAccess(SaveAccessRequest parameters) {
 		SaveAccessResponse response = new SaveAccessResponse();
 		CommercialAreaModel commercialAreaModel=commercialAreaRepository.getByLatitudeLongitude(parameters.getLatitude(), parameters.getLongitude());
@@ -185,5 +201,6 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		
 		return null;
 	}
+
 	
 }

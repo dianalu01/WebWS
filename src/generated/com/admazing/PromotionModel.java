@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *         &lt;element name="startDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="endDate" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         &lt;element name="imagePromotion" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
+ *         &lt;element name="idProduct" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -46,7 +47,8 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "description",
     "startDate",
     "endDate",
-    "imagePromotion"
+    "imagePromotion",
+    "idProduct"
 })
 public class PromotionModel
     implements Serializable
@@ -73,6 +75,8 @@ public class PromotionModel
     protected Date endDate;
     @XmlElement(required = true)
     protected byte[] imagePromotion;
+    @XmlElement(required = true)
+    protected String idProduct;
 
     /**
      * Obtiene el valor de la propiedad idPromotion.
@@ -262,6 +266,30 @@ public class PromotionModel
      */
     public void setImagePromotion(byte[] value) {
         this.imagePromotion = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad idProduct.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIdProduct() {
+        return idProduct;
+    }
+
+    /**
+     * Define el valor de la propiedad idProduct.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIdProduct(String value) {
+        this.idProduct = value;
     }
 
 }
