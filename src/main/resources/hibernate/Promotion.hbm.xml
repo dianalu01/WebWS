@@ -10,7 +10,7 @@
         <property name="idCategory" type="string" column="categoria" length="8"/>
         <property name="idTypePromotion" type="string" column="tipopromocion" length="5" />
         <property name="idStore" type="string" column="tienda" length="8" />
-        <property name="description" type="string" column="descripcion" length="20" />
+        <property name="description" type="string" column="descripcion" length="100" />
         <property name="startDate" type="date" column="fechainicio" />
         <property name="endDate" type="date" column="fechafin" />
         <property name="imagePromotion" type="binary" column="imagenpromo"/>

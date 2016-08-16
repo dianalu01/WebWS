@@ -23,6 +23,7 @@ import com.admazing.GetbyCommercialAreaCouponBookRequest;
 import com.admazing.GetbyCommercialAreaCouponBookResponse;
 import com.admazing.LogInRequest;
 import com.admazing.LogInResponse;
+import com.admazing.ProductModel;
 import com.admazing.PromotionDetailedModel;
 import com.admazing.PromotionModel;
 import com.admazing.SaveAccessRequest;
@@ -34,6 +35,7 @@ import com.admazing.UserModel;
 import com.admazing.core.contracts.AccessRepository;
 import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CouponBookRepository;
+import com.admazing.core.contracts.ProductRepository;
 import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.StoreRepository;
 import com.admazing.core.contracts.UserRepository;
@@ -41,6 +43,7 @@ import com.admazing.core.contracts.CommercialAreaRepository;
 import com.admazing.dataAccess.AccessRepositoryImpl;
 import com.admazing.dataAccess.CategoryRepositoryImpl;
 import com.admazing.dataAccess.CouponBookRepositoryImpl;
+import com.admazing.dataAccess.ProductRepositoryImpl;
 import com.admazing.dataAccess.PromotionRepositoryImpl;
 import com.admazing.dataAccess.StoreRepositoryImpl;
 import com.admazing.dataAccess.UserRepositoryImpl;
@@ -52,6 +55,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	StoreRepository storeRepository= new StoreRepositoryImpl();
 	CategoryRepository categoryRepository= new CategoryRepositoryImpl();
 	PromotionRepository promotionRepository= new PromotionRepositoryImpl();
+	ProductRepository productRepository= new ProductRepositoryImpl(); 
 	CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
 	AccessRepository accessRepository = new AccessRepositoryImpl(); 
 	CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
@@ -132,16 +136,22 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	@Override
 	public GetPromotionDetailedResponse getPromotionDetailed(GetPromotionDetailedRequest parameters) {
 		GetPromotionDetailedResponse response = new GetPromotionDetailedResponse();
-		/*List<PromotionModel> promotions=promotionRepository.findById(parameters.getIdStore(),parameters.getIdCategory());
+		List<PromotionModel> promotions=promotionRepository.findById(parameters.getIdStore(),parameters.getIdCategory());
 		List<PromotionDetailedModel> responsePromotions = response.getPromotionDetailed();
 		if(promotions!=null){
+			PromotionDetailedModel promotionDetailed= new PromotionDetailedModel();
 			for (PromotionModel promotion : promotions) {
-				responsePromotions.add(promotion);
+				ProductModel product=productRepository.findById(promotion.getIdProduct());
+				if(product!= null){
+					promotionDetailed.setPromotion(promotion);
+					promotionDetailed.setProduct(product);					
+				}
+				responsePromotions.add(promotionDetailed);
 			}
-		}*/
+		}
 		return response;
 	}
-
+	
 	@Override
 	public SaveAccessResponse saveAccess(SaveAccessRequest parameters) {
 		SaveAccessResponse response = new SaveAccessResponse();
