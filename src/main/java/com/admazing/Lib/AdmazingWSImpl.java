@@ -141,15 +141,10 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		if(promotions!=null){
 			PromotionDetailedModel promotionDetailed= new PromotionDetailedModel();
 			for (PromotionModel promotion : promotions) {
-				System.out.println(promotion.getDescription());
 				ProductModel product=productRepository.findById(promotion.getIdProduct());
-				System.out.println(product.getDescription());
 				if(product!= null){
-					System.out.println(product.getDescription());
 					promotionDetailed.setPromotion(promotion);
 					promotionDetailed.setProduct(product);
-					System.out.println(promotionDetailed.getPromotion().getDescription());
-					System.out.println(promotionDetailed.getProduct().getDescription());
 					responsePromotions.add(promotionDetailed);
 				}
 			}
