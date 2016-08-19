@@ -16,12 +16,6 @@ public class UserRepositoryImpl implements UserRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			/*List list = session.createSQLQuery("select * from usuario where idusuario='"+idUser+"'").addEntity(UserModel.class).list();
-			Iterator itr = list.iterator();
-			UserModel user = null ;
-			while(itr.hasNext()){
-				user = (UserModel)itr.next();
-			}*/
 			UserModel user = (UserModel) session.get(UserModel.class, idUser);
 	        session.flush();
             session.clear();
