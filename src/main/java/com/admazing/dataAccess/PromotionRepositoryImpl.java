@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.admazing.PromotionModel;
+import com.admazing.UserModel;
 import com.admazing.core.contracts.PromotionRepository;
 
 
@@ -43,13 +44,8 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select * from promocion where idpromocion='"+idPromotion+"'").addEntity(PromotionModel.class).list();
-			Iterator itr = list.iterator();
-			PromotionModel promotion = null;
-			while(itr.hasNext()){
-				promotion=(PromotionModel)itr.next();
-			}
-	        session.flush();
+			PromotionModel promotion = (PromotionModel) session.get(PromotionModel.class, idPromotion);
+			session.flush();
             session.clear();
 			return promotion;
 		} catch (Exception e) {
