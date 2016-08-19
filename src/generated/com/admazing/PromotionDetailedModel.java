@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="promotion" type="{http://admazing.com/}promotionModel"/>
  *         &lt;element name="product" type="{http://admazing.com/}productModel"/>
+ *         &lt;element name="promotionType" type="{http://admazing.com/}promotionTypeModel"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,7 +32,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "promotionDetailedModel", propOrder = {
     "promotion",
-    "product"
+    "product",
+    "promotionType"
 })
 public class PromotionDetailedModel
     implements Serializable
@@ -42,6 +44,8 @@ public class PromotionDetailedModel
     protected PromotionModel promotion;
     @XmlElement(required = true)
     protected ProductModel product;
+    @XmlElement(required = true)
+    protected PromotionTypeModel promotionType;
 
     /**
      * Obtiene el valor de la propiedad promotion.
@@ -89,6 +93,30 @@ public class PromotionDetailedModel
      */
     public void setProduct(ProductModel value) {
         this.product = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad promotionType.
+     * 
+     * @return
+     *     possible object is
+     *     {@link PromotionTypeModel }
+     *     
+     */
+    public PromotionTypeModel getPromotionType() {
+        return promotionType;
+    }
+
+    /**
+     * Define el valor de la propiedad promotionType.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PromotionTypeModel }
+     *     
+     */
+    public void setPromotionType(PromotionTypeModel value) {
+        this.promotionType = value;
     }
 
 }

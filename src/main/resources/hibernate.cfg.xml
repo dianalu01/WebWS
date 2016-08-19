@@ -20,7 +20,8 @@
         <mapping resource="hibernate/Store.hbm.xml"></mapping>        
         <mapping resource="hibernate/Category.hbm.xml"></mapping>
         <mapping resource="hibernate/Product.hbm.xml"></mapping>          
-        <mapping resource="hibernate/Promotion.hbm.xml"></mapping>     
+        <mapping resource="hibernate/Promotion.hbm.xml"></mapping>        
+        <mapping resource="hibernate/PromotionType.hbm.xml"></mapping>     
         <mapping resource="hibernate/CommercialArea.hbm.xml"></mapping> 
         <mapping resource="hibernate/Access.hbm.xml"></mapping>
         <mapping resource="hibernate/CouponBook.hbm.xml"></mapping>

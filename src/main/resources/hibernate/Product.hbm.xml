@@ -10,7 +10,7 @@
         <property name="idCategory" type="string" column="categoria" length="8"/>
         <property name="name" type="string" column="nombre" length="30" />
         <property name="brand" type="string" column="marca" length="30" />
-        <property name="description" type="string" column="descripcion" length="100" />
+        <property name="descriptionProduct" type="string" column="descripcion" length="100" />
         <property name="price" type="java.math.BigDecimal" column="costo" />
         <property name="origin" type="string" column="procedencia" length="15" />
 	</class>

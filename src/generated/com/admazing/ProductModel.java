@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="idCategory" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="brand" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="descriptionProduct" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}decimal"/>
  *         &lt;element name="origin" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlType;
     "idCategory",
     "name",
     "brand",
-    "description",
+    "descriptionProduct",
     "price",
     "origin"
 })
@@ -58,7 +58,7 @@ public class ProductModel
     @XmlElement(required = true)
     protected String brand;
     @XmlElement(required = true)
-    protected String description;
+    protected String descriptionProduct;
     @XmlElement(required = true)
     protected BigDecimal price;
     @XmlElement(required = true)
@@ -161,27 +161,27 @@ public class ProductModel
     }
 
     /**
-     * Obtiene el valor de la propiedad description.
+     * Obtiene el valor de la propiedad descriptionProduct.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getDescription() {
-        return description;
+    public String getDescriptionProduct() {
+        return descriptionProduct;
     }
 
     /**
-     * Define el valor de la propiedad description.
+     * Define el valor de la propiedad descriptionProduct.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setDescription(String value) {
-        this.description = value;
+    public void setDescriptionProduct(String value) {
+        this.descriptionProduct = value;
     }
 
     /**

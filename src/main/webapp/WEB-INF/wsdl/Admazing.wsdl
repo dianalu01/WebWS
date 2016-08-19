@@ -40,7 +40,7 @@
 				<xs:element name="idCategory" type="xs:string" />
 				<xs:element name="name" type="xs:string" />
 				<xs:element name="brand" type="xs:string" />
-				<xs:element name="description" type="xs:string" />
+				<xs:element name="descriptionProduct" type="xs:string" />
 				<xs:element name="price" type="xs:decimal" />
 				<xs:element name="origin" type="xs:string" />
 			</xs:sequence>
@@ -57,11 +57,18 @@
 				<xs:element name="imagePromotion" type="xsd:base64Binary"/>
 				<xs:element name="idProduct" type="xs:string" />
 			</xs:sequence>
+		</xs:complexType>				
+		<xs:complexType name="promotionTypeModel">
+			<xs:sequence>
+				<xs:element name="idPromotionType" type="xs:string" />
+				<xs:element name="namePromotionType" type="xs:string" />
+			</xs:sequence>
 		</xs:complexType>		
 		<xs:complexType name="promotionDetailedModel">
 			<xs:sequence>				
 				<xs:element name="promotion" type="tns:promotionModel" />
 				<xs:element name="product" type="tns:productModel" />
+				<xs:element name="promotionType" type="tns:promotionTypeModel" />
 			</xs:sequence>
 		</xs:complexType>
 		<xs:complexType name="commercialAreaModel">

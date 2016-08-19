@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.Admazing">
+    <class name="com.admazing.PromotionTypeModel" table="tipopromocion" >
+        <id name="idPromotionType" type="string">
+            <column name="idtipopromocion" length="5" not-null="true"/>
+        </id>
+        <property name="namePromotionType" type="string" column="nombre" length="15"/>
+    </class>
+</hibernate-mapping>

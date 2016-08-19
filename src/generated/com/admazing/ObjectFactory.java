@@ -229,6 +229,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link PromotionTypeModel }
+     * 
+     */
+    public PromotionTypeModel createPromotionTypeModel() {
+        return new PromotionTypeModel();
+    }
+
+    /**
      * Create an instance of {@link AccessModel }
      * 
      */
