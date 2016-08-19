@@ -26,6 +26,7 @@ import com.admazing.LogInResponse;
 import com.admazing.ProductModel;
 import com.admazing.PromotionDetailedModel;
 import com.admazing.PromotionModel;
+import com.admazing.PromotionTypeModel;
 import com.admazing.SaveAccessRequest;
 import com.admazing.SaveAccessResponse;
 import com.admazing.SaveCouponBookRequest;
@@ -37,6 +38,7 @@ import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CouponBookRepository;
 import com.admazing.core.contracts.ProductRepository;
 import com.admazing.core.contracts.PromotionRepository;
+import com.admazing.core.contracts.PromotionTypeRepository;
 import com.admazing.core.contracts.StoreRepository;
 import com.admazing.core.contracts.UserRepository;
 import com.admazing.core.contracts.CommercialAreaRepository;
@@ -45,6 +47,7 @@ import com.admazing.dataAccess.CategoryRepositoryImpl;
 import com.admazing.dataAccess.CouponBookRepositoryImpl;
 import com.admazing.dataAccess.ProductRepositoryImpl;
 import com.admazing.dataAccess.PromotionRepositoryImpl;
+import com.admazing.dataAccess.PromotionTypeRepositoryImpl;
 import com.admazing.dataAccess.StoreRepositoryImpl;
 import com.admazing.dataAccess.UserRepositoryImpl;
 import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
@@ -56,6 +59,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	CategoryRepository categoryRepository= new CategoryRepositoryImpl();
 	PromotionRepository promotionRepository= new PromotionRepositoryImpl();
 	ProductRepository productRepository= new ProductRepositoryImpl(); 
+	PromotionTypeRepository promotionTypeRepository= new PromotionTypeRepositoryImpl(); 
 	CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
 	AccessRepository accessRepository = new AccessRepositoryImpl(); 
 	CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
@@ -142,9 +146,11 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			for (PromotionModel promotion : promotions) {
 				PromotionDetailedModel promotionDetailed= new PromotionDetailedModel();
 				ProductModel product=productRepository.findById(promotion.getIdProduct());
+				PromotionTypeModel promotionType= promotionTypeRepository.findById(promotion.getIdTypePromotion());
 				if(product!= null){
 					promotionDetailed.setPromotion(promotion);
 					promotionDetailed.setProduct(product);
+					promotionDetailed.setPromotionType(promotionType);
 					responsePromotions.add(promotionDetailed);
 				}
 				
