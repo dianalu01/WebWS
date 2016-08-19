@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.admazing.ProductModel;
+import com.admazing.UserModel;
 import com.admazing.core.contracts.ProductRepository;
 
 
@@ -19,12 +20,7 @@ public class ProductRepositoryImpl implements ProductRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select * from producto where idproducto='"+idProduct+"'").addEntity(ProductModel.class).list();
-			Iterator itr = list.iterator();
-			ProductModel product = null;
-			while(itr.hasNext()){
-				product=(ProductModel)itr.next();
-			}
+			ProductModel product = (ProductModel) session.get(ProductModel.class, idProduct);
 	        session.flush();
             session.clear();
 			return product;
