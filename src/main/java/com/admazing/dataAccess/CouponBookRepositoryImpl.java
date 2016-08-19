@@ -77,15 +77,15 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	}
 	
 	
-
-	
 	@Override
 	public boolean deletePromotion(String idUser, String idPromotion) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		
+		
 		return false;
 	}
+
 	private CouponBookModel fillCouponBook(String idUser, String idCouponBook, String idPromotion ){
 		CouponBookModel currentCouponBook = new CouponBookModel();
 		currentCouponBook.setIdUser(idUser);
@@ -104,4 +104,7 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	private static String repeat(String str, int times) {
 	    return new String(new char[times]).replace("\0", str);
 	}
+	
+	
+	
 }
