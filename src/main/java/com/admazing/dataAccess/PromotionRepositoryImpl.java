@@ -5,8 +5,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 
 import com.admazing.PromotionModel;
 import com.admazing.UserModel;
@@ -20,12 +24,15 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select * from promocion where categoria='"+idCategory+"' and tienda='"+idStore+"'").addEntity(PromotionModel.class).list();
-			Iterator itr = list.iterator();
+			Criteria cr = session.createCriteria(PromotionModel.class);
+
+			Criterion category = Restrictions.eq("idCategory", idCategory);
+			Criterion store = Restrictions.eq("idStore",idStore);
+			LogicalExpression andExp = Restrictions.and(category, store);
+			cr.add( andExp );
+
 			List<PromotionModel> promotions = new  ArrayList<PromotionModel>();
-			while(itr.hasNext()){
-				promotions.add((PromotionModel)itr.next());
-			}
+			promotions=cr.list();
 	        session.flush();
             session.clear();
 			return promotions;
