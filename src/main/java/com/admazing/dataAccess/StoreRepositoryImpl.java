@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -17,12 +18,9 @@ public class StoreRepositoryImpl implements StoreRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select * from tienda").addEntity(StoreModel.class).list();
-			Iterator itr = list.iterator();
-			List<StoreModel> stores = new  ArrayList<StoreModel>();
-			while(itr.hasNext()){
-				stores.add((StoreModel)itr.next());
-			}
+			Criteria cr = session.createCriteria(StoreModel.class);
+			
+			List<StoreModel> stores = cr.list();
 	        session.flush();
             session.clear();
 			return stores;
