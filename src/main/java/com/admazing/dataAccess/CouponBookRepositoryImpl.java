@@ -45,7 +45,7 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	public boolean save(String idUser, String idPromotion) {
 		CouponBookModel lastCouponBook = null;
 		if(!exist (idUser,idPromotion)){
-				
+			System.out.println("No existe");
 			Session session=hibernateUtil.getSessionFactory().openSession();
 			Transaction transaction=session.beginTransaction();
 			try{
@@ -105,9 +105,11 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 			List<CouponBookModel> coupons = new  ArrayList<CouponBookModel>();
 			coupons=cr.list();
 			for(CouponBookModel coupon:coupons){
+				System.out.println(coupon.getIdPromotion());
 				if(coupon!=null){
 					exist=true;
 				}
+				System.out.println(coupon);
 			}
 			} catch (Exception e) {
 	            e.printStackTrace();
