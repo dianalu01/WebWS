@@ -7,23 +7,31 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import com.admazing.AccessModel;
+import com.admazing.CouponBookModel;
 import com.admazing.core.contracts.AccessRepository;
 
 public class AccessRepositoryImpl implements AccessRepository{
 	@Override
 	public boolean save(String idUser,String idCommercialArea) {
+		boolean success=false;
 		AccessModel lastAccess = null;
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select * from acceso order by idacceso desc limit 1").addEntity(AccessModel.class).list();
-			Iterator itr = list.iterator();
-			while(itr.hasNext()){
-				lastAccess=(AccessModel)itr.next();
+			Criteria cr = session.createCriteria(AccessModel.class);
+			cr.addOrder(Order.desc("idAccess"));
+			cr.setMaxResults(1);
+			List<AccessModel> accesses = new ArrayList<AccessModel>(); 
+			accesses=cr.list();
+			for (AccessModel access: accesses){
+				lastAccess=access;
 			}
 			String idCurrentAccess=getNextIdAccess(lastAccess.getIdAccess());
 			AccessModel currentAccess=fillAccess(idUser, idCommercialArea, idCurrentAccess);
@@ -32,7 +40,7 @@ public class AccessRepositoryImpl implements AccessRepository{
 		    session.getTransaction().commit();	
 		    session.flush();
             session.clear();
-            return true;
+            success= true;
 			
 		} catch (Exception e) {
 	            e.printStackTrace();
@@ -41,7 +49,8 @@ public class AccessRepositoryImpl implements AccessRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return false;
+		return success;
+		
 	}
 	private AccessModel fillAccess (String idUser, String idCommercialArea, String idCurrentAccess ){
 		Date date = new Date();

@@ -44,6 +44,7 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	@Override
 	public boolean save(String idUser, String idPromotion) {
 		CouponBookModel lastCouponBook = null;
+		boolean success=false;
 		if(!exist (idUser,idPromotion)){
 				
 			Session session=hibernateUtil.getSessionFactory().openSession();
@@ -65,6 +66,7 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 			    session.getTransaction().commit();		
 		        session.flush();
 		        session.clear();
+		        success=true;
 				
 			} catch (Exception e) {
 		            e.printStackTrace();
@@ -73,11 +75,8 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 				if(session.isOpen())
 					session.close();
 		    }
-	        return true;
-
-		}
-		return false;
-		
+		}		
+		return success;
 	}
 	
 	
