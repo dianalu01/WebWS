@@ -2,13 +2,15 @@ package com.admazing.dataAccess;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
+import com.admazing.AccessModel;
 import com.admazing.CommercialAreaModel;
 import com.admazing.core.contracts.CommercialAreaRepository;
 
@@ -51,16 +53,21 @@ public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 	public String getIdLastCommercialArea(String idUser) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
+		String idCommercialArea = null;
 		try{
-			List list = session.createSQLQuery("select zonacomercial from acceso where idusuario='"+idUser+"' order by idacceso desc limit 1").list();
-			Iterator itr = list.iterator();
-			String idCommercialArea = null;
-			while(itr.hasNext()){
-				idCommercialArea=(String) itr.next();
+			Criteria cr = session.createCriteria(AccessModel.class);
+			cr.add(Restrictions.eq("idUser", idUser));
+			cr.addOrder(Order.desc("idAccess"));
+			cr.setMaxResults(1);
+			List<AccessModel> accesses = new ArrayList<AccessModel>(); 
+			accesses=cr.list();
+			for (AccessModel access:accesses){
+				idCommercialArea=(String) access.getIdCommercialArea();
 			}
-	        session.flush();
+			        
+			session.flush();
             session.clear();
-			return idCommercialArea;
+			
 		} catch (Exception e) {
 	            e.printStackTrace();
 	            transaction.rollback();
@@ -68,7 +75,7 @@ public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return null;
+		return idCommercialArea;
 	}
 
 }

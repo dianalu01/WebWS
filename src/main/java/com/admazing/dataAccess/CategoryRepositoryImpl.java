@@ -19,7 +19,9 @@ public class CategoryRepositoryImpl implements CategoryRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select C.* from tiendacategoria TC inner join categoria C on TC.codcategoria=C.idcategoria where codtienda='"+idStore+"'").addEntity(CategoryModel.class).list();
+			List list = session.createSQLQuery("select C.* from tiendacategoria"
+					+ " TC inner join categoria C on TC.codcategoria=C.idcategoria "
+					+ "where codtienda='"+idStore+"'").addEntity(CategoryModel.class).list();
 			Iterator itr = list.iterator();
 			List<CategoryModel> categories = new  ArrayList<CategoryModel>();
 			while(itr.hasNext()){
