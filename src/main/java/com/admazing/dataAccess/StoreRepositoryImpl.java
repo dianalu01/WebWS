@@ -40,22 +40,26 @@ public class StoreRepositoryImpl implements StoreRepository{
 	public List<StoreModel> getAllbyCommercialArea(String idCommercialArea) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
+		List<StoreModel> stores = null;
 		try{
 			Criteria cr = session.createCriteria(StoreModel.class);
 			cr.add(Restrictions.eq("idCommercialArea", idCommercialArea));
-			List<StoreModel> stores = new ArrayList<StoreModel>(); 
+			stores = new ArrayList<StoreModel>();
 			stores=cr.list();
 	        session.flush();
             session.clear();
-			return stores;
 		} catch (Exception e) {
 	            e.printStackTrace();
 	            transaction.rollback();
 		} finally {
 			if(session.isOpen())
+			{	
 				session.close();
-	    }
-		return null;
+
+			}
+
+		}
+		return stores;
 	}	
 
 }

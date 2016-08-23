@@ -1,18 +1,18 @@
 package com.admazing.dataAccess;
 
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
-import com.admazing.AccessModel;
 import com.admazing.CouponBookModel;
-import com.admazing.PromotionModel;
 import com.admazing.core.contracts.CouponBookRepository;
 
 public class CouponBookRepositoryImpl implements CouponBookRepository{
@@ -23,14 +23,12 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select * from cuponera where idusuario='"+idUser+"'").addEntity(CouponBookModel.class).list();
-			Iterator itr = list.iterator();
-			List<CouponBookModel> coupons = new ArrayList<CouponBookModel>();
-			
-			while(itr.hasNext()){
-				coupons.add((CouponBookModel)itr.next());
-			}
-	        session.flush();
+			Criteria cr = session.createCriteria(CouponBookModel.class);
+			cr.add(Restrictions.eq("idUser", idUser));
+			List<CouponBookModel> coupons = new ArrayList<CouponBookModel>(); 
+			coupons=cr.list();
+	        
+			session.flush();
             session.clear();
 			return coupons;
 		} catch (Exception e) {
@@ -46,35 +44,42 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	@Override
 	public boolean save(String idUser, String idPromotion) {
 		CouponBookModel lastCouponBook = null;
-		Session session=hibernateUtil.getSessionFactory().openSession();
-		Transaction transaction=session.beginTransaction();
-		try{
-			List list = session.createSQLQuery("select * from cuponera where idusuario='"+idUser+"' order by idcuponera desc limit 1 ").addEntity(CouponBookModel.class).list();
-			Iterator itr = list.iterator();
-			List<CouponBookModel> couponBooks = new  ArrayList<CouponBookModel>();
-			while(itr.hasNext()){
-				lastCouponBook=(CouponBookModel)itr.next();
-			}
-			String idCurrentCouponBook=getNextIdCouponBook(lastCouponBook.getIdCouponBook());
-			
-			CouponBookModel currentCouponBook=fillCouponBook(idUser, idCurrentCouponBook ,idPromotion);
-		    session.save(currentCouponBook);
-		    session.getTransaction().commit();		
-	        session.flush();
-	        session.clear();
+		if(!exist (idUser,idPromotion)){
+				
+			Session session=hibernateUtil.getSessionFactory().openSession();
+			Transaction transaction=session.beginTransaction();
+			try{
+				Criteria cr = session.createCriteria(CouponBookModel.class);
+				cr.add(Restrictions.eq("idUser", idUser));
+				cr.addOrder(Order.desc("idCouponBook"));
+				cr.setMaxResults(1);
+				List<CouponBookModel> coupons = new ArrayList<CouponBookModel>(); 
+				coupons=cr.list();
+				for (CouponBookModel coupon:coupons){
+					lastCouponBook= coupon;
+				}
+				String idCurrentCouponBook=getNextIdCouponBook(lastCouponBook.getIdCouponBook());
+				
+				CouponBookModel currentCouponBook=fillCouponBook(idUser, idCurrentCouponBook ,idPromotion);
+			    session.save(currentCouponBook);
+			    session.getTransaction().commit();		
+		        session.flush();
+		        session.clear();
+				
+			} catch (Exception e) {
+		            e.printStackTrace();
+		            transaction.rollback();
+			} finally {
+				if(session.isOpen())
+					session.close();
+		    }
 	        return true;
-			
-		} catch (Exception e) {
-	            e.printStackTrace();
-	            transaction.rollback();
-		} finally {
-			if(session.isOpen())
-				session.close();
-	    }
-		return false;
 
+		}
+		return false;
 		
 	}
+	
 	
 	
 	@Override
@@ -82,8 +87,36 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		
-		
+		//FALTA DESARROLLAR
 		return false;
+	}
+	public boolean exist(String idUser, String idPromotion){
+		boolean exist=false;
+		Session session=hibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=session.beginTransaction();
+		try{
+			Criteria cr = session.createCriteria(CouponBookModel.class);
+
+			Criterion user = Restrictions.eq("idUser", idUser);
+			Criterion promotion = Restrictions.eq("idPromotion",idPromotion);
+			LogicalExpression andExp = Restrictions.and(user, promotion);
+			cr.add( andExp );
+
+			List<CouponBookModel> coupons = new  ArrayList<CouponBookModel>();
+			coupons=cr.list();
+			for(CouponBookModel coupon:coupons){
+				if(coupon!=null){
+					exist=true;
+				}
+			}
+			} catch (Exception e) {
+	            e.printStackTrace();
+	            transaction.rollback();
+			} finally {
+				if(session.isOpen())
+					session.close();
+		}
+		return exist;
 	}
 
 	private CouponBookModel fillCouponBook(String idUser, String idCouponBook, String idPromotion ){
