@@ -33,6 +33,13 @@
 				<xs:element name="idCategory" type="xs:string" />
 				<xs:element name="description" type="xs:string" />
 			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="StoreCategoryModel">
+			<xs:sequence>
+				<xs:element name="idStoreCategory" type="xs:string" />
+				<xs:element name="idStore" type="xs:string" />
+				<xs:element name="idCategory" type="xs:string" />
+			</xs:sequence>
 		</xs:complexType>				
 		<xs:complexType name="productModel">
 			<xs:sequence>

@@ -14,7 +14,10 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.admazing.CategoryModel;
+import com.admazing.PromotionModel;
+import com.admazing.StoreCategoryModel;
 import com.admazing.core.contracts.CategoryRepository;
+import com.admazing.core.contracts.StoreCategoryRepository;
 
 
 public class CategoryRepositoryImpl implements CategoryRepository{
@@ -23,12 +26,15 @@ public class CategoryRepositoryImpl implements CategoryRepository{
 	public List<CategoryModel> findById(String idStore) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
+		List<CategoryModel> categories=null;
 		try{
-			Criteria cr =session.createCriteria(CategoryModel.class)
-			   .createCriteria("idCategory")
-			   .add(Restrictions.eq("CT.idStore", idStore));
-			List<CategoryModel> categories = new  ArrayList<CategoryModel>();
-			categories = cr.list();
+			StoreCategoryRepository repository= new StoreCategoryRepositoryImpl();
+			List<StoreCategoryModel> storeCategories=new ArrayList<StoreCategoryModel>();
+			storeCategories=repository.findById(idStore);
+			categories = new  ArrayList<CategoryModel>();
+			for(StoreCategoryModel storeCategory:storeCategories){
+				categories.add((CategoryModel) session.get(CategoryModel.class, storeCategory.getIdCategory()));
+			}
 			session.flush();
             session.clear();
 			return categories;
@@ -39,6 +45,6 @@ public class CategoryRepositoryImpl implements CategoryRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return null;
+		return categories;
 	}
 }

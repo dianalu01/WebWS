@@ -213,6 +213,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link StoreCategoryModel }
+     * 
+     */
+    public StoreCategoryModel createStoreCategoryModel() {
+        return new StoreCategoryModel();
+    }
+
+    /**
      * Create an instance of {@link ProductModel }
      * 
      */
