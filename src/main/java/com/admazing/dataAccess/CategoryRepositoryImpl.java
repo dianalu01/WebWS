@@ -5,8 +5,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import com.admazing.CategoryModel;
 import com.admazing.core.contracts.CategoryRepository;
@@ -19,15 +24,12 @@ public class CategoryRepositoryImpl implements CategoryRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
-			List list = session.createSQLQuery("select C.* from tiendacategoria"
-					+ " TC inner join categoria C on TC.codcategoria=C.idcategoria "
-					+ "where codtienda='"+idStore+"'").addEntity(CategoryModel.class).list();
-			Iterator itr = list.iterator();
+			Criteria cr =session.createCriteria(CategoryModel.class)
+			   .createCriteria("idCategory")
+			   .add(Restrictions.eq("CT.idStore", idStore));
 			List<CategoryModel> categories = new  ArrayList<CategoryModel>();
-			while(itr.hasNext()){
-				categories.add((CategoryModel)itr.next());
-			}
-	        session.flush();
+			categories = cr.list();
+			session.flush();
             session.clear();
 			return categories;
 		} catch (Exception e) {
