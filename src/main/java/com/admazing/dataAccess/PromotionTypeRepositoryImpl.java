@@ -1,13 +1,8 @@
 package com.admazing.dataAccess;
 
-
-
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.admazing.PromotionTypeModel;
-
 import com.admazing.core.contracts.PromotionTypeRepository;
 
 
@@ -17,11 +12,11 @@ public class PromotionTypeRepositoryImpl implements PromotionTypeRepository{
 	public PromotionTypeModel findById(String idPromotionType) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
+		PromotionTypeModel promotionType = null;
 		try{
-			PromotionTypeModel promotionType = (PromotionTypeModel) session.get(PromotionTypeModel.class, idPromotionType);
+			promotionType = (PromotionTypeModel) session.get(PromotionTypeModel.class, idPromotionType);
 	        session.flush();
             session.clear();
-			return promotionType;
 		} catch (Exception e) {
 	            e.printStackTrace();
 	            transaction.rollback();
@@ -29,6 +24,6 @@ public class PromotionTypeRepositoryImpl implements PromotionTypeRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return null;
+		return promotionType;
 	}
 }

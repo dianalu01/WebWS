@@ -3,13 +3,11 @@ package com.admazing.dataAccess;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-
 import com.admazing.AccessModel;
 import com.admazing.CommercialAreaModel;
 import com.admazing.core.contracts.CommercialAreaRepository;
@@ -21,20 +19,21 @@ public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 		Transaction transaction=session.beginTransaction();
 		double latitudeSearched =Double.parseDouble(latitude);
 		double longitudeSearched =Double.parseDouble(longitude);
+		CommercialAreaModel commercialArea = null;
 		try{
 			Criteria cr = session.createCriteria(CommercialAreaModel.class);
 			List<CommercialAreaModel> commercialAreas =  new ArrayList<CommercialAreaModel>(); 
 			commercialAreas=cr.list();
-			for (CommercialAreaModel commercialArea : commercialAreas) {
-				double currentLatitude=Double.parseDouble(commercialArea.getLatitude());
-				double currentLongitude=Double.parseDouble(commercialArea.getLongitude());
-				double currentDistance=Double.parseDouble(commercialArea.getDistance());
+			for (CommercialAreaModel c : commercialAreas) {
+				double currentLatitude=Double.parseDouble(c.getLatitude());
+				double currentLongitude=Double.parseDouble(c.getLongitude());
+				double currentDistance=Double.parseDouble(c.getDistance());
 				double distance=Math.sqrt(Math.pow((latitudeSearched-currentLatitude),2)
 						+Math.pow((longitudeSearched-currentLongitude),2));
 				if(distance<=currentDistance){
 			        session.flush();
 	            	session.clear();
-					return commercialArea;	
+					commercialArea= c;	
 				}
 			}
 	        session.flush();
@@ -46,7 +45,7 @@ public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return null;
+		return commercialArea;
 	}
 
 	@Override

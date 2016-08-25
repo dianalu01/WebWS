@@ -1,9 +1,7 @@
 package com.admazing.dataAccess;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -11,26 +9,23 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
-
 import com.admazing.CouponBookModel;
 import com.admazing.core.contracts.CouponBookRepository;
 
 public class CouponBookRepositoryImpl implements CouponBookRepository{
-
 	
 	@Override
 	public List<CouponBookModel> getAllById(String idUser) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
+		List<CouponBookModel> coupons = null;
 		try{
 			Criteria cr = session.createCriteria(CouponBookModel.class);
 			cr.add(Restrictions.eq("idUser", idUser));
-			List<CouponBookModel> coupons = new ArrayList<CouponBookModel>(); 
-			coupons=cr.list();
-	        
+			coupons = new ArrayList<CouponBookModel>(); 
+			coupons=cr.list();	        
 			session.flush();
             session.clear();
-			return coupons;
 		} catch (Exception e) {
 	            e.printStackTrace();
 	            transaction.rollback();
@@ -38,18 +33,18 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return null;
+		return coupons;
 	}
 
 	@Override
 	public boolean save(String idUser, String idPromotion) {
-		CouponBookModel lastCouponBook = null;
+		
 		boolean success=false;
-		if(!exist (idUser,idPromotion)){
-				
+		if(!exist (idUser,idPromotion)){				
 			Session session=hibernateUtil.getSessionFactory().openSession();
 			Transaction transaction=session.beginTransaction();
 			try{
+				CouponBookModel lastCouponBook = null;
 				Criteria cr = session.createCriteria(CouponBookModel.class);
 				cr.add(Restrictions.eq("idUser", idUser));
 				cr.addOrder(Order.desc("idCouponBook"));
@@ -129,8 +124,7 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	private String getNextIdCouponBook(String idLastCoupon){
 		Integer idCouponCalculated=Integer.parseInt(idLastCoupon.substring(2))+1;
 		String zeros=repeat("0", 6-(int)(Math.log10(idCouponCalculated)+1));
-	
-	String idCurrentCoupon="CP"+zeros+String.valueOf(idCouponCalculated);
+		String idCurrentCoupon="CP"+zeros+String.valueOf(idCouponCalculated);
 		return idCurrentCoupon;
 	}
 	private static String repeat(String str, int times) {

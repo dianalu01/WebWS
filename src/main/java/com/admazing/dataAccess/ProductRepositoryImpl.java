@@ -1,11 +1,7 @@
 package com.admazing.dataAccess;
 
-
-
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.admazing.ProductModel;
 import com.admazing.core.contracts.ProductRepository;
 
@@ -16,11 +12,11 @@ public class ProductRepositoryImpl implements ProductRepository{
 	public ProductModel findById(String idProduct) {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
+		ProductModel product = null;
 		try{
-			ProductModel product = (ProductModel) session.get(ProductModel.class, idProduct);
+			product = (ProductModel) session.get(ProductModel.class, idProduct);
 	        session.flush();
             session.clear();
-			return product;
 		} catch (Exception e) {
 	            e.printStackTrace();
 	            transaction.rollback();
@@ -28,6 +24,6 @@ public class ProductRepositoryImpl implements ProductRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return null;
+		return product;
 	}
 }

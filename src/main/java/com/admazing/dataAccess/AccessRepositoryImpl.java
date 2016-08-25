@@ -4,20 +4,16 @@ package com.admazing.dataAccess;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
-
 import com.admazing.AccessModel;
-import com.admazing.CouponBookModel;
 import com.admazing.core.contracts.AccessRepository;
 
 public class AccessRepositoryImpl implements AccessRepository{
+	
 	@Override
 	public boolean save(String idUser,String idCommercialArea) {
 		boolean success=false;
@@ -74,5 +70,4 @@ public class AccessRepositoryImpl implements AccessRepository{
 	private static String repeat(String str, int times) {
         return new String(new char[times]).replace("\0", str);
     }
-
 }

@@ -2,7 +2,6 @@ package com.admazing.dataAccess;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -18,14 +17,13 @@ public class StoreRepositoryImpl implements StoreRepository{
 	public List<StoreModel> getAll() {
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
+		List<StoreModel> stores = null;
 		try{
-			Criteria cr = session.createCriteria(StoreModel.class);
-			
-			List<StoreModel> stores =  new ArrayList<StoreModel>(); 
-			stores=cr.list();
+			Criteria cr = session.createCriteria(StoreModel.class);			
+			stores =  new ArrayList<StoreModel>(); 
+			stores = cr.list();
 	        session.flush();
             session.clear();
-			return stores;
 		} catch (Exception e) {
 	            e.printStackTrace();
 	            transaction.rollback();
@@ -33,7 +31,7 @@ public class StoreRepositoryImpl implements StoreRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return null;
+		return stores;
 	}
 
 	@Override
@@ -55,11 +53,8 @@ public class StoreRepositoryImpl implements StoreRepository{
 			if(session.isOpen())
 			{	
 				session.close();
-
 			}
-
 		}
 		return stores;
 	}	
-
 }

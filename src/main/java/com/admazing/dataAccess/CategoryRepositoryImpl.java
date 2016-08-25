@@ -2,19 +2,10 @@ package com.admazing.dataAccess;
 
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.ProjectionList;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
-
 import com.admazing.CategoryModel;
-import com.admazing.PromotionModel;
 import com.admazing.StoreCategoryModel;
 import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.StoreCategoryRepository;
@@ -37,7 +28,6 @@ public class CategoryRepositoryImpl implements CategoryRepository{
 			}
 			session.flush();
             session.clear();
-			return categories;
 		} catch (Exception e) {
 	            e.printStackTrace();
 	            transaction.rollback();
