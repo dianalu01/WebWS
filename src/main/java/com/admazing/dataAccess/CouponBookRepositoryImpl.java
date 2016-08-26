@@ -78,16 +78,42 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	
 	@Override
 	public boolean deletePromotion(String idUser, String idPromotion) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
-		Transaction transaction=session.beginTransaction();
-		
-		//FALTA DESARROLLAR
-		return false;
+		boolean success=false;
+			Session session=hibernateUtil.getSessionFactory().openSession();
+			Transaction transaction=session.beginTransaction();
+			try{
+				CouponBookModel coupon = new CouponBookModel();
+				coupon=getById(idUser,idPromotion);
+				if(coupon!=null){
+					session.delete(coupon);
+				    session.getTransaction().commit();
+					session.flush();
+			        session.clear();
+			        success=true;	
+				}				
+				
+			} catch (Exception e) {
+		            e.printStackTrace();
+		            transaction.rollback();
+			} finally {
+				if(session.isOpen())
+					session.close();
+		    
+		}		
+		return success;
+
 	}
 	public boolean exist(String idUser, String idPromotion){
 		boolean exist=false;
+		if(getById(idUser,idPromotion)!=null){
+			exist=true;
+		}
+		return exist;
+	}
+	public CouponBookModel getById(String idUser, String idPromotion){
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
+		CouponBookModel coupon= null;
 		try{
 			Criteria cr = session.createCriteria(CouponBookModel.class);
 
@@ -98,10 +124,8 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 
 			List<CouponBookModel> coupons = new  ArrayList<CouponBookModel>();
 			coupons=cr.list();
-			for(CouponBookModel coupon:coupons){
-				if(coupon!=null){
-					exist=true;
-				}
+			for(CouponBookModel c:coupons){
+				coupon=c;
 			}
 			} catch (Exception e) {
 	            e.printStackTrace();
@@ -110,9 +134,8 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 				if(session.isOpen())
 					session.close();
 		}
-		return exist;
+		return coupon;
 	}
-
 	private CouponBookModel fillCouponBook(String idUser, String idCouponBook, String idPromotion ){
 		CouponBookModel currentCouponBook = new CouponBookModel();
 		currentCouponBook.setIdUser(idUser);

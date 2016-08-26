@@ -215,8 +215,15 @@ public class AdmazingWSImpl implements AdmazingPortType {
 
 	@Override
 	public DeleteFromCouponBookResponse deleteFromCouponBook(DeleteFromCouponBookRequest parameters) {
-		
-		return null;
+		DeleteFromCouponBookResponse response = new DeleteFromCouponBookResponse();
+		String idUser= parameters.getIdUser();
+		String idPromotion= parameters.getIdPromotion();
+		boolean result=couponBookRepository.deletePromotion(idUser,idPromotion);
+		if (result)
+			response.setResult(true);
+		else 
+			response.setResult(false);
+		return response;
 	}
 
 	
