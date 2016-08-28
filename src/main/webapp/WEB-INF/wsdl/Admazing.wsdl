@@ -26,6 +26,8 @@
 				<xs:element name="nameStore" type="xs:string" />
 				<xs:element name="email" type="xs:string" />
 				<xs:element name="phoneNumber" type="xs:string"/>
+				<xs:element name="imageStore" type="xsd:base64Binary"/>
+				
 			</xs:sequence>
 		</xs:complexType>
 		<xs:complexType name="categoryModel">

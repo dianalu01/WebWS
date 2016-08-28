@@ -11,5 +11,6 @@
         <property name="nameStore" type="string" column="razonsocial" length="30" />
         <property name="email" type="string" column="email" length="20"/>
       	<property name="phoneNumber" type="string" column="telefono" length="9"/>
+      	<property name="imageStore" type="binary" column="imagentienda"/>
 	</class>
 </hibernate-mapping>

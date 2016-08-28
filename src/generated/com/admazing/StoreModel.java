@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="nameStore" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="phoneNumber" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="imageStore" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,7 +38,8 @@ import javax.xml.bind.annotation.XmlType;
     "idCommercialArea",
     "nameStore",
     "email",
-    "phoneNumber"
+    "phoneNumber",
+    "imageStore"
 })
 public class StoreModel
     implements Serializable
@@ -54,6 +56,8 @@ public class StoreModel
     protected String email;
     @XmlElement(required = true)
     protected String phoneNumber;
+    @XmlElement(required = true)
+    protected byte[] imageStore;
 
     /**
      * Obtiene el valor de la propiedad idStore.
@@ -173,6 +177,28 @@ public class StoreModel
      */
     public void setPhoneNumber(String value) {
         this.phoneNumber = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad imageStore.
+     * 
+     * @return
+     *     possible object is
+     *     byte[]
+     */
+    public byte[] getImageStore() {
+        return imageStore;
+    }
+
+    /**
+     * Define el valor de la propiedad imageStore.
+     * 
+     * @param value
+     *     allowed object is
+     *     byte[]
+     */
+    public void setImageStore(byte[] value) {
+        this.imageStore = value;
     }
 
 }
