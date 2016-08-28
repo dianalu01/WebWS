@@ -1,7 +1,9 @@
 package com.admazing.dataAccess;
 
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -9,6 +11,8 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
+
+import com.admazing.AccessModel;
 import com.admazing.PromotionModel;
 import com.admazing.core.contracts.PromotionRepository;
 
@@ -24,9 +28,12 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 			Criteria cr = session.createCriteria(PromotionModel.class);
 			Criterion category = Restrictions.eq("idCategory", idCategory);
 			Criterion store = Restrictions.eq("idStore",idStore);
-			LogicalExpression andExp = Restrictions.and(category, store);
+			Criterion startDate = Restrictions.gt("startDate",getTodayDate());
+			Criterion endDate = Restrictions.lt("endDate",getTodayDate());
+			LogicalExpression andExp1 = Restrictions.and(category, store);
+			LogicalExpression andExp2 = Restrictions.and(startDate, endDate);
+			LogicalExpression andExp = Restrictions.and(andExp1, andExp2);
 			cr.add( andExp );
-
 			promotions = new  ArrayList<PromotionModel>();
 			promotions=cr.list();
 	        session.flush();
@@ -58,5 +65,11 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 				session.close();
 	    }
 		return promotion;
+	}
+
+
+	private Date getTodayDate(){
+		Date date = new Date();
+		return date;
 	}
 }
