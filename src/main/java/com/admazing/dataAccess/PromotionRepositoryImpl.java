@@ -28,8 +28,8 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 			Criteria cr = session.createCriteria(PromotionModel.class);
 			Criterion category = Restrictions.eq("idCategory", idCategory);
 			Criterion store = Restrictions.eq("idStore",idStore);
-			Criterion startDate = Restrictions.gt("startDate",getTodayDate());
-			Criterion endDate = Restrictions.lt("endDate",getTodayDate());
+			Criterion startDate = Restrictions.lt("startDate",getTodayDate());
+			Criterion endDate = Restrictions.gt("endDate",getTodayDate());
 			LogicalExpression andExp1 = Restrictions.and(category, store);
 			LogicalExpression andExp2 = Restrictions.and(startDate, endDate);
 			LogicalExpression andExp = Restrictions.and(andExp1, andExp2);
