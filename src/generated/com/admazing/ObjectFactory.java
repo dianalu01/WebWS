@@ -277,6 +277,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link PreferenceModel }
+     * 
+     */
+    public PreferenceModel createPreferenceModel() {
+        return new PreferenceModel();
+    }
+
+    /**
      * Create an instance of {@link CommercialAreaModel }
      * 
      */
