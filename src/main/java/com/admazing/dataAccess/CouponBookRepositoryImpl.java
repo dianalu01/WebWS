@@ -54,8 +54,14 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 				for (CouponBookModel coupon:coupons){
 					lastCouponBook= coupon;
 				}
-				String idCurrentCouponBook=getNextIdCouponBook(lastCouponBook.getIdCouponBook());
 				
+				String idCurrentCouponBook;
+				if(lastCouponBook!=null){
+					idCurrentCouponBook=getNextIdCouponBook(lastCouponBook.getIdCouponBook());
+				}
+				else{
+					idCurrentCouponBook="CP000001";
+				}
 				CouponBookModel currentCouponBook=fillCouponBook(idUser, idCurrentCouponBook ,idPromotion);
 			    session.save(currentCouponBook);
 			    session.getTransaction().commit();		
