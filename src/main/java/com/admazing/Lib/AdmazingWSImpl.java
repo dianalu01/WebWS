@@ -190,7 +190,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			for (CouponBookModel coupon : couponBook) {
 				PromotionModel promotion=promotionRepository.findById(coupon.getIdPromotion());
 				for(StoreModel store:stores){
-					if(promotion.getIdStore().compareTo(store.getIdStore())==0){
+					if(promotion!=null && promotion.getIdStore().compareTo(store.getIdStore())==0){
 						responseCouponBook.add(promotion);
 					}
 				}

@@ -12,7 +12,6 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.Restrictions;
 
-import com.admazing.AccessModel;
 import com.admazing.PromotionModel;
 import com.admazing.core.contracts.PromotionRepository;
 
@@ -54,7 +53,19 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 		Transaction transaction=session.beginTransaction();
 		PromotionModel promotion = null;
 		try{
-			promotion = (PromotionModel) session.get(PromotionModel.class, idPromotion);
+			Criteria cr = session.createCriteria(PromotionModel.class);
+			Criterion promoVerification = Restrictions.eq("idPromotion", idPromotion);
+			Criterion startDate = Restrictions.lt("startDate",getTodayDate());
+			Criterion endDate = Restrictions.gt("endDate",getTodayDate());
+			LogicalExpression andExp1 = Restrictions.and(startDate, endDate);
+			LogicalExpression andExp = Restrictions.and(promoVerification, andExp1);
+			cr.add( andExp );
+			List<PromotionModel> promotions = null;
+			promotions = new  ArrayList<PromotionModel>();
+			promotions=cr.list();
+			for(PromotionModel promo:promotions){
+				promotion=promo;				
+			}
 			session.flush();
             session.clear();
 		} catch (Exception e) {
@@ -71,5 +82,5 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 	private Date getTodayDate(){
 		Date date = new Date();
 		return date;
-	}
+	}	
 }

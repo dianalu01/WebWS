@@ -21,8 +21,8 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 		List<CouponBookModel> coupons = null;
 		try{
 			Criteria cr = session.createCriteria(CouponBookModel.class);
-			cr.add(Restrictions.eq("idUser", idUser));
-			coupons = new ArrayList<CouponBookModel>(); 
+			cr.add( Restrictions.eq("idUser", idUser));
+			coupons = new  ArrayList<CouponBookModel>();
 			coupons=cr.list();	        
 			session.flush();
             session.clear();
@@ -103,14 +103,14 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 		return success;
 
 	}
-	public boolean exist(String idUser, String idPromotion){
+	private boolean exist(String idUser, String idPromotion){
 		boolean exist=false;
 		if(getById(idUser,idPromotion)!=null){
 			exist=true;
 		}
 		return exist;
 	}
-	public CouponBookModel getById(String idUser, String idPromotion){
+	private CouponBookModel getById(String idUser, String idPromotion){
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		CouponBookModel coupon= null;
@@ -153,7 +153,5 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	private static String repeat(String str, int times) {
 	    return new String(new char[times]).replace("\0", str);
 	}
-	
-	
-	
+
 }
