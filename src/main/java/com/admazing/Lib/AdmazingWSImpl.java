@@ -31,11 +31,14 @@ import com.admazing.SaveAccessRequest;
 import com.admazing.SaveAccessResponse;
 import com.admazing.SaveCouponBookRequest;
 import com.admazing.SaveCouponBookResponse;
+import com.admazing.SavePreferenceRequest;
+import com.admazing.SavePreferenceResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
 import com.admazing.core.contracts.AccessRepository;
 import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CouponBookRepository;
+import com.admazing.core.contracts.PreferenceRepository;
 import com.admazing.core.contracts.ProductRepository;
 import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.PromotionTypeRepository;
@@ -45,6 +48,7 @@ import com.admazing.core.contracts.CommercialAreaRepository;
 import com.admazing.dataAccess.AccessRepositoryImpl;
 import com.admazing.dataAccess.CategoryRepositoryImpl;
 import com.admazing.dataAccess.CouponBookRepositoryImpl;
+import com.admazing.dataAccess.PreferenceRepositoryImpl;
 import com.admazing.dataAccess.ProductRepositoryImpl;
 import com.admazing.dataAccess.PromotionRepositoryImpl;
 import com.admazing.dataAccess.PromotionTypeRepositoryImpl;
@@ -63,6 +67,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
 	AccessRepository accessRepository = new AccessRepositoryImpl(); 
 	CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
+	PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
 	
 	public AdmazingWSImpl() {
 	}
@@ -224,6 +229,20 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		else 
 			response.setResult(false);
 		return response;
+	}
+
+	@Override
+	public SavePreferenceResponse savePreference(SavePreferenceRequest parameters) {
+		SavePreferenceResponse response = new SavePreferenceResponse();
+		String idUser= parameters.getIdUser();
+		String idCategory= parameters.getIdCategory();
+		boolean result=preferenceRepository.save(idUser,idCategory);
+		if (result)
+			response.setResult(true);
+		else 
+			response.setResult(false);
+		return response;
+
 	}
 
 	

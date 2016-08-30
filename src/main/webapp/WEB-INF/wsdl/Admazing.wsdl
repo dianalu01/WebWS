@@ -252,6 +252,19 @@
 			</xs:sequence>
 		</xs:complexType>
 		
+		<xs:element name="savePreferenceRequest" type="tns:savePreferenceRequest" />
+		<xs:element name="savePreferenceResponse" type="tns:savePreferenceResponse" />
+		<xs:complexType name="savePreferenceRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idUser" type="xs:string" />
+					<xs:element minOccurs="1" name="idCategory" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="savePreferenceResponse">
+			<xs:sequence>
+				<xs:element  name="result" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
 		</xs:schema>
 		
 		<xsd:schema
@@ -350,6 +363,14 @@
 		<wsdl:part element="tns:deleteFromCouponBookResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
+	<wsdl:message name="savePreferenceRequest">
+		<wsdl:part element="tns:savePreferenceRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="savePreferenceResponse">
+		<wsdl:part element="tns:savePreferenceResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
 		
 	<wsdl:portType name="AdmazingPortType">
 		<wsdl:operation name="logIn">
@@ -410,6 +431,12 @@
 			<wsdl:input message="tns:deleteFromCouponBookRequest" name="deleteFromCouponBookRequest">
 			</wsdl:input>
 			<wsdl:output message="tns:deleteFromCouponBookResponse" name="deleteFromCouponBookResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="savePreference">
+			<wsdl:input message="tns:savePreferenceRequest" name="savePreferenceRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:savePreferenceResponse" name="savePreferenceResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
@@ -503,6 +530,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="deleteFromCouponBookResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="savePreference">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="savePreferenceRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="savePreferenceResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>

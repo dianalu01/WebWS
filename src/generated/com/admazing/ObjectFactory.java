@@ -25,6 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetByIdPromotionRequest_QNAME = new QName("http://admazing.com/", "getByIdPromotionRequest");
+    private final static QName _SavePreferenceResponse_QNAME = new QName("http://admazing.com/", "savePreferenceResponse");
     private final static QName _DeleteFromCouponBookRequest_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookRequest");
     private final static QName _GetPromotionDetailedRequest_QNAME = new QName("http://admazing.com/", "getPromotionDetailedRequest");
     private final static QName _GetAllStoresResponse_QNAME = new QName("http://admazing.com/", "getAllStoresResponse");
@@ -35,6 +36,7 @@ public class ObjectFactory {
     private final static QName _GetByIdPromotionResponse_QNAME = new QName("http://admazing.com/", "getByIdPromotionResponse");
     private final static QName _GetAllStoresbyCommercialAreaRequest_QNAME = new QName("http://admazing.com/", "getAllStoresbyCommercialAreaRequest");
     private final static QName _LogInRequest_QNAME = new QName("http://admazing.com/", "logInRequest");
+    private final static QName _SavePreferenceRequest_QNAME = new QName("http://admazing.com/", "savePreferenceRequest");
     private final static QName _LogInResponse_QNAME = new QName("http://admazing.com/", "logInResponse");
     private final static QName _GetAllStoresRequest_QNAME = new QName("http://admazing.com/", "getAllStoresRequest");
     private final static QName _GetByIdCategoryRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoryRequest");
@@ -58,6 +60,14 @@ public class ObjectFactory {
      */
     public GetByIdPromotionRequest createGetByIdPromotionRequest() {
         return new GetByIdPromotionRequest();
+    }
+
+    /**
+     * Create an instance of {@link SavePreferenceResponse }
+     * 
+     */
+    public SavePreferenceResponse createSavePreferenceResponse() {
+        return new SavePreferenceResponse();
     }
 
     /**
@@ -146,6 +156,14 @@ public class ObjectFactory {
      */
     public LogInRequest createLogInRequest() {
         return new LogInRequest();
+    }
+
+    /**
+     * Create an instance of {@link SavePreferenceRequest }
+     * 
+     */
+    public SavePreferenceRequest createSavePreferenceRequest() {
+        return new SavePreferenceRequest();
     }
 
     /**
@@ -318,6 +336,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SavePreferenceResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "savePreferenceResponse")
+    public JAXBElement<SavePreferenceResponse> createSavePreferenceResponse(SavePreferenceResponse value) {
+        return new JAXBElement<SavePreferenceResponse>(_SavePreferenceResponse_QNAME, SavePreferenceResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteFromCouponBookRequest }{@code >}}
      * 
      */
@@ -405,6 +432,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "logInRequest")
     public JAXBElement<LogInRequest> createLogInRequest(LogInRequest value) {
         return new JAXBElement<LogInRequest>(_LogInRequest_QNAME, LogInRequest.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SavePreferenceRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "savePreferenceRequest")
+    public JAXBElement<SavePreferenceRequest> createSavePreferenceRequest(SavePreferenceRequest value) {
+        return new JAXBElement<SavePreferenceRequest>(_SavePreferenceRequest_QNAME, SavePreferenceRequest.class, null, value);
     }
 
     /**
