@@ -1,6 +1,7 @@
 package com.admazing.Lib;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.admazing.AdmazingPortType;
@@ -17,8 +18,6 @@ import com.admazing.GetByIdCategoryRequest;
 import com.admazing.GetByIdCategoryResponse;
 import com.admazing.GetByIdPromotionRequest;
 import com.admazing.GetByIdPromotionResponse;
-import com.admazing.GetPromotionDetailedRequest;
-import com.admazing.GetPromotionDetailedResponse;
 import com.admazing.GetbyCommercialAreaCouponBookRequest;
 import com.admazing.GetbyCommercialAreaCouponBookResponse;
 import com.admazing.LogInRequest;
@@ -133,37 +132,15 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	public GetByIdPromotionResponse getByIdPromotion(GetByIdPromotionRequest parameters) {
 		GetByIdPromotionResponse response = new GetByIdPromotionResponse();
 		List<PromotionModel> promotions=promotionRepository.findById(parameters.getIdStore(),parameters.getIdCategory());
-		List<PromotionModel> responsePromotions = response.getPromotion();
+		List<PromotionDetailedModel> responsePromotionsDetailed = response.getPromotionDetailed();
 		if(promotions!=null){
 			for (PromotionModel promotion : promotions) {
-				responsePromotions.add(promotion);
+				responsePromotionsDetailed.add(getPromotionDetailed(promotion));
 			}
 		}
 		return response;
 	}
 
-	@Override
-	public GetPromotionDetailedResponse getPromotionDetailed(GetPromotionDetailedRequest parameters) {
-		GetPromotionDetailedResponse response = new GetPromotionDetailedResponse();
-		List<PromotionModel> promotions=promotionRepository.findById(parameters.getIdStore(),parameters.getIdCategory());
-		List<PromotionDetailedModel> responsePromotions = response.getPromotionDetailed();
-		if(promotions!=null){
-			for (PromotionModel promotion : promotions) {
-				PromotionDetailedModel promotionDetailed= new PromotionDetailedModel();
-				ProductModel product=productRepository.findById(promotion.getIdProduct());
-				PromotionTypeModel promotionType= promotionTypeRepository.findById(promotion.getIdTypePromotion());
-				if(product!= null){
-					promotionDetailed.setPromotion(promotion);
-					promotionDetailed.setProduct(product);
-					promotionDetailed.setPromotionType(promotionType);
-					responsePromotions.add(promotionDetailed);
-				}
-				
-			}
-		}
-		return response;
-	}
-	
 	@Override
 	public SaveAccessResponse saveAccess(SaveAccessRequest parameters) {
 		SaveAccessResponse response = new SaveAccessResponse();
@@ -243,6 +220,22 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			response.setResult(false);
 		return response;
 
+	}
+	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
+
+		PromotionDetailedModel promotionDetailed= null;
+		if(promotion!=null){
+			promotionDetailed= new PromotionDetailedModel();
+			ProductModel product=productRepository.findById(promotion.getIdProduct());
+			PromotionTypeModel promotionType= promotionTypeRepository.findById(promotion.getIdTypePromotion());
+			if(product!= null && promotionType!=null){
+				promotionDetailed.setPromotion(promotion);
+				promotionDetailed.setProduct(product);
+				promotionDetailed.setPromotionType(promotionType);				
+			}
+			
+		}
+		return promotionDetailed;
 	}
 
 	

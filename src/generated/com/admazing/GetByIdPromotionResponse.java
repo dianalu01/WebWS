@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="promotion" type="{http://admazing.com/}promotionModel" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="promotionDetailed" type="{http://admazing.com/}promotionDetailedModel" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,42 +30,42 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getByIdPromotionResponse", propOrder = {
-    "promotion"
+    "promotionDetailed"
 })
 public class GetByIdPromotionResponse
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    protected List<PromotionModel> promotion;
+    protected List<PromotionDetailedModel> promotionDetailed;
 
     /**
-     * Gets the value of the promotion property.
+     * Gets the value of the promotionDetailed property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the promotion property.
+     * This is why there is not a <CODE>set</CODE> method for the promotionDetailed property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPromotion().add(newItem);
+     *    getPromotionDetailed().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link PromotionModel }
+     * {@link PromotionDetailedModel }
      * 
      * 
      */
-    public List<PromotionModel> getPromotion() {
-        if (promotion == null) {
-            promotion = new ArrayList<PromotionModel>();
+    public List<PromotionDetailedModel> getPromotionDetailed() {
+        if (promotionDetailed == null) {
+            promotionDetailed = new ArrayList<PromotionDetailedModel>();
         }
-        return this.promotion;
+        return this.promotionDetailed;
     }
 
 }

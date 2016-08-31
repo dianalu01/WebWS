@@ -27,7 +27,6 @@ public class ObjectFactory {
     private final static QName _GetByIdPromotionRequest_QNAME = new QName("http://admazing.com/", "getByIdPromotionRequest");
     private final static QName _SavePreferenceResponse_QNAME = new QName("http://admazing.com/", "savePreferenceResponse");
     private final static QName _DeleteFromCouponBookRequest_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookRequest");
-    private final static QName _GetPromotionDetailedRequest_QNAME = new QName("http://admazing.com/", "getPromotionDetailedRequest");
     private final static QName _GetAllStoresResponse_QNAME = new QName("http://admazing.com/", "getAllStoresResponse");
     private final static QName _SaveCouponBookResponse_QNAME = new QName("http://admazing.com/", "saveCouponBookResponse");
     private final static QName _SaveAccessResponse_QNAME = new QName("http://admazing.com/", "saveAccessResponse");
@@ -41,7 +40,6 @@ public class ObjectFactory {
     private final static QName _GetAllStoresRequest_QNAME = new QName("http://admazing.com/", "getAllStoresRequest");
     private final static QName _GetByIdCategoryRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoryRequest");
     private final static QName _GetbyCommercialAreaCouponBookResponse_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookResponse");
-    private final static QName _GetPromotionDetailedResponse_QNAME = new QName("http://admazing.com/", "getPromotionDetailedResponse");
     private final static QName _GetbyCommercialAreaCouponBookRequest_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookRequest");
     private final static QName _GetByIdCategoryResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoryResponse");
     private final static QName _DeleteFromCouponBookResponse_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookResponse");
@@ -92,14 +90,6 @@ public class ObjectFactory {
      */
     public DeleteFromCouponBookRequest createDeleteFromCouponBookRequest() {
         return new DeleteFromCouponBookRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetPromotionDetailedRequest }
-     * 
-     */
-    public GetPromotionDetailedRequest createGetPromotionDetailedRequest() {
-        return new GetPromotionDetailedRequest();
     }
 
     /**
@@ -188,14 +178,6 @@ public class ObjectFactory {
      */
     public GetByIdCategoryRequest createGetByIdCategoryRequest() {
         return new GetByIdCategoryRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetPromotionDetailedResponse }
-     * 
-     */
-    public GetPromotionDetailedResponse createGetPromotionDetailedResponse() {
-        return new GetPromotionDetailedResponse();
     }
 
     /**
@@ -354,15 +336,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPromotionDetailedRequest }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://admazing.com/", name = "getPromotionDetailedRequest")
-    public JAXBElement<GetPromotionDetailedRequest> createGetPromotionDetailedRequest(GetPromotionDetailedRequest value) {
-        return new JAXBElement<GetPromotionDetailedRequest>(_GetPromotionDetailedRequest_QNAME, GetPromotionDetailedRequest.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAllStoresResponse }{@code >}}
      * 
      */
@@ -477,15 +450,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "getbyCommercialAreaCouponBookResponse")
     public JAXBElement<GetbyCommercialAreaCouponBookResponse> createGetbyCommercialAreaCouponBookResponse(GetbyCommercialAreaCouponBookResponse value) {
         return new JAXBElement<GetbyCommercialAreaCouponBookResponse>(_GetbyCommercialAreaCouponBookResponse_QNAME, GetbyCommercialAreaCouponBookResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetPromotionDetailedResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://admazing.com/", name = "getPromotionDetailedResponse")
-    public JAXBElement<GetPromotionDetailedResponse> createGetPromotionDetailedResponse(GetPromotionDetailedResponse value) {
-        return new JAXBElement<GetPromotionDetailedResponse>(_GetPromotionDetailedResponse_QNAME, GetPromotionDetailedResponse.class, null, value);
     }
 
     /**
