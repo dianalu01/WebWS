@@ -37,6 +37,7 @@ public class ObjectFactory {
     private final static QName _LogInRequest_QNAME = new QName("http://admazing.com/", "logInRequest");
     private final static QName _SavePreferenceRequest_QNAME = new QName("http://admazing.com/", "savePreferenceRequest");
     private final static QName _LogInResponse_QNAME = new QName("http://admazing.com/", "logInResponse");
+    private final static QName _DeleteFromPreferenceRequest_QNAME = new QName("http://admazing.com/", "deleteFromPreferenceRequest");
     private final static QName _GetAllStoresRequest_QNAME = new QName("http://admazing.com/", "getAllStoresRequest");
     private final static QName _GetByIdCategoryRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoryRequest");
     private final static QName _GetbyCommercialAreaCouponBookResponse_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookResponse");
@@ -44,6 +45,7 @@ public class ObjectFactory {
     private final static QName _GetByIdCategoryResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoryResponse");
     private final static QName _DeleteFromCouponBookResponse_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookResponse");
     private final static QName _GetAllStoresbyCommercialAreaResponse_QNAME = new QName("http://admazing.com/", "getAllStoresbyCommercialAreaResponse");
+    private final static QName _DeleteFromPreferenceResponse_QNAME = new QName("http://admazing.com/", "deleteFromPreferenceResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.admazing
@@ -165,6 +167,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeleteFromPreferenceRequest }
+     * 
+     */
+    public DeleteFromPreferenceRequest createDeleteFromPreferenceRequest() {
+        return new DeleteFromPreferenceRequest();
+    }
+
+    /**
      * Create an instance of {@link GetAllStoresRequest }
      * 
      */
@@ -202,6 +212,14 @@ public class ObjectFactory {
      */
     public GetAllStoresbyCommercialAreaResponse createGetAllStoresbyCommercialAreaResponse() {
         return new GetAllStoresbyCommercialAreaResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeleteFromPreferenceResponse }
+     * 
+     */
+    public DeleteFromPreferenceResponse createDeleteFromPreferenceResponse() {
+        return new DeleteFromPreferenceResponse();
     }
 
     /**
@@ -426,6 +444,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteFromPreferenceRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "deleteFromPreferenceRequest")
+    public JAXBElement<DeleteFromPreferenceRequest> createDeleteFromPreferenceRequest(DeleteFromPreferenceRequest value) {
+        return new JAXBElement<DeleteFromPreferenceRequest>(_DeleteFromPreferenceRequest_QNAME, DeleteFromPreferenceRequest.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetAllStoresRequest }{@code >}}
      * 
      */
@@ -486,6 +513,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllStoresbyCommercialAreaResponse")
     public JAXBElement<GetAllStoresbyCommercialAreaResponse> createGetAllStoresbyCommercialAreaResponse(GetAllStoresbyCommercialAreaResponse value) {
         return new JAXBElement<GetAllStoresbyCommercialAreaResponse>(_GetAllStoresbyCommercialAreaResponse_QNAME, GetAllStoresbyCommercialAreaResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteFromPreferenceResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "deleteFromPreferenceResponse")
+    public JAXBElement<DeleteFromPreferenceResponse> createDeleteFromPreferenceResponse(DeleteFromPreferenceResponse value) {
+        return new JAXBElement<DeleteFromPreferenceResponse>(_DeleteFromPreferenceResponse_QNAME, DeleteFromPreferenceResponse.class, null, value);
     }
 
 }

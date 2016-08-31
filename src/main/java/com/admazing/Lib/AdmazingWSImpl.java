@@ -9,6 +9,8 @@ import com.admazing.CommercialAreaModel;
 import com.admazing.CouponBookModel;
 import com.admazing.DeleteFromCouponBookRequest;
 import com.admazing.DeleteFromCouponBookResponse;
+import com.admazing.DeleteFromPreferenceRequest;
+import com.admazing.DeleteFromPreferenceResponse;
 import com.admazing.GetAllStoresRequest;
 import com.admazing.GetAllStoresResponse;
 import com.admazing.GetAllStoresbyCommercialAreaRequest;
@@ -220,6 +222,20 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		return response;
 
 	}
+	
+	@Override
+	public DeleteFromPreferenceResponse deleteFromPreference(DeleteFromPreferenceRequest parameters) {
+		DeleteFromPreferenceResponse response = new DeleteFromPreferenceResponse();
+		String idUser= parameters.getIdUser();
+		String idCategory= parameters.getIdCategory();
+		boolean result=preferenceRepository.delete(idUser, idCategory);
+		if (result)
+			response.setResult(true);
+		else 
+			response.setResult(false);
+		return response;
+	}
+
 	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
 
 		PromotionDetailedModel promotionDetailed= null;
@@ -236,6 +252,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		}
 		return promotionDetailed;
 	}
+
 
 	
 }

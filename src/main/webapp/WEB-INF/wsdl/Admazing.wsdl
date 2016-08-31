@@ -250,6 +250,21 @@
 				<xs:element  name="result" type="xs:boolean" />
 			</xs:sequence>
 		</xs:complexType>
+		
+		<xs:element name="deleteFromPreferenceRequest" type="tns:deleteFromPreferenceRequest" />
+		<xs:element name="deleteFromPreferenceResponse" type="tns:deleteFromPreferenceResponse" />
+		<xs:complexType name="deleteFromPreferenceRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idUser" type="xs:string" />
+					<xs:element minOccurs="1" name="idCategory" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="deleteFromPreferenceResponse">
+			<xs:sequence>
+				<xs:element  name="result" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+		
 		</xs:schema>
 		
 		<xsd:schema
@@ -348,6 +363,14 @@
 		<wsdl:part element="tns:savePreferenceResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
+	<wsdl:message name="deleteFromPreferenceRequest">
+		<wsdl:part element="tns:deleteFromPreferenceRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="deleteFromPreferenceResponse">
+		<wsdl:part element="tns:deleteFromPreferenceResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
 		
 	<wsdl:portType name="AdmazingPortType">
 		<wsdl:operation name="logIn">
@@ -408,6 +431,12 @@
 			<wsdl:input message="tns:savePreferenceRequest" name="savePreferenceRequest">
 			</wsdl:input>
 			<wsdl:output message="tns:savePreferenceResponse" name="savePreferenceResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteFromPreference">
+			<wsdl:input message="tns:deleteFromPreferenceRequest" name="deleteFromPreferenceRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:deleteFromPreferenceResponse" name="deleteFromPreferenceResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
@@ -501,6 +530,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="savePreferenceResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="deleteFromPreference">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="deleteFromPreferenceRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="deleteFromPreferenceResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
