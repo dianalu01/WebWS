@@ -204,8 +204,8 @@
 		</xs:complexType>
 		<xs:complexType name="getbyCommercialAreaCouponBookResponse">
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="unbounded" name="coupon"
-					type="tns:promotionModel" />
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="couponDetailed"
+					type="tns:promotionDetailedModel" />
 			</xs:sequence>
 		</xs:complexType>
 		

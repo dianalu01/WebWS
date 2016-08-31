@@ -1,7 +1,6 @@
 package com.admazing.Lib;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.admazing.AdmazingPortType;
@@ -167,13 +166,13 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		String idCommercialArea=commercialAreaRepository.getIdLastCommercialArea(idUser);
 		List<CouponBookModel> couponBook=couponBookRepository.getAllById(idUser);
 		List<StoreModel> stores=storeRepository.getAllbyCommercialArea(idCommercialArea);
-		List<PromotionModel> responseCouponBook = response.getCoupon();
+		List<PromotionDetailedModel> responseCouponBook = response.getCouponDetailed();
 		if(couponBook!=null&&stores!=null){
 			for (CouponBookModel coupon : couponBook) {
 				PromotionModel promotion=promotionRepository.findById(coupon.getIdPromotion());
 				for(StoreModel store:stores){
 					if(promotion!=null && promotion.getIdStore().compareTo(store.getIdStore())==0){
-						responseCouponBook.add(promotion);
+						responseCouponBook.add(getPromotionDetailed(promotion));
 					}
 				}
 			}

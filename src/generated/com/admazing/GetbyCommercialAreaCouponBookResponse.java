@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="coupon" type="{http://admazing.com/}promotionModel" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="couponDetailed" type="{http://admazing.com/}promotionDetailedModel" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,42 +30,42 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "getbyCommercialAreaCouponBookResponse", propOrder = {
-    "coupon"
+    "couponDetailed"
 })
 public class GetbyCommercialAreaCouponBookResponse
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    protected List<PromotionModel> coupon;
+    protected List<PromotionDetailedModel> couponDetailed;
 
     /**
-     * Gets the value of the coupon property.
+     * Gets the value of the couponDetailed property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the coupon property.
+     * This is why there is not a <CODE>set</CODE> method for the couponDetailed property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCoupon().add(newItem);
+     *    getCouponDetailed().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link PromotionModel }
+     * {@link PromotionDetailedModel }
      * 
      * 
      */
-    public List<PromotionModel> getCoupon() {
-        if (coupon == null) {
-            coupon = new ArrayList<PromotionModel>();
+    public List<PromotionDetailedModel> getCouponDetailed() {
+        if (couponDetailed == null) {
+            couponDetailed = new ArrayList<PromotionDetailedModel>();
         }
-        return this.coupon;
+        return this.couponDetailed;
     }
 
 }
