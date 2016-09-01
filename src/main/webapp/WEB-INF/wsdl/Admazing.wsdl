@@ -112,6 +112,13 @@
 				<xs:element name="idCategory" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
+		<xs:complexType name="promotionUseModel">
+			<xs:sequence>
+				<xs:element name="idUse" type="xs:string" />			
+				<xs:element name="idAccess" type="xs:string" />
+				<xs:element name="idPromotion" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
 		
 		<xs:element name="logInRequest" type="tns:logInRequest" />
 		<xs:element name="logInResponse" type="tns:logInResponse" />

@@ -27,6 +27,7 @@
         <mapping resource="hibernate/Access.hbm.xml"></mapping>
         <mapping resource="hibernate/CouponBook.hbm.xml"></mapping>
         <mapping resource="hibernate/Preference.hbm.xml"></mapping>
+        <mapping resource="hibernate/PromotionUse.hbm.xml"></mapping>
         
     </session-factory>
 </hibernate-configuration>

@@ -281,6 +281,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link PromotionUseModel }
+     * 
+     */
+    public PromotionUseModel createPromotionUseModel() {
+        return new PromotionUseModel();
+    }
+
+    /**
      * Create an instance of {@link AccessModel }
      * 
      */
