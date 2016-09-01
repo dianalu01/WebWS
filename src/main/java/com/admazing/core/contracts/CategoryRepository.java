@@ -6,4 +6,5 @@ import com.admazing.CategoryModel;
 
 public interface CategoryRepository {
 	List<CategoryModel> findById(String idStore);
+	List<CategoryModel> getAll();
 }
