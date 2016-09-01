@@ -29,6 +29,7 @@ public class ObjectFactory {
     private final static QName _DeleteFromCouponBookRequest_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookRequest");
     private final static QName _GetAllStoresResponse_QNAME = new QName("http://admazing.com/", "getAllStoresResponse");
     private final static QName _SaveCouponBookResponse_QNAME = new QName("http://admazing.com/", "saveCouponBookResponse");
+    private final static QName _GetCategoryByPreferenceResponse_QNAME = new QName("http://admazing.com/", "getCategoryByPreferenceResponse");
     private final static QName _SaveAccessResponse_QNAME = new QName("http://admazing.com/", "saveAccessResponse");
     private final static QName _SaveCouponBookRequest_QNAME = new QName("http://admazing.com/", "saveCouponBookRequest");
     private final static QName _SaveAccessRequest_QNAME = new QName("http://admazing.com/", "saveAccessRequest");
@@ -43,6 +44,7 @@ public class ObjectFactory {
     private final static QName _GetbyCommercialAreaCouponBookResponse_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookResponse");
     private final static QName _GetbyCommercialAreaCouponBookRequest_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookRequest");
     private final static QName _GetByIdCategoryResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoryResponse");
+    private final static QName _GetCategoryByPreferenceRequest_QNAME = new QName("http://admazing.com/", "getCategoryByPreferenceRequest");
     private final static QName _DeleteFromCouponBookResponse_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookResponse");
     private final static QName _GetAllStoresbyCommercialAreaResponse_QNAME = new QName("http://admazing.com/", "getAllStoresbyCommercialAreaResponse");
     private final static QName _DeleteFromPreferenceResponse_QNAME = new QName("http://admazing.com/", "deleteFromPreferenceResponse");
@@ -100,6 +102,14 @@ public class ObjectFactory {
      */
     public SaveAccessRequest createSaveAccessRequest() {
         return new SaveAccessRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetCategoryByPreferenceResponse }
+     * 
+     */
+    public GetCategoryByPreferenceResponse createGetCategoryByPreferenceResponse() {
+        return new GetCategoryByPreferenceResponse();
     }
 
     /**
@@ -220,6 +230,14 @@ public class ObjectFactory {
      */
     public DeleteFromPreferenceResponse createDeleteFromPreferenceResponse() {
         return new DeleteFromPreferenceResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetCategoryByPreferenceRequest }
+     * 
+     */
+    public GetCategoryByPreferenceRequest createGetCategoryByPreferenceRequest() {
+        return new GetCategoryByPreferenceRequest();
     }
 
     /**
@@ -372,6 +390,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetCategoryByPreferenceResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getCategoryByPreferenceResponse")
+    public JAXBElement<GetCategoryByPreferenceResponse> createGetCategoryByPreferenceResponse(GetCategoryByPreferenceResponse value) {
+        return new JAXBElement<GetCategoryByPreferenceResponse>(_GetCategoryByPreferenceResponse_QNAME, GetCategoryByPreferenceResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SaveAccessResponse }{@code >}}
      * 
      */
@@ -495,6 +522,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdCategoryResponse")
     public JAXBElement<GetByIdCategoryResponse> createGetByIdCategoryResponse(GetByIdCategoryResponse value) {
         return new JAXBElement<GetByIdCategoryResponse>(_GetByIdCategoryResponse_QNAME, GetByIdCategoryResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetCategoryByPreferenceRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getCategoryByPreferenceRequest")
+    public JAXBElement<GetCategoryByPreferenceRequest> createGetCategoryByPreferenceRequest(GetCategoryByPreferenceRequest value) {
+        return new JAXBElement<GetCategoryByPreferenceRequest>(_GetCategoryByPreferenceRequest_QNAME, GetCategoryByPreferenceRequest.class, null, value);
     }
 
     /**

@@ -19,10 +19,13 @@ import com.admazing.GetByIdCategoryRequest;
 import com.admazing.GetByIdCategoryResponse;
 import com.admazing.GetByIdPromotionRequest;
 import com.admazing.GetByIdPromotionResponse;
+import com.admazing.GetCategoryByPreferenceRequest;
+import com.admazing.GetCategoryByPreferenceResponse;
 import com.admazing.GetbyCommercialAreaCouponBookRequest;
 import com.admazing.GetbyCommercialAreaCouponBookResponse;
 import com.admazing.LogInRequest;
 import com.admazing.LogInResponse;
+import com.admazing.PreferenceModel;
 import com.admazing.ProductModel;
 import com.admazing.PromotionDetailedModel;
 import com.admazing.PromotionModel;
@@ -128,7 +131,27 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		}
 		return response;
 	}
-
+	
+	@Override
+	public GetCategoryByPreferenceResponse getCategoryByPreference(GetCategoryByPreferenceRequest parameters) {
+		GetCategoryByPreferenceResponse response = new GetCategoryByPreferenceResponse();
+		String idUser= parameters.getIdUser();
+		String idStore=parameters.getIdStore();
+		List<PreferenceModel> preferences=preferenceRepository.getAllById(idUser);
+		List<CategoryModel> categories=categoryRepository.findById(idStore);
+		List<CategoryModel> responseCategories = response.getCategory();
+		if(preferences!=null&&categories!=null){
+			for (CategoryModel category : categories) {
+				for(PreferenceModel preference:preferences){
+					if(category.getIdCategory().compareTo(preference.getIdCategory())==0){
+						responseCategories.add(category);
+						break;
+					}
+				}
+			}
+		}
+		return response;
+	}
 	@Override
 	public GetByIdPromotionResponse getByIdPromotion(GetByIdPromotionRequest parameters) {
 		GetByIdPromotionResponse response = new GetByIdPromotionResponse();
@@ -175,6 +198,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 				for(StoreModel store:stores){
 					if(promotion!=null && promotion.getIdStore().compareTo(store.getIdStore())==0){
 						responseCouponBook.add(getPromotionDetailed(promotion));
+						break;
 					}
 				}
 			}
@@ -235,6 +259,8 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			response.setResult(false);
 		return response;
 	}
+
+	
 
 	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
 

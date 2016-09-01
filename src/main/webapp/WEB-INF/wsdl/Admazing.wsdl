@@ -163,6 +163,20 @@
 					type="tns:categoryModel" />
 			</xs:sequence>
 		</xs:complexType>
+		<xs:element name="getCategoryByPreferenceRequest" type="tns:getCategoryByPreferenceRequest" />
+		<xs:element name="getCategoryByPreferenceResponse" type="tns:getCategoryByPreferenceResponse" />
+		<xs:complexType name="getCategoryByPreferenceRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idStore" type="xs:string" />
+					<xs:element minOccurs="1" name="idUser" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="getCategoryByPreferenceResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="category"
+					type="tns:categoryModel" />
+			</xs:sequence>
+		</xs:complexType>
 		
 		<xs:element name="getByIdPromotionRequest" type="tns:getByIdPromotionRequest" />
 		<xs:element name="getByIdPromotionResponse" type="tns:getByIdPromotionResponse" />
@@ -315,6 +329,14 @@
 		<wsdl:part element="tns:getByIdCategoryResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
+	<wsdl:message name="getCategoryByPreferenceRequest">
+		<wsdl:part element="tns:getCategoryByPreferenceRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCategoryByPreferenceResponse">
+		<wsdl:part element="tns:getCategoryByPreferenceResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
 	<wsdl:message name="getByIdPromotionRequest">
 		<wsdl:part element="tns:getByIdPromotionRequest" name="parameters">
 		</wsdl:part>
@@ -397,6 +419,12 @@
 			<wsdl:output message="tns:getByIdCategoryResponse" name="getByIdCategoryResponse">
 			</wsdl:output>
 		</wsdl:operation>
+		<wsdl:operation name="getCategoryByPreference">
+			<wsdl:input message="tns:getCategoryByPreferenceRequest" name="getCategoryByPreferenceRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getCategoryByPreferenceResponse" name="getCategoryByPreferenceResponse">
+			</wsdl:output>
+		</wsdl:operation>
 		<wsdl:operation name="getByIdPromotion">
 			<wsdl:input message="tns:getByIdPromotionRequest" name="getByIdPromotionRequest">
 			</wsdl:input>
@@ -476,6 +504,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="getByIdCategoryResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCategoryByPreference">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getCategoryByPreferenceRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getCategoryByPreferenceResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>		
