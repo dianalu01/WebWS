@@ -24,7 +24,6 @@ public class PreferenceRepositoryImpl implements PreferenceRepository{
 			try{
 				PreferenceModel lastPreference = null;
 				Criteria cr = session.createCriteria(PreferenceModel.class);
-				cr.add(Restrictions.eq("idUser", idUser));
 				cr.addOrder(Order.desc("idPreference"));
 				cr.setMaxResults(1);
 				List<PreferenceModel> preferences = new ArrayList<PreferenceModel>(); 
@@ -82,6 +81,28 @@ public class PreferenceRepositoryImpl implements PreferenceRepository{
 		}		
 		return success;
 	}
+	@Override
+	public List<PreferenceModel> getAllById(String idUser) {
+		Session session=hibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=session.beginTransaction();
+		List<PreferenceModel> preferences= null;
+		try{
+			Criteria cr = session.createCriteria(PreferenceModel.class);
+			cr.add( Restrictions.eq("idUser", idUser));
+			preferences = new  ArrayList<PreferenceModel>();
+			preferences=cr.list();
+			
+			} catch (Exception e) {
+	            e.printStackTrace();
+	            transaction.rollback();
+			} finally {
+				if(session.isOpen())
+					session.close();
+		}
+		return preferences;
+
+	}
+
 	private boolean exist(String idUser, String idCategory){
 		boolean exist=false;
 		if(getById(idUser,idCategory)!=null){
@@ -131,5 +152,8 @@ public class PreferenceRepositoryImpl implements PreferenceRepository{
 	private static String repeat(String str, int times) {
 	    return new String(new char[times]).replace("\0", str);
 	}
+
+
+	
 
 }
