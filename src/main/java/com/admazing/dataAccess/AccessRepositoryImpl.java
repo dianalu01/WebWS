@@ -29,7 +29,14 @@ public class AccessRepositoryImpl implements AccessRepository{
 			for (AccessModel access: accesses){
 				lastAccess=access;
 			}
-			String idCurrentAccess=getNextIdAccess(lastAccess.getIdAccess());
+
+			String idCurrentAccess=null;
+			if(lastAccess!=null){
+				idCurrentAccess=getNextIdAccess(lastAccess.getIdAccess());
+			}
+			else{
+				idCurrentAccess="AC00000001";
+			}
 			AccessModel currentAccess=fillAccess(idUser, idCommercialArea, idCurrentAccess);
 			session.save(currentAccess);
 		    
