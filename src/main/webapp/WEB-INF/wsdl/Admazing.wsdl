@@ -157,6 +157,15 @@
 			</xs:sequence>
 		</xs:complexType>
 		
+		<xs:element name="getAllCategoriesRequest" type="tns:getAllCategoriesRequest" />
+		<xs:element name="getAllCategoriesResponse" type="tns:getAllCategoriesResponse" />
+		<xs:complexType name="getAllCategoriesRequest"/>
+		<xs:complexType name="getAllCategoriesResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="category"
+					type="tns:categoryModel" />
+			</xs:sequence>
+		</xs:complexType>
 		<xs:element name="getByIdCategoryRequest" type="tns:getByIdCategoryRequest" />
 		<xs:element name="getByIdCategoryResponse" type="tns:getByIdCategoryResponse" />
 		<xs:complexType name="getByIdCategoryRequest">
@@ -328,6 +337,14 @@
 		<wsdl:part element="tns:getAllStoresbyCommercialAreaResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
+	<wsdl:message name="getAllCategoriesRequest">
+		<wsdl:part element="tns:getAllCategoriesRequest" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAllCategoriesResponse">
+		<wsdl:part element="tns:getAllCategoriesResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
 	<wsdl:message name="getByIdCategoryRequest">
 		<wsdl:part element="tns:getByIdCategoryRequest" name="parameters">
 		</wsdl:part>
@@ -420,6 +437,12 @@
 			<wsdl:output message="tns:getAllStoresbyCommercialAreaResponse" name="getAllStoresbyCommercialAreaResponse">
 			</wsdl:output>
 		</wsdl:operation>
+		<wsdl:operation name="getAllCategories">
+			<wsdl:input message="tns:getAllCategoriesRequest" name="getAllCategoriesRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:getAllCategoriesResponse" name="getAllCategoriesResponse">
+			</wsdl:output>
+		</wsdl:operation>
 		<wsdl:operation name="getByIdCategory">
 			<wsdl:input message="tns:getByIdCategoryRequest" name="getByIdCategoryRequest">
 			</wsdl:input>
@@ -502,6 +525,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="getAllStoresbyCommercialAreaResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAllCategories">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getAllCategoriesRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAllCategoriesResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>

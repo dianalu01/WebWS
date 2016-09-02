@@ -11,6 +11,8 @@ import com.admazing.DeleteFromCouponBookRequest;
 import com.admazing.DeleteFromCouponBookResponse;
 import com.admazing.DeleteFromPreferenceRequest;
 import com.admazing.DeleteFromPreferenceResponse;
+import com.admazing.GetAllCategoriesRequest;
+import com.admazing.GetAllCategoriesResponse;
 import com.admazing.GetAllStoresRequest;
 import com.admazing.GetAllStoresResponse;
 import com.admazing.GetAllStoresbyCommercialAreaRequest;
@@ -117,6 +119,19 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			}
 		}
 		return response;		
+	}
+	
+	@Override
+	public GetAllCategoriesResponse getAllCategories(GetAllCategoriesRequest parameters) {
+		GetAllCategoriesResponse response = new GetAllCategoriesResponse();
+		List<CategoryModel> categories=categoryRepository.getAll();
+		List<CategoryModel> responseCategories = response.getCategory();
+		if(categories!=null){
+			for (CategoryModel category : categories) {
+				responseCategories.add(category);
+			}
+		}
+		return response; 
 	}
 	
 	@Override
@@ -260,9 +275,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		return response;
 	}
 
-	
-
-	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
+		private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
 
 		PromotionDetailedModel promotionDetailed= null;
 		if(promotion!=null){
