@@ -19,6 +19,7 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 		Session session=hibernateUtil.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
+			String idCurrentPromotionUse=null;
 			PromotionUseModel lastPromotionUse = null;
 			Criteria cr = session.createCriteria(PromotionUseModel.class);
 			cr.addOrder(Order.desc("idPromotionUse"));
@@ -28,7 +29,6 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 			for (PromotionUseModel promotionUse:promotionsUse){
 				lastPromotionUse= promotionUse;
 			}
-			String idCurrentPromotionUse=null;
 			if(lastPromotionUse!=null){
 				idCurrentPromotionUse=getNextIdPromotionUse(lastPromotionUse.getIdPromotionUse());
 			}
