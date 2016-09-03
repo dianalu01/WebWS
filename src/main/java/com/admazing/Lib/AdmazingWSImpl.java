@@ -11,8 +11,8 @@ import com.admazing.DeleteFromCouponBookRequest;
 import com.admazing.DeleteFromCouponBookResponse;
 import com.admazing.DeleteFromPreferenceRequest;
 import com.admazing.DeleteFromPreferenceResponse;
-import com.admazing.GetAllCategoriesRequest;
-import com.admazing.GetAllCategoriesResponse;
+import com.admazing.GetAllPreferedCategoriesResponse;
+import com.admazing.GetAllPreferedCategoriesRequest;
 import com.admazing.GetAllStoresRequest;
 import com.admazing.GetAllStoresResponse;
 import com.admazing.GetAllStoresbyCommercialAreaRequest;
@@ -27,6 +27,7 @@ import com.admazing.GetbyCommercialAreaCouponBookRequest;
 import com.admazing.GetbyCommercialAreaCouponBookResponse;
 import com.admazing.LogInRequest;
 import com.admazing.LogInResponse;
+import com.admazing.PreferedCategoryModel;
 import com.admazing.PreferenceModel;
 import com.admazing.ProductModel;
 import com.admazing.PromotionDetailedModel;
@@ -122,13 +123,26 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	}
 	
 	@Override
-	public GetAllCategoriesResponse getAllCategories(GetAllCategoriesRequest parameters) {
-		GetAllCategoriesResponse response = new GetAllCategoriesResponse();
+	public GetAllPreferedCategoriesResponse getAllPreferedCategories(GetAllPreferedCategoriesRequest parameters) {
+		GetAllPreferedCategoriesResponse response = new GetAllPreferedCategoriesResponse();
+		String idUser= parameters.getIdUser();
+		List<PreferenceModel> preferences=preferenceRepository.getAllById(idUser);
 		List<CategoryModel> categories=categoryRepository.getAll();
-		List<CategoryModel> responseCategories = response.getCategory();
+		List<PreferedCategoryModel> responsePreferedCategories = response.getCategoryPrefered();
 		if(categories!=null){
 			for (CategoryModel category : categories) {
-				responseCategories.add(category);
+				PreferedCategoryModel preferedCategory = new PreferedCategoryModel();
+				preferedCategory.setCategory(category);
+				preferedCategory.setIsPrefered(false);	
+				if(preferences!=null){
+					for(PreferenceModel preference:preferences){
+						if(category.getIdCategory().compareTo(preference.getIdCategory())==0){
+							preferedCategory.setIsPrefered(true);	
+							break;
+						}
+					}
+				}
+				responsePreferedCategories.add(preferedCategory);
 			}
 		}
 		return response; 
@@ -275,7 +289,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		return response;
 	}
 
-		private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
+	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
 
 		PromotionDetailedModel promotionDetailed= null;
 		if(promotion!=null){

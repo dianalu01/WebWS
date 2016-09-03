@@ -10,16 +10,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para getAllCategoriesResponse complex type.
+ * <p>Clase Java para getAllPreferedCategoriesResponse complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="getAllCategoriesResponse">
+ * &lt;complexType name="getAllPreferedCategoriesResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="category" type="{http://admazing.com/}categoryModel" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="categoryPrefered" type="{http://admazing.com/}preferedCategoryModel" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,43 +29,43 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getAllCategoriesResponse", propOrder = {
-    "category"
+@XmlType(name = "getAllPreferedCategoriesResponse", propOrder = {
+    "categoryPrefered"
 })
-public class GetAllCategoriesResponse
+public class GetAllPreferedCategoriesResponse
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
-    protected List<CategoryModel> category;
+    protected List<PreferedCategoryModel> categoryPrefered;
 
     /**
-     * Gets the value of the category property.
+     * Gets the value of the categoryPrefered property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the category property.
+     * This is why there is not a <CODE>set</CODE> method for the categoryPrefered property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCategory().add(newItem);
+     *    getCategoryPrefered().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link CategoryModel }
+     * {@link PreferedCategoryModel }
      * 
      * 
      */
-    public List<CategoryModel> getCategory() {
-        if (category == null) {
-            category = new ArrayList<CategoryModel>();
+    public List<PreferedCategoryModel> getCategoryPrefered() {
+        if (categoryPrefered == null) {
+            categoryPrefered = new ArrayList<PreferedCategoryModel>();
         }
-        return this.category;
+        return this.categoryPrefered;
     }
 
 }

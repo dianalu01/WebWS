@@ -27,17 +27,17 @@ public class ObjectFactory {
     private final static QName _GetByIdPromotionRequest_QNAME = new QName("http://admazing.com/", "getByIdPromotionRequest");
     private final static QName _SavePreferenceResponse_QNAME = new QName("http://admazing.com/", "savePreferenceResponse");
     private final static QName _DeleteFromCouponBookRequest_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookRequest");
+    private final static QName _GetAllPreferedCategoriesResponse_QNAME = new QName("http://admazing.com/", "getAllPreferedCategoriesResponse");
     private final static QName _SaveCouponBookResponse_QNAME = new QName("http://admazing.com/", "saveCouponBookResponse");
     private final static QName _LogInRequest_QNAME = new QName("http://admazing.com/", "logInRequest");
-    private final static QName _GetAllCategoriesResponse_QNAME = new QName("http://admazing.com/", "getAllCategoriesResponse");
     private final static QName _SavePreferenceRequest_QNAME = new QName("http://admazing.com/", "savePreferenceRequest");
     private final static QName _GetByIdCategoryRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoryRequest");
     private final static QName _GetbyCommercialAreaCouponBookResponse_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookResponse");
     private final static QName _GetbyCommercialAreaCouponBookRequest_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookRequest");
     private final static QName _GetByIdCategoryResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoryResponse");
     private final static QName _GetAllStoresbyCommercialAreaResponse_QNAME = new QName("http://admazing.com/", "getAllStoresbyCommercialAreaResponse");
-    private final static QName _GetAllCategoriesRequest_QNAME = new QName("http://admazing.com/", "getAllCategoriesRequest");
     private final static QName _DeleteFromPreferenceResponse_QNAME = new QName("http://admazing.com/", "deleteFromPreferenceResponse");
+    private final static QName _GetAllPreferedCategoriesRequest_QNAME = new QName("http://admazing.com/", "getAllPreferedCategoriesRequest");
     private final static QName _GetAllStoresResponse_QNAME = new QName("http://admazing.com/", "getAllStoresResponse");
     private final static QName _GetCategoryByPreferenceResponse_QNAME = new QName("http://admazing.com/", "getCategoryByPreferenceResponse");
     private final static QName _SaveAccessResponse_QNAME = new QName("http://admazing.com/", "saveAccessResponse");
@@ -64,6 +64,14 @@ public class ObjectFactory {
      */
     public GetAllStoresResponse createGetAllStoresResponse() {
         return new GetAllStoresResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetAllPreferedCategoriesRequest }
+     * 
+     */
+    public GetAllPreferedCategoriesRequest createGetAllPreferedCategoriesRequest() {
+        return new GetAllPreferedCategoriesRequest();
     }
 
     /**
@@ -187,19 +195,19 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetAllPreferedCategoriesResponse }
+     * 
+     */
+    public GetAllPreferedCategoriesResponse createGetAllPreferedCategoriesResponse() {
+        return new GetAllPreferedCategoriesResponse();
+    }
+
+    /**
      * Create an instance of {@link LogInRequest }
      * 
      */
     public LogInRequest createLogInRequest() {
         return new LogInRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetAllCategoriesResponse }
-     * 
-     */
-    public GetAllCategoriesResponse createGetAllCategoriesResponse() {
-        return new GetAllCategoriesResponse();
     }
 
     /**
@@ -251,14 +259,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetAllCategoriesRequest }
-     * 
-     */
-    public GetAllCategoriesRequest createGetAllCategoriesRequest() {
-        return new GetAllCategoriesRequest();
-    }
-
-    /**
      * Create an instance of {@link DeleteFromPreferenceResponse }
      * 
      */
@@ -296,6 +296,14 @@ public class ObjectFactory {
      */
     public PromotionTypeModel createPromotionTypeModel() {
         return new PromotionTypeModel();
+    }
+
+    /**
+     * Create an instance of {@link PreferedCategoryModel }
+     * 
+     */
+    public PreferedCategoryModel createPreferedCategoryModel() {
+        return new PreferedCategoryModel();
     }
 
     /**
@@ -398,6 +406,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllPreferedCategoriesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllPreferedCategoriesResponse")
+    public JAXBElement<GetAllPreferedCategoriesResponse> createGetAllPreferedCategoriesResponse(GetAllPreferedCategoriesResponse value) {
+        return new JAXBElement<GetAllPreferedCategoriesResponse>(_GetAllPreferedCategoriesResponse_QNAME, GetAllPreferedCategoriesResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SaveCouponBookResponse }{@code >}}
      * 
      */
@@ -413,15 +430,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "logInRequest")
     public JAXBElement<LogInRequest> createLogInRequest(LogInRequest value) {
         return new JAXBElement<LogInRequest>(_LogInRequest_QNAME, LogInRequest.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllCategoriesResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllCategoriesResponse")
-    public JAXBElement<GetAllCategoriesResponse> createGetAllCategoriesResponse(GetAllCategoriesResponse value) {
-        return new JAXBElement<GetAllCategoriesResponse>(_GetAllCategoriesResponse_QNAME, GetAllCategoriesResponse.class, null, value);
     }
 
     /**
@@ -479,21 +487,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllCategoriesRequest }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllCategoriesRequest")
-    public JAXBElement<GetAllCategoriesRequest> createGetAllCategoriesRequest(GetAllCategoriesRequest value) {
-        return new JAXBElement<GetAllCategoriesRequest>(_GetAllCategoriesRequest_QNAME, GetAllCategoriesRequest.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteFromPreferenceResponse }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://admazing.com/", name = "deleteFromPreferenceResponse")
     public JAXBElement<DeleteFromPreferenceResponse> createDeleteFromPreferenceResponse(DeleteFromPreferenceResponse value) {
         return new JAXBElement<DeleteFromPreferenceResponse>(_DeleteFromPreferenceResponse_QNAME, DeleteFromPreferenceResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllPreferedCategoriesRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getAllPreferedCategoriesRequest")
+    public JAXBElement<GetAllPreferedCategoriesRequest> createGetAllPreferedCategoriesRequest(GetAllPreferedCategoriesRequest value) {
+        return new JAXBElement<GetAllPreferedCategoriesRequest>(_GetAllPreferedCategoriesRequest_QNAME, GetAllPreferedCategoriesRequest.class, null, value);
     }
 
     /**

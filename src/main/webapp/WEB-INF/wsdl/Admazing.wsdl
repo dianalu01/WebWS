@@ -26,14 +26,19 @@
 				<xs:element name="nameStore" type="xs:string" />
 				<xs:element name="email" type="xs:string" />
 				<xs:element name="phoneNumber" type="xs:string"/>
-				<xs:element name="imageStore" type="xsd:base64Binary"/>
-				
+				<xs:element name="imageStore" type="xsd:base64Binary"/>				
 			</xs:sequence>
 		</xs:complexType>
 		<xs:complexType name="categoryModel">
 			<xs:sequence>
 				<xs:element name="idCategory" type="xs:string" />
 				<xs:element name="description" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>				
+		<xs:complexType name="preferedCategoryModel">
+			<xs:sequence>				
+				<xs:element name="category" type="tns:categoryModel" />
+				<xs:element name="isPrefered" type="xs:boolean" />
 			</xs:sequence>
 		</xs:complexType>
 		<xs:complexType name="StoreCategoryModel">
@@ -157,13 +162,17 @@
 			</xs:sequence>
 		</xs:complexType>
 		
-		<xs:element name="getAllCategoriesRequest" type="tns:getAllCategoriesRequest" />
-		<xs:element name="getAllCategoriesResponse" type="tns:getAllCategoriesResponse" />
-		<xs:complexType name="getAllCategoriesRequest"/>
-		<xs:complexType name="getAllCategoriesResponse">
+		<xs:element name="getAllPreferedCategoriesRequest" type="tns:getAllPreferedCategoriesRequest" />
+		<xs:element name="getAllPreferedCategoriesResponse" type="tns:getAllPreferedCategoriesResponse" />
+		<xs:complexType name="getAllPreferedCategoriesRequest">
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="unbounded" name="category"
-					type="tns:categoryModel" />
+					<xs:element minOccurs="1" name="idUser" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="getAllPreferedCategoriesResponse">
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="categoryPrefered"
+					type="tns:preferedCategoryModel" />
 			</xs:sequence>
 		</xs:complexType>
 		<xs:element name="getByIdCategoryRequest" type="tns:getByIdCategoryRequest" />
@@ -295,6 +304,20 @@
 			</xs:sequence>
 		</xs:complexType>
 		
+		<!-- >xs:element name="savePromotionUseRequest" type="tns:savePromotionUseRequest" />
+		<xs:element name="savePromotionUseResponse" type="tns:savePromotionUseResponse" />
+		<xs:complexType name="savePromotionUseRequest">
+			<xs:sequence>
+					<xs:element minOccurs="1" name="idAccess" type="xs:string" />
+					<xs:element minOccurs="1" name="idPromotion" type="xs:string" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:complexType name="savePromotionUseResponse">
+			<xs:sequence>
+				<xs:element  name="result" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType-->
+		
 		</xs:schema>
 		
 		<xsd:schema
@@ -337,12 +360,12 @@
 		<wsdl:part element="tns:getAllStoresbyCommercialAreaResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getAllCategoriesRequest">
-		<wsdl:part element="tns:getAllCategoriesRequest" name="parameters">
+	<wsdl:message name="getAllPreferedCategoriesRequest">
+		<wsdl:part element="tns:getAllPreferedCategoriesRequest" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
-	<wsdl:message name="getAllCategoriesResponse">
-		<wsdl:part element="tns:getAllCategoriesResponse" name="parameters">
+	<wsdl:message name="getAllPreferedCategoriesResponse">
+		<wsdl:part element="tns:getAllPreferedCategoriesResponse" name="parameters">
 		</wsdl:part>
 	</wsdl:message>
 	<wsdl:message name="getByIdCategoryRequest">
@@ -437,10 +460,10 @@
 			<wsdl:output message="tns:getAllStoresbyCommercialAreaResponse" name="getAllStoresbyCommercialAreaResponse">
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getAllCategories">
-			<wsdl:input message="tns:getAllCategoriesRequest" name="getAllCategoriesRequest">
+		<wsdl:operation name="getAllPreferedCategories">
+			<wsdl:input message="tns:getAllPreferedCategoriesRequest" name="getAllPreferedCategoriesRequest">
 			</wsdl:input>
-			<wsdl:output message="tns:getAllCategoriesResponse" name="getAllCategoriesResponse">
+			<wsdl:output message="tns:getAllPreferedCategoriesResponse" name="getAllPreferedCategoriesResponse">
 			</wsdl:output>
 		</wsdl:operation>
 		<wsdl:operation name="getByIdCategory">
@@ -528,12 +551,12 @@
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
-		<wsdl:operation name="getAllCategories">
+		<wsdl:operation name="getAllPreferedCategories">
 			<soap:operation soapAction="" style="document" />
-			<wsdl:input name="getAllCategoriesRequest">
+			<wsdl:input name="getAllPreferedCategoriesRequest">
 				<soap:body use="literal" />
 			</wsdl:input>
-			<wsdl:output name="getAllCategoriesResponse">
+			<wsdl:output name="getAllPreferedCategoriesResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>
