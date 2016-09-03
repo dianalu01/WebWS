@@ -309,7 +309,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	}
 
 
-	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
+ 	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
 
 		PromotionDetailedModel promotionDetailed= null;
 		if(promotion!=null){
