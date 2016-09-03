@@ -29,12 +29,14 @@ public class ObjectFactory {
     private final static QName _DeleteFromCouponBookRequest_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookRequest");
     private final static QName _GetAllPreferedCategoriesResponse_QNAME = new QName("http://admazing.com/", "getAllPreferedCategoriesResponse");
     private final static QName _SaveCouponBookResponse_QNAME = new QName("http://admazing.com/", "saveCouponBookResponse");
+    private final static QName _SavePromotionUseResponse_QNAME = new QName("http://admazing.com/", "savePromotionUseResponse");
     private final static QName _LogInRequest_QNAME = new QName("http://admazing.com/", "logInRequest");
     private final static QName _SavePreferenceRequest_QNAME = new QName("http://admazing.com/", "savePreferenceRequest");
     private final static QName _GetByIdCategoryRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoryRequest");
     private final static QName _GetbyCommercialAreaCouponBookResponse_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookResponse");
     private final static QName _GetbyCommercialAreaCouponBookRequest_QNAME = new QName("http://admazing.com/", "getbyCommercialAreaCouponBookRequest");
     private final static QName _GetByIdCategoryResponse_QNAME = new QName("http://admazing.com/", "getByIdCategoryResponse");
+    private final static QName _SavePromotionUseRequest_QNAME = new QName("http://admazing.com/", "savePromotionUseRequest");
     private final static QName _GetAllStoresbyCommercialAreaResponse_QNAME = new QName("http://admazing.com/", "getAllStoresbyCommercialAreaResponse");
     private final static QName _DeleteFromPreferenceResponse_QNAME = new QName("http://admazing.com/", "deleteFromPreferenceResponse");
     private final static QName _GetAllPreferedCategoriesRequest_QNAME = new QName("http://admazing.com/", "getAllPreferedCategoriesRequest");
@@ -203,6 +205,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SavePromotionUseResponse }
+     * 
+     */
+    public SavePromotionUseResponse createSavePromotionUseResponse() {
+        return new SavePromotionUseResponse();
+    }
+
+    /**
      * Create an instance of {@link LogInRequest }
      * 
      */
@@ -264,6 +274,14 @@ public class ObjectFactory {
      */
     public DeleteFromPreferenceResponse createDeleteFromPreferenceResponse() {
         return new DeleteFromPreferenceResponse();
+    }
+
+    /**
+     * Create an instance of {@link SavePromotionUseRequest }
+     * 
+     */
+    public SavePromotionUseRequest createSavePromotionUseRequest() {
+        return new SavePromotionUseRequest();
     }
 
     /**
@@ -424,6 +442,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SavePromotionUseResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "savePromotionUseResponse")
+    public JAXBElement<SavePromotionUseResponse> createSavePromotionUseResponse(SavePromotionUseResponse value) {
+        return new JAXBElement<SavePromotionUseResponse>(_SavePromotionUseResponse_QNAME, SavePromotionUseResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link LogInRequest }{@code >}}
      * 
      */
@@ -475,6 +502,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "getByIdCategoryResponse")
     public JAXBElement<GetByIdCategoryResponse> createGetByIdCategoryResponse(GetByIdCategoryResponse value) {
         return new JAXBElement<GetByIdCategoryResponse>(_GetByIdCategoryResponse_QNAME, GetByIdCategoryResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SavePromotionUseRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "savePromotionUseRequest")
+    public JAXBElement<SavePromotionUseRequest> createSavePromotionUseRequest(SavePromotionUseRequest value) {
+        return new JAXBElement<SavePromotionUseRequest>(_SavePromotionUseRequest_QNAME, SavePromotionUseRequest.class, null, value);
     }
 
     /**

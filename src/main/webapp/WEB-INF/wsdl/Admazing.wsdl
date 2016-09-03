@@ -304,11 +304,11 @@
 			</xs:sequence>
 		</xs:complexType>
 		
-		<!-- >xs:element name="savePromotionUseRequest" type="tns:savePromotionUseRequest" />
+		<xs:element name="savePromotionUseRequest" type="tns:savePromotionUseRequest" />
 		<xs:element name="savePromotionUseResponse" type="tns:savePromotionUseResponse" />
 		<xs:complexType name="savePromotionUseRequest">
 			<xs:sequence>
-					<xs:element minOccurs="1" name="idAccess" type="xs:string" />
+					<xs:element minOccurs="1" name="idUser" type="xs:string" />
 					<xs:element minOccurs="1" name="idPromotion" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
@@ -316,7 +316,7 @@
 			<xs:sequence>
 				<xs:element  name="result" type="xs:boolean" />
 			</xs:sequence>
-		</xs:complexType-->
+		</xs:complexType>
 		
 		</xs:schema>
 		
@@ -439,8 +439,16 @@
 	<wsdl:message name="deleteFromPreferenceResponse">
 		<wsdl:part element="tns:deleteFromPreferenceResponse" name="parameters">
 		</wsdl:part>
+	</wsdl:message>	
+	<wsdl:message name="savePromotionUseRequest">
+		<wsdl:part element="tns:savePromotionUseRequest" name="parameters">
+		</wsdl:part>
 	</wsdl:message>
-		
+	<wsdl:message name="savePromotionUseResponse">
+		<wsdl:part element="tns:savePromotionUseResponse" name="parameters">
+		</wsdl:part>
+	</wsdl:message>
+	
 	<wsdl:portType name="AdmazingPortType">
 		<wsdl:operation name="logIn">
 			<wsdl:input message="tns:logInRequest" name="logInRequest">
@@ -518,6 +526,12 @@
 			<wsdl:input message="tns:deleteFromPreferenceRequest" name="deleteFromPreferenceRequest">
 			</wsdl:input>
 			<wsdl:output message="tns:deleteFromPreferenceResponse" name="deleteFromPreferenceResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="savePromotionUse">
+			<wsdl:input message="tns:savePromotionUseRequest" name="savePromotionUseRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:savePromotionUseResponse" name="savePromotionUseResponse">
 			</wsdl:output>
 		</wsdl:operation>
 	</wsdl:portType>
@@ -638,6 +652,15 @@
 				<soap:body use="literal" />
 			</wsdl:input>
 			<wsdl:output name="deleteFromPreferenceResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="savePromotionUse">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="savePromotionUseRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="savePromotionUseResponse">
 				<soap:body use="literal" />
 			</wsdl:output>
 		</wsdl:operation>

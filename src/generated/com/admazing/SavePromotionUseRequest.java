@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="idAccess" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="idUser" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="idPromotion" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "savePromotionUseRequest", propOrder = {
-    "idAccess",
+    "idUser",
     "idPromotion"
 })
 public class SavePromotionUseRequest
@@ -39,32 +39,32 @@ public class SavePromotionUseRequest
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected String idAccess;
+    protected String idUser;
     @XmlElement(required = true)
     protected String idPromotion;
 
     /**
-     * Obtiene el valor de la propiedad idAccess.
+     * Obtiene el valor de la propiedad idUser.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getIdAccess() {
-        return idAccess;
+    public String getIdUser() {
+        return idUser;
     }
 
     /**
-     * Define el valor de la propiedad idAccess.
+     * Define el valor de la propiedad idUser.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setIdAccess(String value) {
-        this.idAccess = value;
+    public void setIdUser(String value) {
+        this.idUser = value;
     }
 
     /**

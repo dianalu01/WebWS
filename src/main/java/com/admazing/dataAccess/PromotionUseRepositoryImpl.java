@@ -13,7 +13,7 @@ import com.admazing.core.contracts.PromotionUseRepository;
 public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 	
 	@Override
-	public boolean save(String idAccess, String idPromotion) {
+	public boolean save(String idUser, String idPromotion) {
 		
 		boolean success=false;
 		Session session=hibernateUtil.getSessionFactory().openSession();
@@ -21,7 +21,7 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 		try{
 			PromotionUseModel lastPromotionUse = null;
 			Criteria cr = session.createCriteria(PromotionUseModel.class);
-			cr.addOrder(Order.desc("idUse"));
+			cr.addOrder(Order.desc("idPromotionUse"));
 			cr.setMaxResults(1);
 			List<PromotionUseModel> promotionsUse = new ArrayList<PromotionUseModel>(); 
 			promotionsUse=cr.list();
@@ -31,12 +31,12 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 			
 			String idCurrentPromotionUse;
 			if(lastPromotionUse!=null){
-				idCurrentPromotionUse=getNextIdPromotionUse(lastPromotionUse.getIdUse());
+				idCurrentPromotionUse=getNextIdPromotionUse(lastPromotionUse.getIdPromotionUse());
 			}
 			else{
 				idCurrentPromotionUse="PU000001";
 			}
-			PromotionUseModel currentPromotionUse=fillPromotionUse(idCurrentPromotionUse,idAccess ,idPromotion);
+			PromotionUseModel currentPromotionUse=fillPromotionUse(idCurrentPromotionUse,idUser ,idPromotion);
 		    session.save(currentPromotionUse);
 		    session.getTransaction().commit();		
 	        session.flush();
@@ -54,10 +54,10 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 	return success;
 	}
 	
-	private PromotionUseModel fillPromotionUse(String idUse, String idAccess, String idPromotion ){
+	private PromotionUseModel fillPromotionUse(String idPromotionUse, String idUser, String idPromotion ){
 		PromotionUseModel currentPromotionUse = new PromotionUseModel();
-		currentPromotionUse.setIdUse(idUse);
-		currentPromotionUse.setIdAccess(idAccess);
+		currentPromotionUse.setIdPromotionUse(idPromotionUse);
+		currentPromotionUse.setIdUser(idUser);
 		currentPromotionUse.setIdPromotion(idPromotion);
 		return currentPromotionUse;
 	}

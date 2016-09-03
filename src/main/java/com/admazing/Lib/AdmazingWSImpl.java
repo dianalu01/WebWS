@@ -39,6 +39,8 @@ import com.admazing.SaveCouponBookRequest;
 import com.admazing.SaveCouponBookResponse;
 import com.admazing.SavePreferenceRequest;
 import com.admazing.SavePreferenceResponse;
+import com.admazing.SavePromotionUseRequest;
+import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
 import com.admazing.core.contracts.AccessRepository;
@@ -288,6 +290,24 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			response.setResult(false);
 		return response;
 	}
+
+	@Override
+	public SavePromotionUseResponse savePromotionUse(SavePromotionUseRequest parameters) {
+		SavePromotionUseResponse response = new SavePromotionUseResponse();
+		response.setResult(false);
+		String idUser= parameters.getIdUser();
+		String idPromotion= parameters.getIdPromotion();
+		boolean resultSavePreference=preferenceRepository.save(idUser,idPromotion);
+		if (resultSavePreference){
+			boolean resultDeleteCoupon=couponBookRepository.deletePromotion(idUser,idPromotion);
+			if(resultDeleteCoupon){
+				response.setResult(true);
+			}
+		}
+			
+		return response;		
+	}
+
 
 	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
 
