@@ -28,13 +28,13 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 			for (PromotionUseModel promotionUse:promotionsUse){
 				lastPromotionUse= promotionUse;
 			}
-			System.out.println("00000000000"+lastPromotionUse.getIdPromotionUse());
 			String idCurrentPromotionUse=null;
 			if(lastPromotionUse!=null){
 				idCurrentPromotionUse=getNextIdPromotionUse(lastPromotionUse.getIdPromotionUse());
 			}
 			else{
-				idCurrentPromotionUse="PU000001";
+				String firstPromotionUse="PU000001";
+				idCurrentPromotionUse=firstPromotionUse;
 			}
 			PromotionUseModel currentPromotionUse=fillPromotionUse(idCurrentPromotionUse,idUser ,idPromotion);
 		    session.save(currentPromotionUse);
