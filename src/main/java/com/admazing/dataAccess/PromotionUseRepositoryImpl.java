@@ -64,7 +64,7 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 	
 	private String getNextIdPromotionUse(String idLastPromotionUse){
 		Integer idPromotionUseCalculated=Integer.parseInt(idLastPromotionUse.substring(2))+1;
-		String zeros=repeat("0", 6-(int)(Math.log10(idPromotionUseCalculated)+1));
+		String zeros=repeat("0", 8-(int)(Math.log10(idPromotionUseCalculated)+1));
 		String idCurrenPromotionUse="PU"+zeros+String.valueOf(idPromotionUseCalculated);
 		return idCurrenPromotionUse;
 	}
