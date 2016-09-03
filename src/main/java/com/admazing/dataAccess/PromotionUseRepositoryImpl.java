@@ -28,8 +28,8 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 			for (PromotionUseModel promotionUse:promotionsUse){
 				lastPromotionUse= promotionUse;
 			}
-			
-			String idCurrentPromotionUse;
+			System.out.println("00000000000"+lastPromotionUse.getIdPromotionUse());
+			String idCurrentPromotionUse=null;
 			if(lastPromotionUse!=null){
 				idCurrentPromotionUse=getNextIdPromotionUse(lastPromotionUse.getIdPromotionUse());
 			}
@@ -63,9 +63,13 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 	}
 	
 	private String getNextIdPromotionUse(String idLastPromotionUse){
+		System.out.println("1111"+idLastPromotionUse+"::");
 		Integer idPromotionUseCalculated=Integer.parseInt(idLastPromotionUse.substring(2))+1;
+		System.out.println("2222"+idPromotionUseCalculated+"::");
 		String zeros=repeat("0", 8-(int)(Math.log10(idPromotionUseCalculated)+1));
+		System.out.println("3333"+zeros+"::");
 		String idCurrenPromotionUse="PU"+zeros+String.valueOf(idPromotionUseCalculated);
+		System.out.println("4444"+idCurrenPromotionUse+"::");
 		return idCurrenPromotionUse;
 	}
 	private static String repeat(String str, int times) {
