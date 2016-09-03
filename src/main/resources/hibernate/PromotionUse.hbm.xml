@@ -4,10 +4,10 @@
 
 <hibernate-mapping package="com.Admazing">
 <class name="com.admazing.PromotionUseModel" table="usopromocion" >
-        <id name="idUse" type="string">
-            <column name="codigouso" length="8" not-null="true"/>
+        <id name="idPromotionUse" type="string">
+            <column name="idusopromocion" length="10" not-null="true"/>
         </id>
-        <property name="idAccess" type="string" column="codigoacceso" length="10"  not-null="true"/>
-        <property name="idPromotion" type="string" column="promocion" length="10" not-null="true"/>
+        <property name="idUser" type="string" column="idusuario" length="8"  not-null="true"/>
+        <property name="idPromotion" type="string" column="idpromocion" length="10" not-null="true"/>
 	</class>
 </hibernate-mapping>

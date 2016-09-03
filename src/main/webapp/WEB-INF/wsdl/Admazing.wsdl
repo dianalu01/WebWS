@@ -119,8 +119,8 @@
 		</xs:complexType>
 		<xs:complexType name="promotionUseModel">
 			<xs:sequence>
-				<xs:element name="idUse" type="xs:string" />			
-				<xs:element name="idAccess" type="xs:string" />
+				<xs:element name="idPromotionUse" type="xs:string" />			
+				<xs:element name="idUser" type="xs:string" />
 				<xs:element name="idPromotion" type="xs:string" />
 			</xs:sequence>
 		</xs:complexType>
