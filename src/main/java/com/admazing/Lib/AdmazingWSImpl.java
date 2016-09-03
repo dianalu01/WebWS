@@ -50,6 +50,7 @@ import com.admazing.core.contracts.PreferenceRepository;
 import com.admazing.core.contracts.ProductRepository;
 import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.PromotionTypeRepository;
+import com.admazing.core.contracts.PromotionUseRepository;
 import com.admazing.core.contracts.StoreRepository;
 import com.admazing.core.contracts.UserRepository;
 import com.admazing.core.contracts.CommercialAreaRepository;
@@ -60,6 +61,7 @@ import com.admazing.dataAccess.PreferenceRepositoryImpl;
 import com.admazing.dataAccess.ProductRepositoryImpl;
 import com.admazing.dataAccess.PromotionRepositoryImpl;
 import com.admazing.dataAccess.PromotionTypeRepositoryImpl;
+import com.admazing.dataAccess.PromotionUseRepositoryImpl;
 import com.admazing.dataAccess.StoreRepositoryImpl;
 import com.admazing.dataAccess.UserRepositoryImpl;
 import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
@@ -76,6 +78,7 @@ public class AdmazingWSImpl implements AdmazingPortType {
 	AccessRepository accessRepository = new AccessRepositoryImpl(); 
 	CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
 	PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
+	PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl(); 
 	
 	public AdmazingWSImpl() {
 	}
@@ -297,8 +300,8 @@ public class AdmazingWSImpl implements AdmazingPortType {
 		response.setResult(false);
 		String idUser= parameters.getIdUser();
 		String idPromotion= parameters.getIdPromotion();
-		boolean resultSavePreference=preferenceRepository.save(idUser,idPromotion);
-		if (resultSavePreference){
+		boolean resultSavePromotionUse=promotionUseRepository.save(idUser,idPromotion);
+		if (resultSavePromotionUse){
 			boolean resultDeleteCoupon=couponBookRepository.deletePromotion(idUser,idPromotion);
 			if(resultDeleteCoupon){
 				response.setResult(true);
