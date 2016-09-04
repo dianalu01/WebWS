@@ -34,8 +34,6 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 			}
 			else{
 				idCurrentPromotionUse="PU00000001";
-
-				System.out.println(idCurrentPromotionUse+"::");
 			}
 			PromotionUseModel currentPromotionUse=fillPromotionUse(idCurrentPromotionUse,idUser ,idPromotion);
 		    session.save(currentPromotionUse);
