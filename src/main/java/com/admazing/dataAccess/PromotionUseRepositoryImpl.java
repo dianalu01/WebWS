@@ -6,9 +6,13 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
+import com.admazing.CategoryModel;
 import com.admazing.PromotionUseModel;
+import com.admazing.StoreCategoryModel;
 import com.admazing.core.contracts.PromotionUseRepository;
+import com.admazing.core.contracts.StoreCategoryRepository;
 
 public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 	
@@ -52,7 +56,29 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 			
 	return success;
 	}
-	
+	@Override
+	public List<PromotionUseModel> findById(String idUser) {
+		Session session=hibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=session.beginTransaction();
+		List<PromotionUseModel> promotionsUse = null;
+		try{
+			Criteria cr =session.createCriteria(PromotionUseModel.class);
+			cr.add(Restrictions.eq("idUser", idUser));
+			promotionsUse = new ArrayList<PromotionUseModel>();
+			promotionsUse=cr.list();
+			session.flush();
+            session.clear();
+		} catch (Exception e) {
+	            e.printStackTrace();
+	            transaction.rollback();
+		} finally {
+			if(session.isOpen())
+				session.close();
+	    }
+		return promotionsUse;
+	}
+
+
 	private PromotionUseModel fillPromotionUse(String idPromotionUse, String idUser, String idPromotion ){
 		PromotionUseModel currentPromotionUse = new PromotionUseModel();
 		currentPromotionUse.setIdPromotionUse(idPromotionUse);

@@ -82,7 +82,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
 	private PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
 	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();
-	public List<Observer> observers = new ArrayList<Observer>();
+	private List<Observer> observers = new ArrayList<Observer>();
 	
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
@@ -310,7 +310,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 			boolean resultDeleteCoupon=couponBookRepository.deletePromotion(idUser,idPromotion);
 			if(resultDeleteCoupon){
 				response.setResult(true);
-				notifyAllObservers();
+				notifyAllObservers(idUser,idPromotion);
 			}
 		}
 			
@@ -320,9 +320,9 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		observers.add(observer);		
 	}
 	
-	public void notifyAllObservers(){
+	public void notifyAllObservers(String idUser,String idPromotion){
 		for (Observer observer : observers) {
-			observer.update();
+			observer.update(idUser,idPromotion);
 			}
 	}
 

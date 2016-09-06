@@ -7,4 +7,5 @@ public interface PreferenceRepository {
 	List<PreferenceModel> getAllById(String idUser);
 	boolean save(String idUser,String idCategory);
 	boolean delete(String idUser,String idCategory);
+	boolean exist(String idUser, String idCategory);
 }

@@ -103,7 +103,7 @@ public class PreferenceRepositoryImpl implements PreferenceRepository{
 
 	}
 
-	private boolean exist(String idUser, String idCategory){
+	public boolean exist(String idUser, String idCategory){
 		boolean exist=false;
 		if(getById(idUser,idCategory)!=null){
 			exist=true;
