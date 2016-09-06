@@ -32,6 +32,7 @@ public class categoryObserver extends Observer{
 		PromotionModel promotionUsed=promotionRepository.findById(idPromotion);
 		if(!preferenceRepository.exist(idUser, promotionUsed.getIdCategory())){		
 			System.out.println("No existe");
+			System.out.println(idUser+"           "+promotionUsed.getIdCategory());
 			if(countPromotionsUsed(idUser,promotionUsed.getIdCategory())>=5){
 				System.out.println("Guardar");
 				boolean result =preferenceRepository.save(idUser,promotionUsed.getIdCategory());
@@ -45,6 +46,7 @@ public class categoryObserver extends Observer{
 		List<PromotionUseModel> promotionsUse = promotionUseRepository.findById(idUser);
 		for(PromotionUseModel promotionUse : promotionsUse){
 			PromotionModel promotion=promotionRepository.findById(promotionUse.getIdPromotion());
+System.out.println(promotion.getIdCategory()+"_____"+idCategory);
 			if(promotion.getIdCategory()==idCategory){
 				nPromotionUsed=nPromotionUsed+1;
 			}
