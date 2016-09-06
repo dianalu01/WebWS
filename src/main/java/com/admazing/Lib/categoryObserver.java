@@ -47,8 +47,8 @@ public class categoryObserver extends Observer{
 		for(PromotionUseModel promotionUse : promotionsUse){
 			PromotionModel promotion=promotionRepository.findById(promotionUse.getIdPromotion());
 System.out.println(promotion.getIdCategory()+"_____"+idCategory);
-			if(promotion.getIdCategory()==idCategory){
-				nPromotionUsed=nPromotionUsed+1;
+			if(promotion.getIdCategory().compareTo(idCategory)==0){
+				nPromotionUsed++;
 			}
 		}
 		System.out.println(nPromotionUsed);
