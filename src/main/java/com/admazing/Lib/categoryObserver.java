@@ -28,11 +28,14 @@ public class categoryObserver extends Observer{
 
 	@Override
 	public void update(String idUser,String idPromotion) {
-		
+		System.out.println("UPDATE");
 		PromotionModel promotionUsed=promotionRepository.findById(idPromotion);
-		if(!preferenceRepository.exist(idUser, promotionUsed.getIdCategory())){			
+		if(!preferenceRepository.exist(idUser, promotionUsed.getIdCategory())){		
+			System.out.println("No existe");
 			if(countPromotionsUsed(idUser,promotionUsed.getIdCategory())>=5){
-				preferenceRepository.save(idUser,promotionUsed.getIdCategory());					
+				System.out.println("Guardar");
+				boolean result =preferenceRepository.save(idUser,promotionUsed.getIdCategory());
+				System.out.println(result);
 			}				
 		}				
 	}
@@ -46,6 +49,7 @@ public class categoryObserver extends Observer{
 				nPromotionUsed++;
 			}
 		}
+		System.out.println(nPromotionUsed);
 		return nPromotionUsed;
 	}
 
