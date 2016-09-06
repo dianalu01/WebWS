@@ -1,7 +1,9 @@
 package com.admazing.Lib;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import com.admazing.Lib.Observer;
 
 import com.admazing.AdmazingPortType;
 import com.admazing.CategoryModel;
@@ -67,20 +69,23 @@ import com.admazing.dataAccess.UserRepositoryImpl;
 import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 
-public class AdmazingWSImpl implements AdmazingPortType {
-	UserRepository userRepository= new UserRepositoryImpl();
-	StoreRepository storeRepository= new StoreRepositoryImpl();
-	CategoryRepository categoryRepository= new CategoryRepositoryImpl();
-	PromotionRepository promotionRepository= new PromotionRepositoryImpl();
-	ProductRepository productRepository= new ProductRepositoryImpl(); 
-	PromotionTypeRepository promotionTypeRepository= new PromotionTypeRepositoryImpl(); 
-	CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
-	AccessRepository accessRepository = new AccessRepositoryImpl(); 
-	CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
-	PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
-	PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl(); 
+public class AdmazingWSImpl implements AdmazingPortType{
+	
+	private UserRepository userRepository= new UserRepositoryImpl();
+	private StoreRepository storeRepository= new StoreRepositoryImpl();
+	private CategoryRepository categoryRepository= new CategoryRepositoryImpl();
+	private PromotionRepository promotionRepository= new PromotionRepositoryImpl();
+	private ProductRepository productRepository= new ProductRepositoryImpl(); 
+	private PromotionTypeRepository promotionTypeRepository= new PromotionTypeRepositoryImpl(); 
+	private CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
+	private AccessRepository accessRepository = new AccessRepositoryImpl(); 
+	private CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
+	private PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
+	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();
+	private List<Observer> observers = new ArrayList<Observer>();
 	
 	public AdmazingWSImpl() {
+		new categoryObserver(this);
 	}
 
 	@Override
@@ -305,12 +310,21 @@ public class AdmazingWSImpl implements AdmazingPortType {
 			boolean resultDeleteCoupon=couponBookRepository.deletePromotion(idUser,idPromotion);
 			if(resultDeleteCoupon){
 				response.setResult(true);
+				notifyAllObservers();
 			}
 		}
 			
 		return response;		
 	}
-
+	public void attach(Observer observer){
+		observers.add(observer);		
+	}
+	
+	public void notifyAllObservers(){
+		for (Observer observer : observers) {
+			observer.update();
+			}
+	}
 
  	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
 
