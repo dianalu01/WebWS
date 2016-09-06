@@ -10,6 +10,7 @@ public class categoryObserver extends Observer{
 	@Override
 	public void update() {
 		System.out.println( "Update Category: "); 
+		System.out.println( this.subject.observers.size()+":::::::::::::");
 	   
 		
 	}

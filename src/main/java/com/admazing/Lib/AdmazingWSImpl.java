@@ -82,7 +82,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
 	private PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
 	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();
-	private List<Observer> observers = new ArrayList<Observer>();
+	public List<Observer> observers = new ArrayList<Observer>();
 	
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
