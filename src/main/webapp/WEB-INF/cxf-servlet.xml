@@ -17,13 +17,14 @@
 					<map>
 						<entry key="action" value="UsernameToken" />
 						<entry key="passwordType" value="PasswordText" />
-						<entry key="passwordCallbackRef" value-ref="myUserNameTokenSecurity" />
+						<entry key="passwordCallbackRef" value-ref="myPasswordCallback" />
 					</map>
 				</constructor-arg>
 			</bean>
 		</jaxws:inInterceptors>
 	</jaxws:server>
-		<bean id="myUserNameTokenSecurity" class="com.admazing.Lib.UserNameTokenSecurity" />
+	
+	<bean id="myPasswordCallback" class="com.trainings.ws.soap.UTPasswordCallback" />
 	
 	<cxf:bus>
 		<cxf:features>
