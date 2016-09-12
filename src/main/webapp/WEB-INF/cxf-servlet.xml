@@ -14,7 +14,7 @@
 					<map>
 						<entry key="action" value="UsernameToken" />
 						<entry key="passwordType" value="PasswordText" />
-						<entry key="passwordCallbackRef" value-ref="myPasswordCallback" />
+						<entry key="passwordCallbackRef" value-ref="myUserNameTokenSecurity" />
 					</map>
 				</constructor-arg>
 			</bean>
