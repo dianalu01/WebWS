@@ -22,7 +22,7 @@
 	</jaxws:endpoint>
 	
 
-	<!-- bean id="myPasswordCallback" class="com.admazing.Lib.UTPasswordCallback" />
+	<!-- bean id="myPasswordCallback" class="com.admazing.Lib.UTPasswordCallback" /-->
 	
 	<cxf:bus>
 		<cxf:features>
