@@ -337,12 +337,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 				promotionDetailed.setPromotion(promotion);
 				promotionDetailed.setProduct(product);
 				promotionDetailed.setPromotionType(promotionType);				
-			}
-			
+			}			
 		}
 		return promotionDetailed;
-	}
-
-
-	
+	}	
 }

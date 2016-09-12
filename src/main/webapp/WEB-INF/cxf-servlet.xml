@@ -7,11 +7,26 @@
 	<jaxws:endpoint id="admazingWs" address="/admazing"
 		wsdlLocation="WEB-INF/wsdl/Admazing.wsdl" implementor="com.admazing.Lib.AdmazingWSImpl"
 		serviceName="admazing:AdmazingService"
-		xmlns:admazing="http://admazing.com/"/>
-
+		xmlns:admazing="http://admazing.com/">
+		<jaxws:inInterceptors>
+			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+				<constructor-arg>
+					<map>
+						<entry key="action" value="UsernameToken" />
+						<entry key="passwordType" value="PasswordText" />
+						<entry key="passwordCallbackRef" value-ref="myPasswordCallback" />
+					</map>
+				</constructor-arg>
+			</bean>
+		</jaxws:inInterceptors>
+	</jaxws:endpoint>
+	
+	<bean id="myUserNameTokenSecurity" class="com.admazing.Lib.UserNameTokenSecurity" />
+	
 	<cxf:bus>
 		<cxf:features>
 			<cxf:logging />
 		</cxf:features>
 	</cxf:bus>
 </beans>
+
