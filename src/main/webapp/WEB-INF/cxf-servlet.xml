@@ -10,7 +10,7 @@
 		serviceName="admazing:AdmazingService"
 		xmlns:admazing="http://admazing.com/">
 			
-		<!--jaxws:inInterceptors>
+		<jaxws:inInterceptors>
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
 				<constructor-arg>
 					<map>
@@ -20,7 +20,7 @@
 					</map>
 				</constructor-arg>
 			</bean>
-		</jaxws:inInterceptors-->
+		</jaxws:inInterceptors>
 	</jaxws:endpoint>
 	<bean id="myPasswordCallback" 
 			class="com.admazing.Lib.UTPasswordCallback"/>
