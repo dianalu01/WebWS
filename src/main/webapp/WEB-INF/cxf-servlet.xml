@@ -4,11 +4,12 @@
 	xmlns:cxf="http://cxf.apache.org/core" xmlns:soap="http://cxf.apache.org/bindings/soap"
 	xsi:schemaLocation="http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	
+
 		<jaxws:endpoint id="admazingWs" address="/admazing"
 		wsdlLocation="WEB-INF/wsdl/Admazing.wsdl" implementor="com.admazing.Lib.AdmazingWSImpl"
 		serviceName="admazing:AdmazingService"
-		xmlns:admazing="http://admazing.com/"/>
-		
+		xmlns:admazing="http://admazing.com/">
+			
 		<!--jaxws:inInterceptors>
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
 				<constructor-arg>
@@ -19,12 +20,11 @@
 					</map>
 				</constructor-arg>
 			</bean>
-		</jaxws:inInterceptors>
+		</jaxws:inInterceptors-->
 	</jaxws:endpoint>
-	
+	<bean id="myPasswordCallback" 
+			class="com.admazing.Lib.UTPasswordCallback"/>
 
-	<bean id="myPasswordCallback" class="com.admazing.Lib.UTPasswordCallback" /-->
-	
 	<cxf:bus>
 		<cxf:features>
 			<cxf:logging />
