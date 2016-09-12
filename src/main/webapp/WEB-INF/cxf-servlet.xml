@@ -7,7 +7,8 @@
 		<jaxws:endpoint id="admazingWs" address="/admazing"
 		wsdlLocation="WEB-INF/wsdl/Admazing.wsdl" implementor="com.admazing.Lib.AdmazingWSImpl"
 		serviceName="admazing:AdmazingService"
-		xmlns:admazing="http://admazing.com/">
+		xmlns:admazing="http://admazing.com/"/>
+		
 		<!--jaxws:inInterceptors>
 			<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
 				<constructor-arg>
@@ -18,11 +19,11 @@
 					</map>
 				</constructor-arg>
 			</bean>
-		</jaxws:inInterceptors-->
+		</jaxws:inInterceptors>
 	</jaxws:endpoint>
 	
 
-	<!-- bean id="myPasswordCallback" class="com.admazing.Lib.UTPasswordCallback" /-->
+	<bean id="myPasswordCallback" class="com.admazing.Lib.UTPasswordCallback" /-->
 	
 	<cxf:bus>
 		<cxf:features>
