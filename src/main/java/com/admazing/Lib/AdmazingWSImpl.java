@@ -25,6 +25,8 @@ import com.admazing.GetByIdPromotionRequest;
 import com.admazing.GetByIdPromotionResponse;
 import com.admazing.GetCategoryByPreferenceRequest;
 import com.admazing.GetCategoryByPreferenceResponse;
+import com.admazing.GetStoreByIdRequest;
+import com.admazing.GetStoreByIdResponse;
 import com.admazing.GetbyCommercialAreaCouponBookRequest;
 import com.admazing.GetbyCommercialAreaCouponBookResponse;
 import com.admazing.LogInRequest;
@@ -102,7 +104,26 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		}
 		return response;
 	}
-
+	
+	@Override
+	public GetStoreByIdResponse getStoreById(GetStoreByIdRequest parameters) {
+		GetStoreByIdResponse response = new GetStoreByIdResponse();
+		StoreModel store=storeRepository.getStoreById(parameters.getIdStore());
+		StoreModel responseStores = response.getStore();
+		if(store!=null){
+			responseStores.setIdStore(store.getIdStore());
+			responseStores.setIdCommercialArea(store.getIdCommercialArea());
+			responseStores.setNameStore(store.getNameStore());
+			responseStores.setEmail(store.getEmail());
+			responseStores.setPhoneNumber(store.getPhoneNumber());
+			responseStores.setImageStore(store.getImageStore());
+			responseStores.setLevel(store.getLevel());
+			responseStores.setLongitude(store.getLongitude());
+			responseStores.setLatitude(store.getLatitude());
+		}
+		return response;
+	}
+	
 	@Override
 	public GetAllStoresResponse getAllStores(GetAllStoresRequest parameters) {
 		GetAllStoresResponse response = new GetAllStoresResponse();
@@ -340,5 +361,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 			}			
 		}
 		return promotionDetailed;
-	}	
+	}
+
+		
 }
