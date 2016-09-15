@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.admazing.StoreModel;
+import com.admazing.UserModel;
 import com.admazing.core.contracts.StoreRepository;
 
 public class StoreRepositoryImpl implements StoreRepository{
@@ -56,5 +57,24 @@ public class StoreRepositoryImpl implements StoreRepository{
 			}
 		}
 		return stores;
+	}
+
+	@Override
+	public StoreModel getStoreById(String idStore) {
+		Session session=hibernateUtil.getSessionFactory().openSession();
+		Transaction transaction=session.beginTransaction();
+		StoreModel store = null;
+		try{
+			store = (StoreModel) session.get(StoreModel.class, idStore);
+	        session.flush();
+            session.clear();
+		} catch (Exception e) {
+	            e.printStackTrace();
+	            transaction.rollback();
+		} finally {
+			if(session.isOpen())
+				session.close();
+	    }
+		return store;
 	}	
 }
