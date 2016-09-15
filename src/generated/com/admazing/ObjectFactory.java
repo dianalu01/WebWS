@@ -26,10 +26,12 @@ public class ObjectFactory {
 
     private final static QName _GetByIdPromotionRequest_QNAME = new QName("http://admazing.com/", "getByIdPromotionRequest");
     private final static QName _SavePreferenceResponse_QNAME = new QName("http://admazing.com/", "savePreferenceResponse");
+    private final static QName _GetStoreByIdRequest_QNAME = new QName("http://admazing.com/", "getStoreByIdRequest");
     private final static QName _DeleteFromCouponBookRequest_QNAME = new QName("http://admazing.com/", "deleteFromCouponBookRequest");
     private final static QName _GetAllPreferedCategoriesResponse_QNAME = new QName("http://admazing.com/", "getAllPreferedCategoriesResponse");
     private final static QName _SaveCouponBookResponse_QNAME = new QName("http://admazing.com/", "saveCouponBookResponse");
     private final static QName _SavePromotionUseResponse_QNAME = new QName("http://admazing.com/", "savePromotionUseResponse");
+    private final static QName _GetStoreByIdResponse_QNAME = new QName("http://admazing.com/", "getStoreByIdResponse");
     private final static QName _LogInRequest_QNAME = new QName("http://admazing.com/", "logInRequest");
     private final static QName _SavePreferenceRequest_QNAME = new QName("http://admazing.com/", "savePreferenceRequest");
     private final static QName _GetByIdCategoryRequest_QNAME = new QName("http://admazing.com/", "getByIdCategoryRequest");
@@ -165,6 +167,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetStoreByIdRequest }
+     * 
+     */
+    public GetStoreByIdRequest createGetStoreByIdRequest() {
+        return new GetStoreByIdRequest();
+    }
+
+    /**
      * Create an instance of {@link GetByIdPromotionRequest }
      * 
      */
@@ -202,6 +212,14 @@ public class ObjectFactory {
      */
     public GetAllPreferedCategoriesResponse createGetAllPreferedCategoriesResponse() {
         return new GetAllPreferedCategoriesResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetStoreByIdResponse }
+     * 
+     */
+    public GetStoreByIdResponse createGetStoreByIdResponse() {
+        return new GetStoreByIdResponse();
     }
 
     /**
@@ -415,6 +433,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetStoreByIdRequest }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getStoreByIdRequest")
+    public JAXBElement<GetStoreByIdRequest> createGetStoreByIdRequest(GetStoreByIdRequest value) {
+        return new JAXBElement<GetStoreByIdRequest>(_GetStoreByIdRequest_QNAME, GetStoreByIdRequest.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DeleteFromCouponBookRequest }{@code >}}
      * 
      */
@@ -448,6 +475,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://admazing.com/", name = "savePromotionUseResponse")
     public JAXBElement<SavePromotionUseResponse> createSavePromotionUseResponse(SavePromotionUseResponse value) {
         return new JAXBElement<SavePromotionUseResponse>(_SavePromotionUseResponse_QNAME, SavePromotionUseResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetStoreByIdResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://admazing.com/", name = "getStoreByIdResponse")
+    public JAXBElement<GetStoreByIdResponse> createGetStoreByIdResponse(GetStoreByIdResponse value) {
+        return new JAXBElement<GetStoreByIdResponse>(_GetStoreByIdResponse_QNAME, GetStoreByIdResponse.class, null, value);
     }
 
     /**
