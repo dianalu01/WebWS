@@ -24,6 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="phoneNumber" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="imageStore" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
+ *         &lt;element name="level" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="longitude" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="latitude" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,7 +42,10 @@ import javax.xml.bind.annotation.XmlType;
     "nameStore",
     "email",
     "phoneNumber",
-    "imageStore"
+    "imageStore",
+    "level",
+    "longitude",
+    "latitude"
 })
 public class StoreModel
     implements Serializable
@@ -58,6 +64,12 @@ public class StoreModel
     protected String phoneNumber;
     @XmlElement(required = true)
     protected byte[] imageStore;
+    @XmlElement(required = true)
+    protected String level;
+    @XmlElement(required = true)
+    protected String longitude;
+    @XmlElement(required = true)
+    protected String latitude;
 
     /**
      * Obtiene el valor de la propiedad idStore.
@@ -199,6 +211,78 @@ public class StoreModel
      */
     public void setImageStore(byte[] value) {
         this.imageStore = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad level.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLevel() {
+        return level;
+    }
+
+    /**
+     * Define el valor de la propiedad level.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLevel(String value) {
+        this.level = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad longitude.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLongitude() {
+        return longitude;
+    }
+
+    /**
+     * Define el valor de la propiedad longitude.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLongitude(String value) {
+        this.longitude = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad latitude.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getLatitude() {
+        return latitude;
+    }
+
+    /**
+     * Define el valor de la propiedad latitude.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setLatitude(String value) {
+        this.latitude = value;
     }
 
 }

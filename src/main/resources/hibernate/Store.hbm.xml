@@ -12,5 +12,8 @@
         <property name="email" type="string" column="email" length="20"/>
       	<property name="phoneNumber" type="string" column="telefono" length="9"/>
       	<property name="imageStore" type="binary" column="imagentienda"/>
+      	<property name="level" type="string" column="nivel" length="3"/>
+        <property name="longitude" type="string" column="longitud" length="10" />
+        <property name="latitude" type="string" column="latitud" length="10" />      	
 	</class>
 </hibernate-mapping>
