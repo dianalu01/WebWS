@@ -109,17 +109,9 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	public GetStoreByIdResponse getStoreById(GetStoreByIdRequest parameters) {
 		GetStoreByIdResponse response = new GetStoreByIdResponse();
 		StoreModel store=storeRepository.getStoreById(parameters.getIdStore());
-		StoreModel responseStores = response.getStore();
+		List<StoreModel> responseStores = response.getStore();
 		if(store!=null){
-			responseStores.setIdStore(store.getIdStore());
-			responseStores.setIdCommercialArea(store.getIdCommercialArea());
-			responseStores.setNameStore(store.getNameStore());
-			responseStores.setEmail(store.getEmail());
-			responseStores.setPhoneNumber(store.getPhoneNumber());
-			responseStores.setImageStore(store.getImageStore());
-			responseStores.setLevel(store.getLevel());
-			responseStores.setLongitude(store.getLongitude());
-			responseStores.setLatitude(store.getLatitude());
+			responseStores.add(store);
 		}
 		return response;
 	}

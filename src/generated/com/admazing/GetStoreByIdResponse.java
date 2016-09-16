@@ -2,6 +2,8 @@
 package com.admazing;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -17,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="store" type="{http://admazing.com/}storeModel" minOccurs="0"/>
+ *         &lt;element name="store" type="{http://admazing.com/}storeModel" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,30 +37,35 @@ public class GetStoreByIdResponse
 {
 
     private final static long serialVersionUID = 1L;
-    protected StoreModel store;
+    protected List<StoreModel> store;
 
     /**
-     * Obtiene el valor de la propiedad store.
+     * Gets the value of the store property.
      * 
-     * @return
-     *     possible object is
-     *     {@link StoreModel }
-     *     
-     */
-    public StoreModel getStore() {
-        return store;
-    }
-
-    /**
-     * Define el valor de la propiedad store.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the store property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link StoreModel }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getStore().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link StoreModel }
+     * 
+     * 
      */
-    public void setStore(StoreModel value) {
-        this.store = value;
+    public List<StoreModel> getStore() {
+        if (store == null) {
+            store = new ArrayList<StoreModel>();
+        }
+        return this.store;
     }
 
 }

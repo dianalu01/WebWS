@@ -151,7 +151,7 @@
 		</xs:complexType>
 		<xs:complexType name="getStoreByIdResponse">
 			<xs:sequence>
-				<xs:element minOccurs="0" maxOccurs="1" name="store"
+				<xs:element minOccurs="0" maxOccurs="unbounded" name="store"
 					type="tns:storeModel" />
 			</xs:sequence>
 		</xs:complexType>
