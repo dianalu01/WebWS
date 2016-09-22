@@ -5,7 +5,7 @@
 <hibernate-mapping package="com.Admazing">
     <class name="com.admazing.UserModel" table="usuario" >
         <id name="idUser" type="string">
-            <column name="idUsuario" length="8" not-null="true"/>
+            <column name="idUsuario" length="50" not-null="true"/>
         </id>
         <property name="name" type="string" column="nombre" length="30"/>
         <property name="firstLastName" type="string" column="apellidoPaterno" length="30" />

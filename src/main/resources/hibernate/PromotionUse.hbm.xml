@@ -7,7 +7,7 @@
         <id name="idPromotionUse" type="string">
             <column name="idusopromocion" length="10" not-null="true"/>
         </id>
-        <property name="idUser" type="string" column="idusuario" length="8"  not-null="true"/>
+        <property name="idUser" type="string" column="idusuario" length="50"  not-null="true"/>
         <property name="idPromotion" type="string" column="idpromocion" length="10" not-null="true"/>
 	</class>
 </hibernate-mapping>

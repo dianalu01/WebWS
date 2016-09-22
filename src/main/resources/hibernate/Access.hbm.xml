@@ -7,7 +7,7 @@
         <id name="idAccess" type="string">
             <column name="idacceso" length="10" not-null="true"/>
         </id>
-        <property name="idUser" type="string" column="idusuario" length="8"/>
+        <property name="idUser" type="string" column="idusuario" length="50"/>
         <property name="idCommercialArea" type="string" column="zonacomercial" length="8" />
         <property name="date" type="date" column="fecha" />
         <property name="time" type="time" column="horaacceso" />

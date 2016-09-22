@@ -5,7 +5,7 @@
 <hibernate-mapping package="com.Admazing">
     <class name="com.admazing.CouponBookModel" table="cuponera" >
         <composite-id >
-        	<key-property name="idUser" type="string" column="idusuario" length="8"/> 
+        	<key-property name="idUser" type="string" column="idusuario" length="50"/> 
         	<key-property name="idCouponBook" type="string" column="idcuponera" length="8"/> 
         </composite-id>
         <property name="idPromotion" type="string" column="promocion" length="10"/>
