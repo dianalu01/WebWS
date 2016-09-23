@@ -47,6 +47,7 @@ import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
 import com.admazing.Logic.CategoryServiceImpl;
+import com.admazing.Logic.PromotionServiceImpl;
 import com.admazing.Logic.StoreServiceImpl;
 import com.admazing.Logic.UserServiceImpl;
 import com.admazing.Logic.categoryObserver;
@@ -58,6 +59,7 @@ import com.admazing.core.contracts.Observer;
 import com.admazing.core.contracts.PreferenceRepository;
 import com.admazing.core.contracts.ProductRepository;
 import com.admazing.core.contracts.PromotionRepository;
+import com.admazing.core.contracts.PromotionService;
 import com.admazing.core.contracts.PromotionTypeRepository;
 import com.admazing.core.contracts.PromotionUseRepository;
 import com.admazing.core.contracts.StoreRepository;
@@ -79,12 +81,11 @@ import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 
 public class AdmazingWSImpl implements AdmazingPortType{
-	
-	private StoreRepository storeRepository= new StoreRepositoryImpl();
-	private CategoryRepository categoryRepository= new CategoryRepositoryImpl();
-	private PromotionRepository promotionRepository= new PromotionRepositoryImpl();
 	private ProductRepository productRepository= new ProductRepositoryImpl(); 
 	private PromotionTypeRepository promotionTypeRepository= new PromotionTypeRepositoryImpl(); 
+
+	private StoreRepository storeRepository= new StoreRepositoryImpl();
+	private PromotionRepository promotionRepository= new PromotionRepositoryImpl();
 	private CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
 	private AccessRepository accessRepository = new AccessRepositoryImpl(); 
 	private CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
@@ -96,6 +97,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private UserService userService = new UserServiceImpl();
 	private StoreService storeService = new StoreServiceImpl();
 	private CategoryService categoryService=new CategoryServiceImpl();
+	private PromotionService promotionService= new PromotionServiceImpl();
+	
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
 	}
@@ -193,11 +196,13 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	@Override
 	public GetByIdPromotionResponse getByIdPromotion(GetByIdPromotionRequest parameters) {
 		GetByIdPromotionResponse response = new GetByIdPromotionResponse();
-		List<PromotionModel> promotions=promotionRepository.findById(parameters.getIdStore(),parameters.getIdCategory());
+		String idCategory= parameters.getIdCategory();
+		String idStore=parameters.getIdStore();
+		List<PromotionDetailedModel> promotionsDetailed=promotionService.getById(idStore, idCategory);
 		List<PromotionDetailedModel> responsePromotionsDetailed = response.getPromotionDetailed();
-		if(promotions!=null){
-			for (PromotionModel promotion : promotions) {
-				responsePromotionsDetailed.add(getPromotionDetailed(promotion));
+		if(promotionsDetailed!=null){
+			for (PromotionDetailedModel promotion : promotionsDetailed) {
+				responsePromotionsDetailed.add(promotion);
 			}
 		}
 		return response;
