@@ -46,11 +46,13 @@ import com.admazing.SavePromotionUseRequest;
 import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
+import com.admazing.Logic.CategoryServiceImpl;
 import com.admazing.Logic.StoreServiceImpl;
 import com.admazing.Logic.UserServiceImpl;
 import com.admazing.Logic.categoryObserver;
 import com.admazing.core.contracts.AccessRepository;
 import com.admazing.core.contracts.CategoryRepository;
+import com.admazing.core.contracts.CategoryService;
 import com.admazing.core.contracts.CouponBookRepository;
 import com.admazing.core.contracts.Observer;
 import com.admazing.core.contracts.PreferenceRepository;
@@ -93,6 +95,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	
 	private UserService userService = new UserServiceImpl();
 	private StoreService storeService = new StoreServiceImpl();
+	private CategoryService categoryService=new CategoryServiceImpl();
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
 	}
@@ -150,23 +153,11 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	public GetAllPreferedCategoriesResponse getAllPreferedCategories(GetAllPreferedCategoriesRequest parameters) {
 		GetAllPreferedCategoriesResponse response = new GetAllPreferedCategoriesResponse();
 		String idUser= parameters.getIdUser();
-		List<PreferenceModel> preferences=preferenceRepository.getAllById(idUser);
-		List<CategoryModel> categories=categoryRepository.getAll();
+		List<PreferedCategoryModel> preferedCategories= categoryService.getAllPrefered(idUser);
 		List<PreferedCategoryModel> responsePreferedCategories = response.getCategoryPrefered();
-		if(categories!=null){
-			for (CategoryModel category : categories) {
-				PreferedCategoryModel preferedCategory = new PreferedCategoryModel();
-				preferedCategory.setCategory(category);
-				preferedCategory.setIsPrefered(false);	
-				if(preferences!=null){
-					for(PreferenceModel preference:preferences){
-						if(category.getIdCategory().compareTo(preference.getIdCategory())==0){
-							preferedCategory.setIsPrefered(true);	
-							break;
-						}
-					}
-				}
-				responsePreferedCategories.add(preferedCategory);
+		if(preferedCategories!=null){
+			for (PreferedCategoryModel category : preferedCategories) {
+				responsePreferedCategories.add(category);
 			}
 		}
 		return response; 
@@ -175,7 +166,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	@Override
 	public GetByIdCategoryResponse getByIdCategory(GetByIdCategoryRequest parameters) {
 		GetByIdCategoryResponse response = new GetByIdCategoryResponse();
-		List<CategoryModel> categories=categoryRepository.findById(parameters.getIdStore());
+		List<CategoryModel> categories=categoryService.getById(parameters.getIdStore());
 		List<CategoryModel> responseCategories = response.getCategory();
 		if(categories!=null){
 			for (CategoryModel category : categories) {
@@ -190,19 +181,13 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		GetCategoryByPreferenceResponse response = new GetCategoryByPreferenceResponse();
 		String idUser= parameters.getIdUser();
 		String idStore=parameters.getIdStore();
-		List<PreferenceModel> preferences=preferenceRepository.getAllById(idUser);
-		List<CategoryModel> categories=categoryRepository.findById(idStore);
+		List<CategoryModel> categoriesPrefered=categoryService.getByPreference(idStore, idUser);
 		List<CategoryModel> responseCategories = response.getCategory();
-		if(preferences!=null&&categories!=null){
-			for (CategoryModel category : categories) {
-				for(PreferenceModel preference:preferences){
-					if(category.getIdCategory().compareTo(preference.getIdCategory())==0){
-						responseCategories.add(category);
-						break;
-					}
-				}
+		if(categoriesPrefered!=null){
+			for (CategoryModel category : categoriesPrefered) {
+				responseCategories.add(category);					
 			}
-		}
+		}		
 		return response;
 	}
 	@Override
