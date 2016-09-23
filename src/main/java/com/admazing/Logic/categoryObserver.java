@@ -20,8 +20,8 @@ public class categoryObserver extends Observer{
 		promotionService= new PromotionServiceImpl();
 		promotionUseService = new PromotionUseServiceImpl();
 			
-		//this.subject=subject;
-		//this.subject.attach(this);
+		this.subject=subject;
+		this.subject.attach(this);
 	}
 
 	@Override

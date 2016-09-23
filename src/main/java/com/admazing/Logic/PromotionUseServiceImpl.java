@@ -13,9 +13,13 @@ public class PromotionUseServiceImpl implements PromotionUseService {
 
 	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();	
 	private List<Observer> observers = new ArrayList<Observer>();
+	private boolean isFirstTime=true;
 	
 	public PromotionUseServiceImpl() {
-		new categoryObserver(this);
+		if(isFirstTime){
+			new categoryObserver(this);
+			isFirstTime=false;
+		}
 	}
 	@Override
 	public boolean save(String idUser, String idPromotion) {
