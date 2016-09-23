@@ -15,7 +15,7 @@ public class PromotionUseServiceImpl implements PromotionUseService {
 	private List<Observer> observers = new ArrayList<Observer>();
 	
 	public PromotionUseServiceImpl() {
-		//new categoryObserver(this);
+		new categoryObserver(this);
 	}
 	@Override
 	public boolean save(String idUser, String idPromotion) {
