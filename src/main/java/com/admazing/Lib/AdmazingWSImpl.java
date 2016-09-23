@@ -1,11 +1,13 @@
 package com.admazing.Lib;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.admazing.AdmazingPortType;
 import com.admazing.CategoryModel;
 import com.admazing.CommercialAreaModel;
+import com.admazing.CouponBookModel;
 import com.admazing.DeleteFromCouponBookRequest;
 import com.admazing.DeleteFromCouponBookResponse;
 import com.admazing.DeleteFromPreferenceRequest;
@@ -29,7 +31,11 @@ import com.admazing.GetbyCommercialAreaCouponBookResponse;
 import com.admazing.LogInRequest;
 import com.admazing.LogInResponse;
 import com.admazing.PreferedCategoryModel;
+import com.admazing.PreferenceModel;
+import com.admazing.ProductModel;
 import com.admazing.PromotionDetailedModel;
+import com.admazing.PromotionModel;
+import com.admazing.PromotionTypeModel;
 import com.admazing.SaveAccessRequest;
 import com.admazing.SaveAccessResponse;
 import com.admazing.SaveCouponBookRequest;
@@ -39,41 +45,63 @@ import com.admazing.SavePreferenceResponse;
 import com.admazing.SavePromotionUseRequest;
 import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
-import com.admazing.Logic.AccessServiceImpl;
+import com.admazing.UserModel;
 import com.admazing.Logic.CategoryServiceImpl;
-import com.admazing.Logic.CommercialAreaServiceImpl;
-import com.admazing.Logic.CouponBookServiceImpl;
-import com.admazing.Logic.PreferenceServiceImpl;
 import com.admazing.Logic.PromotionServiceImpl;
-import com.admazing.Logic.PromotionUseServiceImpl;
 import com.admazing.Logic.StoreServiceImpl;
 import com.admazing.Logic.UserServiceImpl;
-import com.admazing.core.contracts.AccessService;
+import com.admazing.Logic.categoryObserver;
+import com.admazing.core.contracts.AccessRepository;
+import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CategoryService;
-import com.admazing.core.contracts.CouponBookService;
-import com.admazing.core.contracts.PreferenceService;
+import com.admazing.core.contracts.CouponBookRepository;
+import com.admazing.core.contracts.Observer;
+import com.admazing.core.contracts.PreferenceRepository;
+import com.admazing.core.contracts.ProductRepository;
+import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.PromotionService;
-import com.admazing.core.contracts.PromotionUseService;
+import com.admazing.core.contracts.PromotionTypeRepository;
+import com.admazing.core.contracts.PromotionUseRepository;
+import com.admazing.core.contracts.StoreRepository;
 import com.admazing.core.contracts.StoreService;
+import com.admazing.core.contracts.UserRepository;
 import com.admazing.core.contracts.UserService;
-import com.admazing.core.contracts.CommercialAreaService;
+import com.admazing.core.contracts.CommercialAreaRepository;
+import com.admazing.dataAccess.AccessRepositoryImpl;
+import com.admazing.dataAccess.CategoryRepositoryImpl;
+import com.admazing.dataAccess.CouponBookRepositoryImpl;
+import com.admazing.dataAccess.PreferenceRepositoryImpl;
+import com.admazing.dataAccess.ProductRepositoryImpl;
+import com.admazing.dataAccess.PromotionRepositoryImpl;
+import com.admazing.dataAccess.PromotionTypeRepositoryImpl;
+import com.admazing.dataAccess.PromotionUseRepositoryImpl;
+import com.admazing.dataAccess.StoreRepositoryImpl;
+import com.admazing.dataAccess.UserRepositoryImpl;
+import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 
 public class AdmazingWSImpl implements AdmazingPortType{
+	private ProductRepository productRepository= new ProductRepositoryImpl(); 
+	private PromotionTypeRepository promotionTypeRepository= new PromotionTypeRepositoryImpl(); 
+
+	private StoreRepository storeRepository= new StoreRepositoryImpl();
+	private PromotionRepository promotionRepository= new PromotionRepositoryImpl();
+	private CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
+	private AccessRepository accessRepository = new AccessRepositoryImpl(); 
+	private CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
+	private PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
+	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();
+	
+	
+	
 	private UserService userService = new UserServiceImpl();
 	private StoreService storeService = new StoreServiceImpl();
 	private CategoryService categoryService=new CategoryServiceImpl();
 	private PromotionService promotionService= new PromotionServiceImpl();
-	private CouponBookService couponBookService= new CouponBookServiceImpl();
-	private AccessService accessService= new AccessServiceImpl();
-	private CommercialAreaService commercialAreaService=new CommercialAreaServiceImpl();
-	private PreferenceService preferenceService= new PreferenceServiceImpl();
-	private PromotionUseService promotionUseService= new PromotionUseServiceImpl();
 	
-	public AdmazingWSImpl(){
-		
+	public AdmazingWSImpl() {
 	}
-	
+
 	@Override
 	public LogInResponse logIn(LogInRequest parameters) {
 		LogInResponse response = new LogInResponse();
@@ -182,20 +210,19 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	@Override
 	public SaveAccessResponse saveAccess(SaveAccessRequest parameters) {
 		SaveAccessResponse response = new SaveAccessResponse();
-		String latitude=parameters.getLatitude();
-		String longitude= parameters.getLongitude();
-		String idUser= parameters.getIdUser();
-		CommercialAreaModel commercialArea= commercialAreaService.getByLatitudeLongitude(latitude, longitude);
-		if(commercialArea!=null){
-			boolean result=accessService.save(idUser, commercialArea.getIdCommercialArea());
-			response.setNameCommercialArea(commercialArea.getNameCommercialArea());
+		CommercialAreaModel commercialAreaModel=commercialAreaRepository.getByLatitudeLongitude(parameters.getLatitude(), parameters.getLongitude());
+		if(commercialAreaModel!=null){
+			response.setNameCommercialArea(commercialAreaModel.getNameCommercialArea());
+			boolean result=accessRepository.save(parameters.getIdUser(), commercialAreaModel.getIdCommercialArea());
 			response.setResult(result);		
 			
 		}
 		else
 		{
 			response.setResult(false);
-		}		
+		}
+		
+		
 		return response;
 	}
 
@@ -203,14 +230,21 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	public GetbyCommercialAreaCouponBookResponse getbyCommercialAreaCouponBook(GetbyCommercialAreaCouponBookRequest parameters) {
 		GetbyCommercialAreaCouponBookResponse response = new GetbyCommercialAreaCouponBookResponse();
 		String idUser= parameters.getIdUser();
-		List<PromotionDetailedModel> couponsBookDetailed= couponBookService.getByCommercialArea(idUser);
+		String idCommercialArea=commercialAreaRepository.getIdLastCommercialArea(idUser);
+		List<CouponBookModel> couponBook=couponBookRepository.getAllById(idUser);
+		List<StoreModel> stores=storeRepository.getAllbyCommercialArea(idCommercialArea);
 		List<PromotionDetailedModel> responseCouponBook = response.getCouponDetailed();
-		if(couponsBookDetailed!=null){
-			for (PromotionDetailedModel coupon : couponsBookDetailed) {
-				responseCouponBook.add(coupon);
+		if(couponBook!=null&&stores!=null){
+			for (CouponBookModel coupon : couponBook) {
+				PromotionModel promotion=promotionRepository.findById(coupon.getIdPromotion());
+				for(StoreModel store:stores){
+					if(promotion!=null && promotion.getIdStore().compareTo(store.getIdStore())==0){
+						responseCouponBook.add(getPromotionDetailed(promotion));
+						break;
+					}
+				}
 			}
 		}
-		
 		return response;
 	}
 
@@ -219,8 +253,11 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		SaveCouponBookResponse response = new SaveCouponBookResponse();
 		String idUser= parameters.getIdUser();
 		String idPromotion= parameters.getIdPromotion();
-		boolean result=couponBookService.save(idUser,idPromotion);
-		response.setResult(result);
+		boolean result=couponBookRepository.save(idUser,idPromotion);
+		if (result)
+			response.setResult(true);
+		else 
+			response.setResult(false);
 		return response;
 
 	}
@@ -230,8 +267,11 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		DeleteFromCouponBookResponse response = new DeleteFromCouponBookResponse();
 		String idUser= parameters.getIdUser();
 		String idPromotion= parameters.getIdPromotion();
-		boolean result=couponBookService.delete(idUser,idPromotion);
-		response.setResult(result);
+		boolean result=couponBookRepository.delete(idUser,idPromotion);
+		if (result)
+			response.setResult(true);
+		else 
+			response.setResult(false);
 		return response;
 	}
 
@@ -240,8 +280,11 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		SavePreferenceResponse response = new SavePreferenceResponse();
 		String idUser= parameters.getIdUser();
 		String idCategory= parameters.getIdCategory();
-		boolean result=preferenceService.save(idUser,idCategory);
-		response.setResult(result);
+		boolean result=preferenceRepository.save(idUser,idCategory);
+		if (result)
+			response.setResult(true);
+		else 
+			response.setResult(false);
 		return response;
 
 	}
@@ -251,8 +294,11 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		DeleteFromPreferenceResponse response = new DeleteFromPreferenceResponse();
 		String idUser= parameters.getIdUser();
 		String idCategory= parameters.getIdCategory();
-		boolean result=preferenceService.delete(idUser, idCategory);
-		response.setResult(result);
+		boolean result=preferenceRepository.delete(idUser, idCategory);
+		if (result)
+			response.setResult(true);
+		else 
+			response.setResult(false);
 		return response;
 	}
 
@@ -262,14 +308,31 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		response.setResult(false);
 		String idUser= parameters.getIdUser();
 		String idPromotion= parameters.getIdPromotion();
-		boolean resultSavePromotionUse=promotionUseService.save(idUser,idPromotion);
+		boolean resultSavePromotionUse=promotionUseRepository.save(idUser,idPromotion);
 		if (resultSavePromotionUse){
-			boolean resultDeleteCoupon=couponBookService.delete(idUser,idPromotion);
+			boolean resultDeleteCoupon=couponBookRepository.delete(idUser,idPromotion);
 			if(resultDeleteCoupon){
 				response.setResult(true);
 			}
-		}			
+		}
+			
 		return response;		
-	}	
+	}
+ 	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
+
+		PromotionDetailedModel promotionDetailed= null;
+		if(promotion!=null){
+			promotionDetailed= new PromotionDetailedModel();
+			ProductModel product=productRepository.findById(promotion.getIdProduct());
+			PromotionTypeModel promotionType= promotionTypeRepository.findById(promotion.getIdTypePromotion());
+			if(product!= null && promotionType!=null){
+				promotionDetailed.setPromotion(promotion);
+				promotionDetailed.setProduct(product);
+				promotionDetailed.setPromotionType(promotionType);				
+			}			
+		}
+		return promotionDetailed;
+	}
+
 		
 }
