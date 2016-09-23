@@ -47,6 +47,7 @@ import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
 import com.admazing.Logic.CategoryServiceImpl;
+import com.admazing.Logic.CouponBookServiceImpl;
 import com.admazing.Logic.PromotionServiceImpl;
 import com.admazing.Logic.StoreServiceImpl;
 import com.admazing.Logic.UserServiceImpl;
@@ -55,6 +56,7 @@ import com.admazing.core.contracts.AccessRepository;
 import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CategoryService;
 import com.admazing.core.contracts.CouponBookRepository;
+import com.admazing.core.contracts.CouponBookService;
 import com.admazing.core.contracts.Observer;
 import com.admazing.core.contracts.PreferenceRepository;
 import com.admazing.core.contracts.ProductRepository;
@@ -81,9 +83,7 @@ import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 
 public class AdmazingWSImpl implements AdmazingPortType{
-	private ProductRepository productRepository= new ProductRepositoryImpl(); 
-	private PromotionTypeRepository promotionTypeRepository= new PromotionTypeRepositoryImpl(); 
-
+	
 	private StoreRepository storeRepository= new StoreRepositoryImpl();
 	private PromotionRepository promotionRepository= new PromotionRepositoryImpl();
 	private CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
@@ -98,6 +98,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private StoreService storeService = new StoreServiceImpl();
 	private CategoryService categoryService=new CategoryServiceImpl();
 	private PromotionService promotionService= new PromotionServiceImpl();
+	private CouponBookService couponBookService= new CouponBookServiceImpl();
 	
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
@@ -231,21 +232,14 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	public GetbyCommercialAreaCouponBookResponse getbyCommercialAreaCouponBook(GetbyCommercialAreaCouponBookRequest parameters) {
 		GetbyCommercialAreaCouponBookResponse response = new GetbyCommercialAreaCouponBookResponse();
 		String idUser= parameters.getIdUser();
-		String idCommercialArea=commercialAreaRepository.getIdLastCommercialArea(idUser);
-		List<CouponBookModel> couponBook=couponBookRepository.getAllById(idUser);
-		List<StoreModel> stores=storeRepository.getAllbyCommercialArea(idCommercialArea);
+		List<PromotionDetailedModel> couponsBookDetailed= couponBookService.getByCommercialArea(idUser);
 		List<PromotionDetailedModel> responseCouponBook = response.getCouponDetailed();
-		if(couponBook!=null&&stores!=null){
-			for (CouponBookModel coupon : couponBook) {
-				PromotionModel promotion=promotionRepository.findById(coupon.getIdPromotion());
-				for(StoreModel store:stores){
-					if(promotion!=null && promotion.getIdStore().compareTo(store.getIdStore())==0){
-						responseCouponBook.add(getPromotionDetailed(promotion));
-						break;
-					}
-				}
+		if(couponsBookDetailed!=null){
+			for (PromotionDetailedModel coupon : couponsBookDetailed) {
+				responseCouponBook.add(coupon);
 			}
 		}
+		
 		return response;
 	}
 
@@ -330,21 +324,6 @@ public class AdmazingWSImpl implements AdmazingPortType{
 			}
 	}
 
- 	private PromotionDetailedModel getPromotionDetailed(PromotionModel promotion) {
-
-		PromotionDetailedModel promotionDetailed= null;
-		if(promotion!=null){
-			promotionDetailed= new PromotionDetailedModel();
-			ProductModel product=productRepository.findById(promotion.getIdProduct());
-			PromotionTypeModel promotionType= promotionTypeRepository.findById(promotion.getIdTypePromotion());
-			if(product!= null && promotionType!=null){
-				promotionDetailed.setPromotion(promotion);
-				promotionDetailed.setProduct(product);
-				promotionDetailed.setPromotionType(promotionType);				
-			}			
-		}
-		return promotionDetailed;
-	}
-
+	
 		
 }
