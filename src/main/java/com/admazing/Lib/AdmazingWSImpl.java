@@ -253,11 +253,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		SaveCouponBookResponse response = new SaveCouponBookResponse();
 		String idUser= parameters.getIdUser();
 		String idPromotion= parameters.getIdPromotion();
-		boolean result=couponBookRepository.save(idUser,idPromotion);
-		if (result)
-			response.setResult(true);
-		else 
-			response.setResult(false);
+		boolean result=couponBookService.save(idUser,idPromotion);
+		response.setResult(result);
 		return response;
 
 	}
@@ -267,11 +264,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		DeleteFromCouponBookResponse response = new DeleteFromCouponBookResponse();
 		String idUser= parameters.getIdUser();
 		String idPromotion= parameters.getIdPromotion();
-		boolean result=couponBookRepository.deletePromotion(idUser,idPromotion);
-		if (result)
-			response.setResult(true);
-		else 
-			response.setResult(false);
+		boolean result=couponBookService.delete(idUser,idPromotion);
+		response.setResult(result);
 		return response;
 	}
 
@@ -310,7 +304,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		String idPromotion= parameters.getIdPromotion();
 		boolean resultSavePromotionUse=promotionUseRepository.save(idUser,idPromotion);
 		if (resultSavePromotionUse){
-			boolean resultDeleteCoupon=couponBookRepository.deletePromotion(idUser,idPromotion);
+			boolean resultDeleteCoupon=couponBookRepository.delete(idUser,idPromotion);
 			if(resultDeleteCoupon){
 				response.setResult(true);
 				notifyAllObservers(idUser,idPromotion);

@@ -7,5 +7,5 @@ import com.admazing.CouponBookModel;
 public interface CouponBookRepository {
 	List<CouponBookModel> getAllById(String idUser);
 	boolean save(String idUser,String idPromotion);
-	boolean deletePromotion(String idUser,String idPromotion);
+	boolean delete(String idUser,String idPromotion);
 }

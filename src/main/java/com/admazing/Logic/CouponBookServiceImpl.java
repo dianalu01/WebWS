@@ -36,7 +36,7 @@ public class CouponBookServiceImpl implements CouponBookService {
 		List<PromotionDetailedModel> couponsBookDetailed = new ArrayList<PromotionDetailedModel>();
 		if(couponBook!=null&&stores!=null){
 			for (CouponBookModel coupon : couponBook) {
-				PromotionDetailedModel promotionDetailed=promotionDetailed(coupon,stores);
+				PromotionDetailedModel promotionDetailed=getPromotionDetailed(coupon,stores);
 				if(promotionDetailed!=null){
 					couponsBookDetailed.add(promotionDetailed);
 				}
@@ -44,7 +44,7 @@ public class CouponBookServiceImpl implements CouponBookService {
 		}
 		return couponsBookDetailed;
 	}
-	private PromotionDetailedModel promotionDetailed(CouponBookModel coupon, List<StoreModel> stores){
+	private PromotionDetailedModel getPromotionDetailed(CouponBookModel coupon, List<StoreModel> stores){
 		PromotionModel promotion=promotionRepository.findById(coupon.getIdPromotion());
 		for(StoreModel store:stores){
 			if(promotion!=null && promotion.getIdStore().compareTo(store.getIdStore())==0){
@@ -54,6 +54,18 @@ public class CouponBookServiceImpl implements CouponBookService {
 			}
 		}
 		return null;
+	}
+	@Override
+	public boolean save(String idUser, String idPromotion) {		
+		boolean result=false;
+		result=couponBookRepository.save(idUser,idPromotion);
+		return result;
+	}
+	@Override
+	public boolean delete(String idUser, String idPromotion) {
+		boolean result=false;
+		result=couponBookRepository.delete(idUser,idPromotion);
+		return result;
 	}
 
 }

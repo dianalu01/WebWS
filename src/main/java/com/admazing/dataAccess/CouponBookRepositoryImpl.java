@@ -83,7 +83,7 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	
 	
 	@Override
-	public boolean deletePromotion(String idUser, String idPromotion) {
+	public boolean delete(String idUser, String idPromotion) {
 		boolean success=false;
 			Session session=hibernateUtil.getSessionFactory().openSession();
 			Transaction transaction=session.beginTransaction();
