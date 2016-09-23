@@ -12,7 +12,7 @@ import com.admazing.dataAccess.PromotionUseRepositoryImpl;
 public class PromotionUseServiceImpl implements PromotionUseService {
 
 	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();	
-	private List<Observer> observers = new ArrayList<Observer>();
+	private static List<Observer> observers = new ArrayList<Observer>();
 	private boolean isFirstTime=true;
 	
 	public PromotionUseServiceImpl() {
