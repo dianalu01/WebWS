@@ -1,9 +1,9 @@
 package com.admazing.core.contracts;
 
-import com.admazing.Logic.PromotionUseServiceImpl;
+import com.admazing.core.contracts.PromotionUseService;
 
 public abstract class Observer {
-	protected PromotionUseServiceImpl subject;
+	protected PromotionUseService subject;
 	public abstract void update(String idUser,String idPromotion);
 
 }

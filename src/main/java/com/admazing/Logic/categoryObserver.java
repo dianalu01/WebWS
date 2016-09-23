@@ -5,15 +5,9 @@ import java.util.List;
 import com.admazing.PromotionModel;
 import com.admazing.PromotionUseModel;
 import com.admazing.core.contracts.Observer;
-import com.admazing.core.contracts.PreferenceRepository;
 import com.admazing.core.contracts.PreferenceService;
-import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.PromotionService;
-import com.admazing.core.contracts.PromotionUseRepository;
 import com.admazing.core.contracts.PromotionUseService;
-import com.admazing.dataAccess.PreferenceRepositoryImpl;
-import com.admazing.dataAccess.PromotionRepositoryImpl;
-import com.admazing.dataAccess.PromotionUseRepositoryImpl;
 
 public class categoryObserver extends Observer{
 	
@@ -21,13 +15,13 @@ public class categoryObserver extends Observer{
 	private PromotionService promotionService;
 	private PromotionUseService promotionUseService;
 	
-	public categoryObserver(PromotionUseServiceImpl subject){
+	public categoryObserver(PromotionUseService subject){
 		preferenceService = new PreferenceServiceImpl();
 		promotionService= new PromotionServiceImpl();
 		promotionUseService = new PromotionUseServiceImpl();
 			
 		this.subject=subject;
-		//this.subject.attach(this);
+		this.subject.attach(this);
 	}
 
 	@Override

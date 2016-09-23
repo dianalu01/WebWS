@@ -268,10 +268,10 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		String idPromotion= parameters.getIdPromotion();
 		boolean resultSavePromotionUse=promotionUseService.save(idUser,idPromotion);
 		if (resultSavePromotionUse){
-			/*boolean resultDeleteCoupon=couponBookService.delete(idUser,idPromotion);
+			boolean resultDeleteCoupon=couponBookService.delete(idUser,idPromotion);
 			if(resultDeleteCoupon){
 				response.setResult(true);
-			}*/
+			}
 		}			
 		return response;		
 	}			

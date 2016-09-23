@@ -8,4 +8,6 @@ public interface PromotionUseService {
 	
 	boolean save (String idUser, String idPromotion);
 	List<PromotionUseModel> getById(String idUser);
+	void attach(Observer observer);
+		
 }
