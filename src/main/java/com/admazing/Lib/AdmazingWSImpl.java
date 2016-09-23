@@ -1,13 +1,11 @@
 package com.admazing.Lib;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.admazing.AdmazingPortType;
 import com.admazing.CategoryModel;
 import com.admazing.CommercialAreaModel;
-import com.admazing.CouponBookModel;
 import com.admazing.DeleteFromCouponBookRequest;
 import com.admazing.DeleteFromCouponBookResponse;
 import com.admazing.DeleteFromPreferenceRequest;
@@ -31,11 +29,7 @@ import com.admazing.GetbyCommercialAreaCouponBookResponse;
 import com.admazing.LogInRequest;
 import com.admazing.LogInResponse;
 import com.admazing.PreferedCategoryModel;
-import com.admazing.PreferenceModel;
-import com.admazing.ProductModel;
 import com.admazing.PromotionDetailedModel;
-import com.admazing.PromotionModel;
-import com.admazing.PromotionTypeModel;
 import com.admazing.SaveAccessRequest;
 import com.admazing.SaveAccessResponse;
 import com.admazing.SaveCouponBookRequest;
@@ -45,57 +39,27 @@ import com.admazing.SavePreferenceResponse;
 import com.admazing.SavePromotionUseRequest;
 import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
-import com.admazing.UserModel;
 import com.admazing.Logic.AccessServiceImpl;
 import com.admazing.Logic.CategoryServiceImpl;
 import com.admazing.Logic.CommercialAreaServiceImpl;
 import com.admazing.Logic.CouponBookServiceImpl;
 import com.admazing.Logic.PreferenceServiceImpl;
 import com.admazing.Logic.PromotionServiceImpl;
+import com.admazing.Logic.PromotionUseServiceImpl;
 import com.admazing.Logic.StoreServiceImpl;
 import com.admazing.Logic.UserServiceImpl;
-import com.admazing.Logic.categoryObserver;
-import com.admazing.core.contracts.AccessRepository;
 import com.admazing.core.contracts.AccessService;
-import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CategoryService;
-import com.admazing.core.contracts.CouponBookRepository;
 import com.admazing.core.contracts.CouponBookService;
-import com.admazing.core.contracts.Observer;
-import com.admazing.core.contracts.PreferenceRepository;
 import com.admazing.core.contracts.PreferenceService;
-import com.admazing.core.contracts.ProductRepository;
-import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.PromotionService;
-import com.admazing.core.contracts.PromotionTypeRepository;
-import com.admazing.core.contracts.PromotionUseRepository;
-import com.admazing.core.contracts.StoreRepository;
+import com.admazing.core.contracts.PromotionUseService;
 import com.admazing.core.contracts.StoreService;
-import com.admazing.core.contracts.UserRepository;
 import com.admazing.core.contracts.UserService;
-import com.admazing.core.contracts.CommercialAreaRepository;
 import com.admazing.core.contracts.CommercialAreaService;
-import com.admazing.dataAccess.AccessRepositoryImpl;
-import com.admazing.dataAccess.CategoryRepositoryImpl;
-import com.admazing.dataAccess.CouponBookRepositoryImpl;
-import com.admazing.dataAccess.PreferenceRepositoryImpl;
-import com.admazing.dataAccess.ProductRepositoryImpl;
-import com.admazing.dataAccess.PromotionRepositoryImpl;
-import com.admazing.dataAccess.PromotionTypeRepositoryImpl;
-import com.admazing.dataAccess.PromotionUseRepositoryImpl;
-import com.admazing.dataAccess.StoreRepositoryImpl;
-import com.admazing.dataAccess.UserRepositoryImpl;
-import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 
 public class AdmazingWSImpl implements AdmazingPortType{
-	
-	private CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
-	private PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
-	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();
-	private List<Observer> observers = new ArrayList<Observer>();
-	
-	
 	private UserService userService = new UserServiceImpl();
 	private StoreService storeService = new StoreServiceImpl();
 	private CategoryService categoryService=new CategoryServiceImpl();
@@ -104,10 +68,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private AccessService accessService= new AccessServiceImpl();
 	private CommercialAreaService commercialAreaService=new CommercialAreaServiceImpl();
 	private PreferenceService preferenceService= new PreferenceServiceImpl();
-	public AdmazingWSImpl() {
-		new categoryObserver(this);
-	}
-
+	private PromotionUseService promotionUseService= new PromotionUseServiceImpl();
+	
 	@Override
 	public LogInResponse logIn(LogInRequest parameters) {
 		LogInResponse response = new LogInResponse();
@@ -203,7 +165,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		GetByIdPromotionResponse response = new GetByIdPromotionResponse();
 		String idCategory= parameters.getIdCategory();
 		String idStore=parameters.getIdStore();
-		List<PromotionDetailedModel> promotionsDetailed=promotionService.getById(idStore, idCategory);
+		List<PromotionDetailedModel> promotionsDetailed=promotionService.getDetailedById(idStore, idCategory);
 		List<PromotionDetailedModel> responsePromotionsDetailed = response.getPromotionDetailed();
 		if(promotionsDetailed!=null){
 			for (PromotionDetailedModel promotion : promotionsDetailed) {
@@ -296,27 +258,14 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		response.setResult(false);
 		String idUser= parameters.getIdUser();
 		String idPromotion= parameters.getIdPromotion();
-		boolean resultSavePromotionUse=promotionUseRepository.save(idUser,idPromotion);
+		boolean resultSavePromotionUse=promotionUseService.save(idUser,idPromotion);
 		if (resultSavePromotionUse){
-			boolean resultDeleteCoupon=couponBookRepository.delete(idUser,idPromotion);
+			boolean resultDeleteCoupon=couponBookService.delete(idUser,idPromotion);
 			if(resultDeleteCoupon){
 				response.setResult(true);
-				notifyAllObservers(idUser,idPromotion);
 			}
-		}
-			
+		}			
 		return response;		
-	}
-	public void attach(Observer observer){
-		observers.add(observer);		
-	}
-	
-	public void notifyAllObservers(String idUser,String idPromotion){
-		for (Observer observer : observers) {
-			observer.update(idUser,idPromotion);
-			}
-	}
-
-	
+	}	
 		
 }

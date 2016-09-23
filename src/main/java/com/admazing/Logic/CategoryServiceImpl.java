@@ -8,18 +8,18 @@ import com.admazing.PreferedCategoryModel;
 import com.admazing.PreferenceModel;
 import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CategoryService;
-import com.admazing.core.contracts.PreferenceRepository;
+import com.admazing.core.contracts.PreferenceService;
+import com.admazing.Logic.PreferenceServiceImpl;
 import com.admazing.dataAccess.CategoryRepositoryImpl;
-import com.admazing.dataAccess.PreferenceRepositoryImpl;
 
 public class CategoryServiceImpl implements CategoryService {
 
 	private CategoryRepository categoryRepository= new CategoryRepositoryImpl();
-	private PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
+	private PreferenceService preferenceService = new PreferenceServiceImpl();
 	
 	@Override
 	public List<PreferedCategoryModel> getAllPrefered(String idUser) {
-		List<PreferenceModel> preferences=preferenceRepository.getAllById(idUser);
+		List<PreferenceModel> preferences=preferenceService.getAllById(idUser);
 		List<CategoryModel> categories=categoryRepository.getAll();
 		List<PreferedCategoryModel> preferedCategories = new ArrayList<PreferedCategoryModel>();
 		if(categories!=null){
@@ -43,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<CategoryModel> getByPreference(String idStore, String idUser) {
 		
-		List<PreferenceModel> preferences=preferenceRepository.getAllById(idUser);
+		List<PreferenceModel> preferences=preferenceService.getAllById(idUser);
 		List<CategoryModel> categories=categoryRepository.findById(idStore);
 		List<CategoryModel> categoriesPrefered = new ArrayList<CategoryModel>();
 		if(preferences!=null&&categories!=null){

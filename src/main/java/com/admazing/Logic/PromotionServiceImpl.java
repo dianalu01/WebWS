@@ -15,7 +15,7 @@ public class PromotionServiceImpl implements PromotionService {
 	private PromotionRepository promotionRepository= new PromotionRepositoryImpl();
 	private PromotionDetailedService promotionDetailedService= new PromotionDetailedServiceImpl();
 	@Override
-	public List<PromotionDetailedModel> getById(String idStore, String idCategory) {
+	public List<PromotionDetailedModel> getDetailedById(String idStore, String idCategory) {
 		List<PromotionModel> promotions=promotionRepository.findById(idStore,idCategory);
 		List<PromotionDetailedModel> promotionsDetailed = new ArrayList<PromotionDetailedModel>();
 		if(promotions!=null){
@@ -25,6 +25,11 @@ public class PromotionServiceImpl implements PromotionService {
 			}
 		}
 		return promotionsDetailed;
+	}
+	@Override
+	public PromotionModel findById(String idPromotion) {
+		return promotionRepository.findById(idPromotion);
+		
 	}
 
 
