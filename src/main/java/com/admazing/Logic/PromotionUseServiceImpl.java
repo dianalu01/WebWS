@@ -1,11 +1,8 @@
 package com.admazing.Logic;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.admazing.PromotionUseModel;
-import com.admazing.core.contracts.CouponBookService;
-import com.admazing.core.contracts.Observer;
 import com.admazing.core.contracts.PromotionUseRepository;
 import com.admazing.core.contracts.PromotionUseService;
 import com.admazing.dataAccess.PromotionUseRepositoryImpl;
