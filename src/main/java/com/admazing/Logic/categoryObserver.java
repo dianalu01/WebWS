@@ -1,9 +1,11 @@
-package com.admazing.Lib;
+package com.admazing.Logic;
 
 import java.util.List;
 
 import com.admazing.PromotionModel;
 import com.admazing.PromotionUseModel;
+import com.admazing.Lib.AdmazingWSImpl;
+import com.admazing.core.contracts.Observer;
 import com.admazing.core.contracts.PreferenceRepository;
 import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.PromotionUseRepository;

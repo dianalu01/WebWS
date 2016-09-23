@@ -1,5 +1,5 @@
 
-package com.admazing.Lib;
+package com.admazing.Logic;
 
 import java.io.IOException;
 import java.util.HashMap;

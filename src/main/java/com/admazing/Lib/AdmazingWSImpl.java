@@ -3,7 +3,6 @@ package com.admazing.Lib;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.admazing.Lib.Observer;
 
 import com.admazing.AdmazingPortType;
 import com.admazing.CategoryModel;
@@ -47,9 +46,12 @@ import com.admazing.SavePromotionUseRequest;
 import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
+import com.admazing.Logic.UserServiceImpl;
+import com.admazing.Logic.categoryObserver;
 import com.admazing.core.contracts.AccessRepository;
 import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CouponBookRepository;
+import com.admazing.core.contracts.Observer;
 import com.admazing.core.contracts.PreferenceRepository;
 import com.admazing.core.contracts.ProductRepository;
 import com.admazing.core.contracts.PromotionRepository;
@@ -57,6 +59,7 @@ import com.admazing.core.contracts.PromotionTypeRepository;
 import com.admazing.core.contracts.PromotionUseRepository;
 import com.admazing.core.contracts.StoreRepository;
 import com.admazing.core.contracts.UserRepository;
+import com.admazing.core.contracts.UserService;
 import com.admazing.core.contracts.CommercialAreaRepository;
 import com.admazing.dataAccess.AccessRepositoryImpl;
 import com.admazing.dataAccess.CategoryRepositoryImpl;
@@ -73,7 +76,6 @@ import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 public class AdmazingWSImpl implements AdmazingPortType{
 	
-	private UserRepository userRepository= new UserRepositoryImpl();
 	private StoreRepository storeRepository= new StoreRepositoryImpl();
 	private CategoryRepository categoryRepository= new CategoryRepositoryImpl();
 	private PromotionRepository promotionRepository= new PromotionRepositoryImpl();
@@ -86,6 +88,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();
 	private List<Observer> observers = new ArrayList<Observer>();
 	
+	
+	private UserService userService = new UserServiceImpl();
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
 	}
@@ -95,13 +99,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		LogInResponse response = new LogInResponse();
 		String idUser= parameters.getIdUser();
 		String password= parameters.getPassword();
-		UserModel user=userRepository.findById(idUser);
-		if(user!=null&&user.getPassword().compareTo(password)==0){
-			response.setResult(true);
-		}
-		else{
-			response.setResult(false);
-		}
+		response.setResult(userService.logIn(idUser, password));
 		return response;
 	}
 	
