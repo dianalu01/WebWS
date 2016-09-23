@@ -46,6 +46,7 @@ import com.admazing.SavePromotionUseRequest;
 import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
+import com.admazing.Logic.StoreServiceImpl;
 import com.admazing.Logic.UserServiceImpl;
 import com.admazing.Logic.categoryObserver;
 import com.admazing.core.contracts.AccessRepository;
@@ -58,6 +59,7 @@ import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.PromotionTypeRepository;
 import com.admazing.core.contracts.PromotionUseRepository;
 import com.admazing.core.contracts.StoreRepository;
+import com.admazing.core.contracts.StoreService;
 import com.admazing.core.contracts.UserRepository;
 import com.admazing.core.contracts.UserService;
 import com.admazing.core.contracts.CommercialAreaRepository;
@@ -90,6 +92,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	
 	
 	private UserService userService = new UserServiceImpl();
+	private StoreService storeService = new StoreServiceImpl();
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
 	}
@@ -106,8 +109,9 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	@Override
 	public GetStoreByIdResponse getStoreById(GetStoreByIdRequest parameters) {
 		GetStoreByIdResponse response = new GetStoreByIdResponse();
-		StoreModel store=storeRepository.getStoreById(parameters.getIdStore());
 		List<StoreModel> responseStores = response.getStore();
+		String idStore=parameters.getIdStore();
+		StoreModel store=storeService.getById(idStore);
 		if(store!=null){
 			responseStores.add(store);
 		}
@@ -117,7 +121,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	@Override
 	public GetAllStoresResponse getAllStores(GetAllStoresRequest parameters) {
 		GetAllStoresResponse response = new GetAllStoresResponse();
-		List<StoreModel> stores=storeRepository.getAll();
+		List<StoreModel> stores=storeService.getAll();
 		List<StoreModel> responseStores = response.getStore();
 		if(stores!=null){
 			for (StoreModel store : stores) {
@@ -132,8 +136,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 			GetAllStoresbyCommercialAreaRequest parameters) {
 		GetAllStoresbyCommercialAreaResponse response = new GetAllStoresbyCommercialAreaResponse();
 		String idUser= parameters.getIdUser();
-		String idCommercialArea=commercialAreaRepository.getIdLastCommercialArea(idUser);
-		List<StoreModel> stores=storeRepository.getAllbyCommercialArea(idCommercialArea);
+		List<StoreModel> stores=storeService.getAllbyCommercialArea(idUser);
 		List<StoreModel> responseStores = response.getStore();
 		if(stores!=null){
 			for (StoreModel store : stores) {
