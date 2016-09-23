@@ -23,7 +23,7 @@
 		</jaxws:inInterceptors>
 	</jaxws:endpoint>
 	<bean id="myPasswordCallback" 
-			class="com.admazing.Lib.UTPasswordCallback"/>
+			class="com.admazing.Logic.UTPasswordCallback"/>
 
 	<cxf:bus>
 		<cxf:features>
