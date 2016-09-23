@@ -46,13 +46,16 @@ import com.admazing.SavePromotionUseRequest;
 import com.admazing.SavePromotionUseResponse;
 import com.admazing.StoreModel;
 import com.admazing.UserModel;
+import com.admazing.Logic.AccessServiceImpl;
 import com.admazing.Logic.CategoryServiceImpl;
+import com.admazing.Logic.CommercialAreaServiceImpl;
 import com.admazing.Logic.CouponBookServiceImpl;
 import com.admazing.Logic.PromotionServiceImpl;
 import com.admazing.Logic.StoreServiceImpl;
 import com.admazing.Logic.UserServiceImpl;
 import com.admazing.Logic.categoryObserver;
 import com.admazing.core.contracts.AccessRepository;
+import com.admazing.core.contracts.AccessService;
 import com.admazing.core.contracts.CategoryRepository;
 import com.admazing.core.contracts.CategoryService;
 import com.admazing.core.contracts.CouponBookRepository;
@@ -69,6 +72,7 @@ import com.admazing.core.contracts.StoreService;
 import com.admazing.core.contracts.UserRepository;
 import com.admazing.core.contracts.UserService;
 import com.admazing.core.contracts.CommercialAreaRepository;
+import com.admazing.core.contracts.CommercialAreaService;
 import com.admazing.dataAccess.AccessRepositoryImpl;
 import com.admazing.dataAccess.CategoryRepositoryImpl;
 import com.admazing.dataAccess.CouponBookRepositoryImpl;
@@ -84,8 +88,6 @@ import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 public class AdmazingWSImpl implements AdmazingPortType{
 	
-	private StoreRepository storeRepository= new StoreRepositoryImpl();
-	private PromotionRepository promotionRepository= new PromotionRepositoryImpl();
 	private CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
 	private AccessRepository accessRepository = new AccessRepositoryImpl(); 
 	private CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
@@ -99,6 +101,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private CategoryService categoryService=new CategoryServiceImpl();
 	private PromotionService promotionService= new PromotionServiceImpl();
 	private CouponBookService couponBookService= new CouponBookServiceImpl();
+	private AccessService accessService= new AccessServiceImpl();
+	private CommercialAreaService commercialAreaService=new CommercialAreaServiceImpl();
 	
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
@@ -212,19 +216,20 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	@Override
 	public SaveAccessResponse saveAccess(SaveAccessRequest parameters) {
 		SaveAccessResponse response = new SaveAccessResponse();
-		CommercialAreaModel commercialAreaModel=commercialAreaRepository.getByLatitudeLongitude(parameters.getLatitude(), parameters.getLongitude());
-		if(commercialAreaModel!=null){
-			response.setNameCommercialArea(commercialAreaModel.getNameCommercialArea());
-			boolean result=accessRepository.save(parameters.getIdUser(), commercialAreaModel.getIdCommercialArea());
+		String latitude=parameters.getLatitude();
+		String longitude= parameters.getLongitude();
+		String idUser= parameters.getIdUser();
+		CommercialAreaModel commercialArea= commercialAreaService.getByLatitudeLongitude(latitude, longitude);
+		if(commercialArea!=null){
+			boolean result=accessService.save(idUser, commercialArea.getIdCommercialArea());
+			response.setNameCommercialArea(commercialArea.getNameCommercialArea());
 			response.setResult(result);		
 			
 		}
 		else
 		{
 			response.setResult(false);
-		}
-		
-		
+		}		
 		return response;
 	}
 
