@@ -50,6 +50,7 @@ import com.admazing.Logic.AccessServiceImpl;
 import com.admazing.Logic.CategoryServiceImpl;
 import com.admazing.Logic.CommercialAreaServiceImpl;
 import com.admazing.Logic.CouponBookServiceImpl;
+import com.admazing.Logic.PreferenceServiceImpl;
 import com.admazing.Logic.PromotionServiceImpl;
 import com.admazing.Logic.StoreServiceImpl;
 import com.admazing.Logic.UserServiceImpl;
@@ -62,6 +63,7 @@ import com.admazing.core.contracts.CouponBookRepository;
 import com.admazing.core.contracts.CouponBookService;
 import com.admazing.core.contracts.Observer;
 import com.admazing.core.contracts.PreferenceRepository;
+import com.admazing.core.contracts.PreferenceService;
 import com.admazing.core.contracts.ProductRepository;
 import com.admazing.core.contracts.PromotionRepository;
 import com.admazing.core.contracts.PromotionService;
@@ -88,8 +90,6 @@ import com.admazing.dataAccess.CommercialAreaRepositoryImpl;
 
 public class AdmazingWSImpl implements AdmazingPortType{
 	
-	private CommercialAreaRepository commercialAreaRepository= new CommercialAreaRepositoryImpl();
-	private AccessRepository accessRepository = new AccessRepositoryImpl(); 
 	private CouponBookRepository couponBookRepository = new CouponBookRepositoryImpl(); 
 	private PreferenceRepository preferenceRepository = new PreferenceRepositoryImpl();
 	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();
@@ -103,7 +103,7 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private CouponBookService couponBookService= new CouponBookServiceImpl();
 	private AccessService accessService= new AccessServiceImpl();
 	private CommercialAreaService commercialAreaService=new CommercialAreaServiceImpl();
-	
+	private PreferenceService preferenceService= new PreferenceServiceImpl();
 	public AdmazingWSImpl() {
 		new categoryObserver(this);
 	}
@@ -274,11 +274,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		SavePreferenceResponse response = new SavePreferenceResponse();
 		String idUser= parameters.getIdUser();
 		String idCategory= parameters.getIdCategory();
-		boolean result=preferenceRepository.save(idUser,idCategory);
-		if (result)
-			response.setResult(true);
-		else 
-			response.setResult(false);
+		boolean result=preferenceService.save(idUser,idCategory);
+		response.setResult(result);
 		return response;
 
 	}
@@ -288,11 +285,8 @@ public class AdmazingWSImpl implements AdmazingPortType{
 		DeleteFromPreferenceResponse response = new DeleteFromPreferenceResponse();
 		String idUser= parameters.getIdUser();
 		String idCategory= parameters.getIdCategory();
-		boolean result=preferenceRepository.delete(idUser, idCategory);
-		if (result)
-			response.setResult(true);
-		else 
-			response.setResult(false);
+		boolean result=preferenceService.delete(idUser, idCategory);
+		response.setResult(result);
 		return response;
 	}
 
