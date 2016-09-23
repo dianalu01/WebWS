@@ -13,10 +13,10 @@ import com.admazing.dataAccess.PromotionUseRepositoryImpl;
 public class PromotionUseServiceImpl implements PromotionUseService {
 
 	private PromotionUseRepository promotionUseRepository= new PromotionUseRepositoryImpl();	
-	private List<Observer> observers = new ArrayList<Observer>();
+	//private List<Observer> observers = new ArrayList<Observer>();
 	
 	public PromotionUseServiceImpl() {
-		new categoryObserver(this);
+		//new categoryObserver(this);
 	}
 	@Override
 	public boolean save(String idUser, String idPromotion) {
@@ -24,7 +24,7 @@ public class PromotionUseServiceImpl implements PromotionUseService {
 		boolean resultSavePromotionUse=	promotionUseRepository.save(idUser,idPromotion);
 		if (resultSavePromotionUse){
 			result= true;
-			notifyAllObservers(idUser,idPromotion);
+			//notifyAllObservers(idUser,idPromotion);
 		}
 		return result;
 	}
@@ -32,7 +32,7 @@ public class PromotionUseServiceImpl implements PromotionUseService {
 	public List<PromotionUseModel> getById(String idUser) {
 		return promotionUseRepository.findById(idUser);
 	}
-	
+	/*
 	public void attach(Observer observer){
 		observers.add(observer);		
 	}
@@ -41,6 +41,6 @@ public class PromotionUseServiceImpl implements PromotionUseService {
 		for (Observer observer : observers) {
 			observer.update(idUser,idPromotion);
 			}
-	}
+	}*/
 
 }
