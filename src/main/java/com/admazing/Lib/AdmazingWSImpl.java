@@ -70,6 +70,10 @@ public class AdmazingWSImpl implements AdmazingPortType{
 	private PreferenceService preferenceService= new PreferenceServiceImpl();
 	private PromotionUseService promotionUseService= new PromotionUseServiceImpl();
 	
+	public AdmazingWSImpl(){
+		
+	}
+	
 	@Override
 	public LogInResponse logIn(LogInRequest parameters) {
 		LogInResponse response = new LogInResponse();
