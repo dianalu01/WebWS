@@ -8,7 +8,6 @@ import com.admazing.core.contracts.Observer;
 import com.admazing.core.contracts.PreferenceService;
 import com.admazing.core.contracts.PromotionService;
 import com.admazing.core.contracts.PromotionUseService;
-
 public class categoryObserver extends Observer{
 	
 	private PreferenceService preferenceService;
@@ -45,7 +44,5 @@ public class categoryObserver extends Observer{
 		}
 		return nPromotionUsed;
 	}
-
 	
-
 }
