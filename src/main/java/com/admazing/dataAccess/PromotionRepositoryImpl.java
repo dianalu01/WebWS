@@ -20,7 +20,8 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 	
 	@Override
 	public List<PromotionModel> findById(String idStore, String idCategory) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<PromotionModel> promotions = null;
 		try{
@@ -49,7 +50,8 @@ public class PromotionRepositoryImpl implements PromotionRepository{
 
 	@Override
 	public PromotionModel findById(String idPromotion) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		PromotionModel promotion = null;
 		try{

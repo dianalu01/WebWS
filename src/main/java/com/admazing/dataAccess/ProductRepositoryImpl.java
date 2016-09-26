@@ -10,7 +10,8 @@ public class ProductRepositoryImpl implements ProductRepository{
 	
 	@Override
 	public ProductModel findById(String idProduct) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		ProductModel product = null;
 		try{

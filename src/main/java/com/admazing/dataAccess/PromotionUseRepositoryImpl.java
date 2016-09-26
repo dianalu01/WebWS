@@ -20,7 +20,8 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 	public boolean save(String idUser, String idPromotion) {
 		
 		boolean success=false;
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
 			String idCurrentPromotionUse=null;
@@ -58,7 +59,8 @@ public class PromotionUseRepositoryImpl implements PromotionUseRepository{
 	}
 	@Override
 	public List<PromotionUseModel> findById(String idUser) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<PromotionUseModel> promotionsUse = null;
 		try{

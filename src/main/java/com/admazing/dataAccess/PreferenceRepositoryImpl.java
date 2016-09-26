@@ -19,7 +19,8 @@ public class PreferenceRepositoryImpl implements PreferenceRepository{
 		
 		boolean success=false;
 		if(!exist (idUser,idCategory)){				
-			Session session=hibernateUtil.getSessionFactory().openSession();
+			hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+			Session session=myHibernateConfigurator.getSessionFactory().openSession();
 			Transaction transaction=session.beginTransaction();
 			try{
 				PreferenceModel lastPreference = null;
@@ -59,7 +60,8 @@ public class PreferenceRepositoryImpl implements PreferenceRepository{
 	@Override
 	public boolean delete(String idUser, String idCategory) {
 		boolean success=false;
-			Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 			Transaction transaction=session.beginTransaction();
 			try{
 				PreferenceModel preference = new PreferenceModel();
@@ -83,7 +85,8 @@ public class PreferenceRepositoryImpl implements PreferenceRepository{
 	}
 	@Override
 	public List<PreferenceModel> getAllById(String idUser) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<PreferenceModel> preferences= null;
 		try{
@@ -111,7 +114,8 @@ public class PreferenceRepositoryImpl implements PreferenceRepository{
 		return exist;
 	}
 	private PreferenceModel getById(String idUser, String idCategory){
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		PreferenceModel preference= null;
 		try{

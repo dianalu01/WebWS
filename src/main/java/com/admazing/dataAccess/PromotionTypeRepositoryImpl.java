@@ -10,7 +10,8 @@ public class PromotionTypeRepositoryImpl implements PromotionTypeRepository{
 	
 	@Override
 	public PromotionTypeModel findById(String idPromotionType) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		PromotionTypeModel promotionType = null;
 		try{

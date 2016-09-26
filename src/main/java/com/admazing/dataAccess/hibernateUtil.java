@@ -5,9 +5,9 @@ import org.hibernate.cfg.Configuration;
  
 public class hibernateUtil {
 	 
-	private static final SessionFactory sessionFactory;
-	 
-	static {
+	private SessionFactory sessionFactory;
+	private static hibernateUtil myHibernateConfigurator;
+	private hibernateUtil(){
 		try {
 			sessionFactory = new Configuration().configure().buildSessionFactory();
 		} catch (Throwable ex) {
@@ -15,11 +15,16 @@ public class hibernateUtil {
 			throw new ExceptionInInitializerError(ex);
 		}
 	}
-	 
-	public static SessionFactory getSessionFactory() {
+	public static hibernateUtil getHibernateConfigurator(){
+		if(myHibernateConfigurator==null){
+			myHibernateConfigurator= new hibernateUtil();
+		}
+		return myHibernateConfigurator;
+	}
+	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-    public static void shutdown() {
+    public void shutdown() {
         getSessionFactory().close();
     }
 }

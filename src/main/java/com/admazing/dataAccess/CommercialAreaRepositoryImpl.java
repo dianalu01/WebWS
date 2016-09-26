@@ -15,7 +15,8 @@ import com.admazing.core.contracts.CommercialAreaRepository;
 public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 	@Override
 	public CommercialAreaModel getByLatitudeLongitude(String latitude,String longitude) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		double latitudeSearched =Double.parseDouble(latitude);
 		double longitudeSearched =Double.parseDouble(longitude);
@@ -50,7 +51,8 @@ public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 
 	@Override
 	public String getIdLastCommercialArea(String idUser) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		String idCommercialArea = null;
 		try{

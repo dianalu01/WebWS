@@ -18,7 +18,8 @@ public class CategoryRepositoryImpl implements CategoryRepository{
 	
 	@Override
 	public List<CategoryModel> findById(String idStore) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<CategoryModel> categories=null;
 		try{
@@ -43,7 +44,8 @@ public class CategoryRepositoryImpl implements CategoryRepository{
 
 	@Override
 	public List<CategoryModel> getAll() {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<CategoryModel> categories = null;
 		try{

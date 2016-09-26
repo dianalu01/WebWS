@@ -16,7 +16,8 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	
 	@Override
 	public List<CouponBookModel> getAllById(String idUser) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<CouponBookModel> coupons = null;
 		try{
@@ -41,7 +42,8 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 		
 		boolean success=false;
 		if(!exist (idUser,idPromotion)){				
-			Session session=hibernateUtil.getSessionFactory().openSession();
+			hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+			Session session=myHibernateConfigurator.getSessionFactory().openSession();
 			Transaction transaction=session.beginTransaction();
 			try{
 				CouponBookModel lastCouponBook = null;
@@ -85,7 +87,8 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 	@Override
 	public boolean delete(String idUser, String idPromotion) {
 		boolean success=false;
-			Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 			Transaction transaction=session.beginTransaction();
 			try{
 				CouponBookModel coupon = new CouponBookModel();
@@ -117,7 +120,8 @@ public class CouponBookRepositoryImpl implements CouponBookRepository{
 		return exist;
 	}
 	private CouponBookModel getById(String idUser, String idPromotion){
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		CouponBookModel coupon= null;
 		try{

@@ -17,7 +17,8 @@ public class StoreCategoryRepositoryImpl implements StoreCategoryRepository{
 	
 	@Override
 	public List<StoreCategoryModel> findById(String idStore) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<StoreCategoryModel> storesCategories = null;
 		try{

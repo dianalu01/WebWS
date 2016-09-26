@@ -9,7 +9,9 @@ import com.admazing.core.contracts.UserRepository;
 public class UserRepositoryImpl implements UserRepository{
 	 
 	public UserModel findById(String idUser) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		UserModel user = null;
 		try{

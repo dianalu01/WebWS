@@ -16,7 +16,8 @@ import com.admazing.core.contracts.StoreRepository;
 public class StoreRepositoryImpl implements StoreRepository{
 
 	public List<StoreModel> getAll() {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<StoreModel> stores = null;
 		try{
@@ -37,7 +38,8 @@ public class StoreRepositoryImpl implements StoreRepository{
 
 	@Override
 	public List<StoreModel> getAllbyCommercialArea(String idCommercialArea) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		List<StoreModel> stores = null;
 		try{
@@ -61,7 +63,8 @@ public class StoreRepositoryImpl implements StoreRepository{
 
 	@Override
 	public StoreModel getStoreById(String idStore) {
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		StoreModel store = null;
 		try{

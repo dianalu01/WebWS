@@ -18,7 +18,8 @@ public class AccessRepositoryImpl implements AccessRepository{
 	public boolean save(String idUser,String idCommercialArea) {
 		boolean success=false;
 		AccessModel lastAccess = null;
-		Session session=hibernateUtil.getSessionFactory().openSession();
+		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
+		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
 		try{
 			Criteria cr = session.createCriteria(AccessModel.class);
