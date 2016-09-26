@@ -2,9 +2,6 @@
 package com.admazing.Security;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.UnsupportedCallbackException;
@@ -12,14 +9,13 @@ import javax.security.auth.callback.UnsupportedCallbackException;
 import org.apache.wss4j.common.ext.WSPasswordCallback;
 
 import com.admazing.UserModel;
-import com.admazing.core.contracts.UserRepository;
-import com.admazing.dataAccess.UserRepositoryImpl;
-
+import com.admazing.Logic.UserServiceImpl;
+import com.admazing.core.contracts.UserService;
 
 
 public class UTPasswordCallback implements CallbackHandler {
 
-	UserRepository userRepository= new UserRepositoryImpl();
+	UserService userService= new UserServiceImpl();
 	public UTPasswordCallback() {
 		
 	}
@@ -29,7 +25,7 @@ public class UTPasswordCallback implements CallbackHandler {
 		for (int i = 0; i < callbacks.length; i++) {
 			WSPasswordCallback pc = (WSPasswordCallback) callbacks[i];
 			UserModel user=null;
-			user=userRepository.findById(pc.getIdentifier());
+			user=userService.findById(pc.getIdentifier());
 			if(user!=null){
 				pc.setPassword(user.getPassword());
 				return;

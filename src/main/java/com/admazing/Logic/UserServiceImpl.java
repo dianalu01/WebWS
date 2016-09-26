@@ -19,4 +19,11 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	@Override
+	public UserModel findById(String idUser) {
+		UserModel user=null;
+		user=userRepository.findById(idUser);
+		return user;
+	}
+
 }
