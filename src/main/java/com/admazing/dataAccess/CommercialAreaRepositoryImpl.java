@@ -34,7 +34,8 @@ public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 				if(distance<=currentDistance){
 			        session.flush();
 	            	session.clear();
-					commercialArea= c;	
+					commercialArea= c;
+					break;
 				}
 			}
 	        session.flush();
