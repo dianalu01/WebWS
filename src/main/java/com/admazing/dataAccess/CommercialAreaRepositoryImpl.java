@@ -14,31 +14,16 @@ import com.admazing.core.contracts.CommercialAreaRepository;
 
 public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 	@Override
-	public CommercialAreaModel getByLatitudeLongitude(String latitude,String longitude) {
+	public List<CommercialAreaModel> getAll() {
 		hibernateUtil myHibernateConfigurator= hibernateUtil.getHibernateConfigurator();				 
 		Session session=myHibernateConfigurator.getSessionFactory().openSession();
 		Transaction transaction=session.beginTransaction();
-		double latitudeSearched =Double.parseDouble(latitude);
-		double longitudeSearched =Double.parseDouble(longitude);
-		CommercialAreaModel commercialArea = null;
+		List<CommercialAreaModel> commercialAreas =  null; 
 		try{
 			Criteria cr = session.createCriteria(CommercialAreaModel.class);
-			List<CommercialAreaModel> commercialAreas =  new ArrayList<CommercialAreaModel>(); 
+			commercialAreas =  new ArrayList<CommercialAreaModel>(); 
 			commercialAreas=cr.list();
-			for (CommercialAreaModel c : commercialAreas) {
-				double currentLatitude=Double.parseDouble(c.getLatitude());
-				double currentLongitude=Double.parseDouble(c.getLongitude());
-				double currentDistance=Double.parseDouble(c.getDistance());
-				double distance=Math.sqrt(Math.pow((latitudeSearched-currentLatitude),2)
-						+Math.pow((longitudeSearched-currentLongitude),2));
-				if(distance<=currentDistance){
-			        session.flush();
-	            	session.clear();
-					commercialArea= c;
-					break;
-				}
-			}
-	        session.flush();
+			session.flush();
             session.clear();
 		} catch (Exception e) {
 	            e.printStackTrace();
@@ -47,7 +32,7 @@ public class CommercialAreaRepositoryImpl implements CommercialAreaRepository{
 			if(session.isOpen())
 				session.close();
 	    }
-		return commercialArea;
+		return commercialAreas;
 	}
 
 	@Override
